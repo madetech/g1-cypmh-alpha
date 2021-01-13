@@ -7,47 +7,33 @@
 -->
 
 <!-- Set the page title inside the pageTitle block -->
-{% block pageTitle %}
-  Content page example - NHS.UK prototype kit
-{% endblock %}
+{% block pageTitle %} Landing Page {% endblock %}
 
 <!-- Breadcrumb goes inside the beforeContent block -->
 <!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
-  <!-- Breadcrumb -->
-  {{ breadcrumb({
-    href: "/",
-    text: "Home"
-  }) }}
-{% endblock %}
+<!-- Breadcrumb -->
+{{ breadcrumb({ href: "/", text: "Home" }) }} {% endblock %}
 
 <!-- Your page content goes inside the content block -->
 <!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
 {% block content %}
 
-  <div class="nhsuk-grid-row">
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <!-- Change the page title here -->
+    <h1>Why do I feel like this?</h1>
 
-    <div class="nhsuk-grid-column-two-thirds">
+    <ul>
+      <li>Some copy here</li>
+      <li>Some more copy here</li>
+    </ul>
 
-      <!-- Change the page title here -->
-      <h1>
-        Why do I feel like this?
-      </h1>
+    <a href="/" class="nhsuk-button nhsuk-u-margin-bottom-8"> Text a person </a>
 
-      <ul>
-          <li>Some copy here</li>
-          <li>Some more copy here</li>
-      </ul>
-
-      <a href="/" class="nhsuk-button nhsuk-u-margin-bottom-8">
-        Text someone
-      </a>
-
-      <a href="/" class="nhsuk-button nhsuk-u-margin-bottom-8">
-        Online 
-      </a>
-
-    </div>  
-
+    <a href="/" class="nhsuk-button nhsuk-u-margin-bottom-8">
+      Take a health check
+    </a>
   </div>
+</div>
 {% endblock %}
