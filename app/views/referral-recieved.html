@@ -1,0 +1,43 @@
+{% extends 'layout.html' %} {% block pageTitle %} Confirmation page template -
+NHS.UK prototype kit {% endblock %} {% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div
+      class="nhsuk-card nhsuk-card--confirmation nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-4"
+    >
+      <div class="nhsuk-card__content">
+        <h1 class="nhsuk-card__title nhsuk-u-margin-bottom-4">
+          Self-referral complete
+        </h1>
+
+        <p class="nhsuk-u-font-size-24">
+          Your reference number
+          <br />
+          <strong class="nhsuk-u-font-size-32">HDJ2123F</strong>
+        </p>
+      </div>
+    </div>
+
+    <p>We have sent you a confirmation text and email.</p>
+
+    <h2>What happens next</h2>
+
+    <p>Someone will get in touch with you by phone over the next 2 weeks.</p>
+  </div>
+</div>
+<div style="display: flex; justify-content: center">
+  <a href="/">
+    <button
+      style="
+        background-color: rgb(223, 87, 87);
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        font-size: 20px;
+      "
+    >
+      Move to three weeks later
+    </button>
+  </a>
+</div>
+{% endblock %}
