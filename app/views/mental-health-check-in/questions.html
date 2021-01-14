@@ -29,24 +29,122 @@
     </p>
 
     <div class="nhsuk-form-group">
+      <br>
+      <h1>About you</h1>
       <fieldset class="nhsuk-fieldset">
         <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
           <h1 class="nhsuk-fieldset__heading">How old are you?</h1>
         </legend>
         <select class="nhsuk-select" id="select-1" name="select-1">
-          <option value="1">11</option>
-          <option value="2">12</option>
-          <option value="3">13</option>
+          <option value="9">9 years old or younger</option>
+          <option value="10">10 years old</option>
+          <option value="11">11 years old</option>
+          <option value="12">12 years old</option>
+          <option value="13">13 years old</option>
+          <option value="14">14 years old</option>
+          <option value="15">15 years old</option>
+          <option value="16">16 years old</option>
+          <option value="17">17 years old</option>
+          <option value="18">18 years old</option>
+          <option value="19">19 years old</option>
+          <option value="20">20 years old</option>
+          <option value="21">21 years old</option>
+          <option value="22">22 years old</option>
+          <option value="23+">23+ years old</option>
         </select>
       </fieldset>
+    <br><br>
+
+      <fieldset class="nhsuk-fieldset">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <h1 class="nhsuk-fieldset__heading">
+            What is your gender?
+          </h1>
+        </legend>
+    
+        <div class="nhsuk-radios">
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+              Female
+            </label>
+          </div>
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+              ...
+            </label>
+          </div>
+    
+        </div>
+      </fieldset>
+    
+      <br><br>
+
+      <fieldset class="nhsuk-fieldset">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <h1 class="nhsuk-fieldset__heading">
+            Do you live in Gloucestershire?
+          </h1>
+        </legend>
+    
+        <div class="nhsuk-radios">
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+              Yes
+            </label>
+          </div>
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+              No
+            </label>
+          </div>
+          
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+              Not sure
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <br><br>
+
+      <div class="nhsuk-form-group">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">Which School do you attend?</h1>
+          </legend>
+          <select class="nhsuk-select" id="select-1" name="select-1">
+            <option value="All Saints' Academy">All Saints' Academy</option>
+            <option value="Archway School">Archway School</option>
+            <option value="Balcarras School">Balcarras School</option>
+          </select>
+        </fieldset>
     </div>
 
-    <a
-      href="/mental-health-check-in/results"
-      class="nhsuk-button nhsuk-u-margin-bottom-8"
-    >
-      Submit
-    </a>
+
+
   </div>
+  <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
+    <ul class="nhsuk-list nhsuk-pagination__list">
+    <li class="nhsuk-pagination-item--next">
+      <a class="nhsuk-pagination__link nhsuk-pagination__link--next" href="/section/symptoms">
+        <span class="nhsuk-pagination__title">Next</span>
+        <span class="nhsuk-u-visually-hidden">:</span>
+        <span class="nhsuk-pagination__page">Your Feelings</span>
+        <svg class="nhsuk-icon nhsuk-icon__arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19.6 11.66l-2.73-3A.51.51 0 0 0 16 9v2H5a1 1 0 0 0 0 2h11v2a.5.5 0 0 0 .32.46.39.39 0 0 0 .18 0 .52.52 0 0 0 .37-.16l2.73-3a.5.5 0 0 0 0-.64z"></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
 </div>
 {% endblock %}
