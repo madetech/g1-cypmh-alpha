@@ -1,0 +1,302 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %} Find support {% endblock %}
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+<!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+<!-- Breadcrumb -->
+{{ breadcrumb({ href: "/landing-page", text: "Back" }) }} {% endblock %}
+
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <!-- Change the page title here -->
+        <h1>Find support (continued)</h1>
+
+        <div class="nhsuk-form-group">
+            <br>
+            <h1>Your feelings</h1>
+
+            <div class="nhsuk-form-group">
+
+                <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            How have you been feeling lately?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-hint" id="example-hint">
+                        Select all options that are relevant to you.
+                    </div>
+
+                    <div class="nhsuk-checkboxes">
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox"
+                                value="email">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                                Feeling sad and unhappy
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox"
+                                value="phone">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+                                Feeling hopeless and down
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                                value="text message">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                                Distracted easily
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                                value="text message">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                                Having trouble concentrating
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                                value="text message">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                                Feeling worried all the time
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <br><br>
+
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Is anything worrying you?
+                    </h1>
+                </legend>
+
+                <div class="nhsuk-radios">
+
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
+                        <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                            Yes
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                        <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                            No
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                        <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                            Not sure
+                        </label>
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <br><br>
+
+            <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        If you answered yes to the previous question:
+                    </h1>
+                </legend>
+
+                <div class="nhsuk-hint" id="example-hint">
+                    Select all options that are relevant to you.
+                </div>
+
+                <div class="nhsuk-checkboxes">
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox"
+                            value="email">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                            I'm worried about friendships
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox"
+                            value="phone">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+                            I'm worried about exams
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                            value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            I'm worried about family members
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                            value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            I'm worried about my body image
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox"
+                            value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            I'm worried about something else
+                        </label>
+                    </div>
+
+                </div>
+            </fieldset>
+
+        </div>
+
+        <br><br>
+
+        <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                    How has your appetite been?
+                </h1>
+            </legend>
+
+            <div class="nhsuk-radios">
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                        I've been eating less
+                    </label>
+                </div>
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        I've not noticed a change
+                    </label>
+                </div>
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        I've been eating more
+                    </label>
+                </div>
+
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        Not sure
+                    </label>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <br><br>
+
+        <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                    How has your home life been?
+                </h1>
+            </legend>
+
+            <div class="nhsuk-radios">
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                        I'm pretty happy at home
+                    </label>
+                </div>
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        I feel unsettled and stressed at home
+                    </label>
+                </div>
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        I feel unsafe at home
+                    </label>
+                </div>
+
+
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                        I'm not sure
+                    </label>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <br><br>
+
+
+        </div>
+
+        <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
+            <ul class="nhsuk-list nhsuk-pagination__list">
+              <li class="nhsuk-pagination-item--previous">
+                <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" href="/mental-health-check-in/questions">
+                  <span class="nhsuk-pagination__title">Previous</span>
+                  <span class="nhsuk-u-visually-hidden">:</span>
+                  <span class="nhsuk-pagination__page">About you</span>
+                  <svg class="nhsuk-icon nhsuk-icon__arrow-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4.1 12.3l2.7 3c.2.2.5.2.7 0 .1-.1.1-.2.1-.3v-2h11c.6 0 1-.4 1-1s-.4-1-1-1h-11V9c0-.2-.1-.4-.3-.5h-.2c-.1 0-.3.1-.4.2l-2.7 3c0 .2 0 .4.1.6z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="nhsuk-pagination-item--next">
+                <a class="nhsuk-pagination__link nhsuk-pagination__link--next" href="/mental-health-check-in/results">
+                  <span class="nhsuk-pagination__title">Next</span>
+                  <span class="nhsuk-u-visually-hidden">:</span>
+                  <span class="nhsuk-pagination__page">Your results</span>
+                  <svg class="nhsuk-icon nhsuk-icon__arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19.6 11.66l-2.73-3A.51.51 0 0 0 16 9v2H5a1 1 0 0 0 0 2h11v2a.5.5 0 0 0 .32.46.39.39 0 0 0 .18 0 .52.52 0 0 0 .37-.16l2.73-3a.5.5 0 0 0 0-.64z"></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+    {% endblock %}
