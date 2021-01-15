@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Hear stories from other people
+{% endblock %}
+
+{% block beforeContent %}
+  {{ breadcrumb({
+    href: "/dashboard",
+    text: "Your dashboard"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-full">
+
+      <h1>
+        Hear stories from other people
+      </h1>
+
+      <div style="display:flex; align-items: flex-end">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="example">
+            Search for key word(s) below:
+          </label>
+          <input class="nhsuk-input" id="example" name="example" type="text">
+        </div>
+        <button class="nhsuk-button" type="submit">
+          Search
+        </button>
+      </div>
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Josh.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Josh, 21</a>
+              </h2>
+              <p class="nhsuk-card__description" >I was diagnosed with anxiety when I was 15 and it’s something I still struggle with today in my twenties. For a while now it seems like it’s all I’ve known, and a big portion of my life has been either trying to hide it or desperately trying to find people that I can open up to that will be kind and give me the support I need....</p>
+            </div>
+          </div>
+      
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Leah.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Leah,14</a>
+              </h2>
+              <p class="nhsuk-card__description">The doctors describe me as a patient with significant anxiety...but really, I feel like I’m just going a little crazy. It feels like people look at anxiety as a modern thing, something that’s new and can’t be easily understood. Some people describe it as putting a label on ‘being sensitive’, that ‘everything has a have a diagnosis these days’...</p>
+            </div>
+          </div>
+      
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Tia.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Tia, 18</a>
+              </h2>
+              <p class="nhsuk-card__description">I've been told since I was 12 that my constant stress, sickness and weakness, and panic attacks were nothing more than attention-seeking behaviour. I didn't want to make friends, but I didn't want to be alone. I didn't want to leave the house, but I couldn't live with the idea of me being a failure. I didn't want to admit something was wrong, but at some point I had to...</p>
+            </div>
+          </div>
+      
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Brit.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Brit, 19</a>
+              </h2>
+              <p class="nhsuk-card__description">At school, while I had a few friends, I often struggled to connect with people. This was mainly down to my parents disapproving of my friends, which led to me isolating myself. I started to sink into a deep depression. I didn’t understand how I felt at the time and so I put my problems down to general school worries and teenage hormones....</p>
+            </div>
+          </div>
+      
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Holly.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Holly, 16</a>
+              </h2>
+              <p class="nhsuk-card__description">I can’t remember a time when I wasn’t or at least partly responsible for helping my mum out with my older sister, Kelly. Kelly  has Down’s syndrome and severe autism. It’s a bit hard being a young carer as you’ve got to do all these things that you may not like and I feel like i'm constantly worrying. When I’m at school, when I’m out, I always think about her and I hope she’s OK...</p>
+            </div>
+          </div>
+      
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <img class="nhsuk-card__img" src="images/Tom.png" alt="">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="#">Tom, 22</a>
+              </h2>
+              <p class="nhsuk-card__description">I was diagnosed with depression during my final year of Uni. I remember I wrote a sort of suicide note when I was 12. At that age I self-harmed as well. I didn’t speak to anyone about how I was feeling. What was I going to say?  That was the first time I started feeling something wasn’t right, but I didn’t know what it was. Even at Uni, I still couldn’t figure it out...</p>
+            </div>
+          </div>
+      
+        </li>
+      </ul>
+
+      <br>
+    <h2>Join the conversation</h2> 
+    <p>Join our forum <a>here</a></p>
+    </div>  
+
+  </div>
+{% endblock %}
