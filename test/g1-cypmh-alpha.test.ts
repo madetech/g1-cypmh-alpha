@@ -76,9 +76,14 @@ describe('mental health check questions page', () => {
 })
 
 describe('mental health check questions page', () => {
-    it('links mental-health-check-in/questions-2 ... to results1', async () => {
+    it('links Next page ... to results1', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/questions-2')
         await browser.clickElement('next_your_results')
         expect(browser.url().pathname).toBe('/mental-health-check-in/results')
+    })
+    it('links Previous ... to mental-health-check-in/questions', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/questions-2')
+        await browser.clickElement('previous_about_you')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
     })
 })
