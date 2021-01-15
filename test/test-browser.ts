@@ -10,7 +10,7 @@ export default class TestBrowser {
     constructor(private readonly puppeteerBrowser: Browser, private readonly page: Page) { }
 
     async goto(url: string) {
-        await this.page.goto('localhost:2000', { waitUntil: 'networkidle2' });
+        await this.page.goto(url, { waitUntil: 'networkidle2' });
     }
 
     async close() {
