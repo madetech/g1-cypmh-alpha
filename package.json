@@ -7,7 +7,8 @@
     "build": "gulp build",
     "postinstall": "npm run build",
     "start": "node app.js",
-    "test": "",
+    "test": "jest",
+    "journey-test": "jest",
     "prewatch": "gulp build",
     "watch": "gulp"
   },
@@ -36,5 +37,13 @@
     "nunjucks": "^3.2.2",
     "path": "^0.12.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^14.14.21",
+    "@types/puppeteer": "^5.4.2",
+    "jest": "^26.6.3",
+    "puppeteer": "^5.5.0",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
 }
