@@ -40,3 +40,29 @@ describe('Index', () => {
         expect(browser.url().pathname).toBe('/dashboard-2')
     })
 })
+
+describe('Landing page', () => {
+    xit('links NHS partner services... to ?', async () => {
+        await browser.goto('localhost:2000/landing-page')
+        await browser.clickLink('NHS partner services')
+        expect(browser.url().pathname).toBe('/landing-page')
+    })
+
+    xit('links learn more... to ?', async () => {
+        await browser.goto('localhost:2000/landing-page')
+        await browser.clickLink('Learn more')
+        expect(browser.url().pathname).toBe('/landing-page')
+    })
+
+    it('links mental health check ... to mental-health-check-in/questions', async () => {
+        await browser.goto('localhost:2000/landing-page')
+        await browser.clickLink('Mental health check')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
+    })
+
+    it('links speak to someone ... to mental-health-check-in/questions', async () => {
+        await browser.goto('localhost:2000/landing-page')
+        await browser.clickLink('Speak to someone')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
+    })
+})
