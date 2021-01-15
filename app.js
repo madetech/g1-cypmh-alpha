@@ -241,6 +241,6 @@ app.use(function (err, req, res, next) {
 })
 
 // Run the application
-app.listen(port);
+server = app.listen(port);
 
-module.exports = app;
+module.exports = {app, server};

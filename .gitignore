@@ -4,6 +4,7 @@
 /dist
 /tmp
 /public
+/.vscode
 
 # Runtime data
 pids
