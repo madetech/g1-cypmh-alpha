@@ -27,4 +27,11 @@ export default class TestBrowser {
         await links[0].click();
         await this.page.waitForNavigation();
     }
+
+    async clickElement(linkID: string) {
+        linkID = unescape(linkID)
+        let links = await this.page.$x(`//*[@id='${linkID}']`);
+        await links[0].click();
+        await this.page.waitForNavigation();
+    }
 }

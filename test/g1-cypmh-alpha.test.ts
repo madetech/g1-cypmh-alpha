@@ -66,3 +66,19 @@ describe('Landing page', () => {
         expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
     })
 })
+
+describe('mental health check questions page', () => {
+    it('links Next page ... to mental-health-check-in/questions-2', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/questions')
+        await browser.clickElement('next_your_feelings')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/questions-2')
+    })
+})
+
+describe('mental health check questions page', () => {
+    it('links mental-health-check-in/questions-2 ... to results1', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/questions-2')
+        await browser.clickElement('next_your_results')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/results')
+    })
+})
