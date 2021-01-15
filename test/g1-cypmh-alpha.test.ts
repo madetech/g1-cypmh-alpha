@@ -94,6 +94,11 @@ describe('Find support - results (page 1)', () => {
         await browser.clickLink('Free online cognitive behavioural therapy (CBT) course')
         expect(browser.url().href).toBe('https://www.getselfhelp.co.uk/')
     })
+    xit('links proven to help with... to ??', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('proven to help with mental health problems')
+        expect(browser.url().pathname).toBe('???')
+    })
     it('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
         await browser.clickLink('Gloucestershire self-harm helpline')
@@ -109,9 +114,18 @@ describe('Find support - results (page 1)', () => {
         await browser.clickLink('Free online counselling and support network')
         expect(browser.url().href).toBe('https://www.kooth.com/')
     })
-    it('links text service... to results-2', async () => {
-        await browser.goto('localhost:2000/mental-health-check-in/results')
-        await browser.clickLink('text service')
-        expect(browser.url().pathname).toBe('/mental-health-check-in/results-2')
+    
+})
+
+describe('Find support - results (page 2)', () => {
+    it('links Gloucest... to self-referral', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results-2')
+        await browser.clickLink('Gloucestershire specialist mental health services')
+        expect(browser.url().pathname).toBe('/self-referral')
+    })
+    it('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results-2')
+        await browser.clickLink('Gloucestershire self-harm helpline')
+        expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
     })
 })
