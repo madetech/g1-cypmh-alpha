@@ -75,7 +75,7 @@ describe('mental health check questions page', () => {
     })
 })
 
-describe('mental health check questions page', () => {
+describe('mental health check questions 2 page', () => {
     it('links Next page ... to results1', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/questions-2')
         await browser.clickElement('next_your_results')
@@ -85,5 +85,33 @@ describe('mental health check questions page', () => {
         await browser.goto('localhost:2000/mental-health-check-in/questions-2')
         await browser.clickElement('previous_about_you')
         expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
+    })
+})
+
+describe('Find support - results (page 1)', () => {
+    it('links Free online cog... to getselfhelp.co.uk', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('Free online cognitive behavioural therapy (CBT) course')
+        expect(browser.url().href).toBe('https://www.getselfhelp.co.uk/')
+    })
+    it('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('Gloucestershire self-harm helpline')
+        expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
+    })
+    it('links tic+... to tic+.co.uk', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('tic+ - free counselling and helpline')
+        expect(browser.url().href).toBe('https://www.ticplus.org.uk/')
+    })
+    it('links Free online counci... to kooth.com', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('Free online counselling and support network')
+        expect(browser.url().href).toBe('https://www.kooth.com/')
+    })
+    it('links text service... to results-2', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('text service')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/results-2')
     })
 })
