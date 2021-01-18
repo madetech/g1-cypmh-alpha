@@ -157,9 +157,14 @@ describe('dashboard', () => {
         await browser.clickLink('here');
         expect(browser.url().pathname).toBe('???');
     })
-    it('links opt in to check-in service to text check-ins', async () => {
+    it('links text check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('opt in to the text check-in service');
+        await browser.clickLink('text check-ins');
+        expect(browser.url().pathname).toBe('/text-check-ins');
+    })
+    it('links phone check-ins to text check-ins', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('phone check-ins');
         expect(browser.url().pathname).toBe('/text-check-ins');
     })
     it('links learn more to read about your treatment', async () => {
@@ -187,9 +192,9 @@ describe('dashboard', () => {
         await browser.clickLink('Kooth');
         expect(browser.url().href).toBe('https://www.kooth.com/');
     })
-    it('links Update your free times.. to your schedule', async () => {
+    it('links which loc is best for you.. to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('Update your free times');
+        await browser.clickLink('Let us know which location is best for you');
         expect(browser.url().pathname).toBe('/your-schedule');
     })
     xit('links let us know .. ???', async () => {
@@ -197,10 +202,10 @@ describe('dashboard', () => {
         await browser.clickLink('Let us know');
         expect(browser.url().pathname).toBe('???');
     })
-    it('links eight weeks .. dashboard 2', async () => {
+    it('links eight weeks .. text check-in 1 page', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickElement('eight-weeks-later-button');
-        expect(browser.url().pathname).toBe('/dashboard-2');
+        expect(browser.url().pathname).toBe('/text-check-in-1');
     })
 })
 
@@ -382,6 +387,14 @@ describe('nhs placeholder page', () => {
         await browser.goto('localhost:2000/nhs-placeholder');
         await browser.clickElement("placeholder-page-back-button");
         expect(browser.url().pathname).toBe('/landing-page');
+    })
+})
+
+describe('text check-in page', () => {
+    it('links skip to during ... to dashboard 2', async () => {
+        await browser.goto('localhost:2000/text-check-in-1');
+        await browser.clickElement("skip-to-during-treatment-button");
+        expect(browser.url().pathname).toBe('/dashboard-2');
     })
 })
 
