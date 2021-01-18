@@ -42,10 +42,10 @@ describe('Index', () => {
 })
 
 describe('Landing page', () => {
-    xit('links NHS partner services... to ?', async () => {
+    it('links NHS partner services... to nhs placeholder', async () => {
         await browser.goto('localhost:2000/landing-page')
         await browser.clickLink('NHS partner services')
-        expect(browser.url().pathname).toBe('/landing-page')
+        expect(browser.url().pathname).toBe('/nhs-placeholder')
     })
 
     xit('links learn more... to ?', async () => {
@@ -152,6 +152,11 @@ describe('referral received page', () => {
 })
 
 describe('dashboard', () => {
+    xit('links review status to ???', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('here');
+        expect(browser.url().pathname).toBe('???');
+    })
     it('links opt in to check-in service to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('opt in to the text check-in service');
