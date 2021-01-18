@@ -16,7 +16,7 @@ afterAll(async () => {
 
 function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
-};
+}
 
 // beforeEach(async () => await browser.goto('localhost:2000')
 // );
@@ -272,5 +272,48 @@ describe('appointment summary', () => {
         await browser.goto('localhost:2000/appointment-summary');
         await browser.clickLink('Update your free times');
         expect(browser.url().pathname).toBe('/your-schedule');
+    })
+})
+
+describe('learn about treatment', () => {
+    xit('links Cognitive behavioural... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Cognitive Behavioural Therapy (CBT)');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Family therapy... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Family therapy');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Behavioural interventions... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Behavioural interventions');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Psychotherapy... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Psychotherapy');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Creative therapies... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Creative therapies');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Group therapy and psycho-educational groups... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Group therapy and psycho-educational groups');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Medication... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Medication');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Parent support groups... to ???', async () => {
+        await browser.goto('localhost:2000/read-about-your-treatment');
+        await browser.clickElement('Parent support groups');
+        expect(browser.url().pathname).toBe('???');
     })
 })
