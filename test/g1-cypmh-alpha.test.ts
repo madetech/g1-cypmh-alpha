@@ -56,7 +56,7 @@ describe('Landing page', () => {
 
     it('links mental health check ... to mental-health-check-in/questions', async () => {
         await browser.goto('localhost:2000/landing-page')
-        await browser.clickLink('Mental health check')
+        await browser.clickLink('Find support')
         expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
     })
 
