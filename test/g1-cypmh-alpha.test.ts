@@ -117,7 +117,7 @@ describe('Find support - results (page 1)', () => {
 
     it('links text service... to results 2', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
-        await browser.clickLink('text service')
+        await browser.clickLink('our text service')
         expect(browser.url().pathname).toBe('/mental-health-check-in/results-2')
     })
 })
@@ -374,6 +374,14 @@ describe('status update page 2', () => {
         await browser.goto('localhost:2000/status-update-2');
         await browser.clickLink("read about your treatment options and who you might speak to");
         expect(browser.url().pathname).toBe('/dashboard');
+    })
+})
+
+describe('nhs placeholder page', () => {
+    it('links back button ... to landing page', async () => {
+        await browser.goto('localhost:2000/nhs-placeholder');
+        await browser.clickElement("placeholder-page-back-button");
+        expect(browser.url().pathname).toBe('/landing-page');
     })
 })
 
