@@ -157,6 +157,12 @@ describe('dashboard', () => {
         await browser.clickLink('here');
         expect(browser.url().pathname).toBe('???');
     })
+    it('links clinic allocation to your-schedule', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickElement('clinic-allocation-expander');
+        await browser.clickElement('clinic-to-schedule');
+        expect(browser.url().pathname).toBe('/your-schedule');
+    })
     it('links text check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('text check-ins');
