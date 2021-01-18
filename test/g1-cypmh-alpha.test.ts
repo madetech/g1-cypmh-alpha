@@ -144,7 +144,7 @@ describe('self referral page', () => {
 })
 
 describe('referral received page', () => {
-    it('links 3 weeks later button to dashboard 1', async () => {
+    it('links 3 weeks later button to status update 1', async () => {
         await browser.goto('localhost:2000/referral-received');
         await browser.clickElement('three-weeks-later-button');
         expect(browser.url().pathname).toBe('/status-update-1');
@@ -355,3 +355,20 @@ describe('stories from others page', () => {
         expect(browser.url().pathname).toBe('???');
     })
 })
+
+describe('status update page 1', () => {
+    it('links skip to phone call button to status update 2', async () => {
+        await browser.goto('localhost:2000/status-update-1');
+        await browser.clickElement('skip-phone-call-button');
+        expect(browser.url().pathname).toBe('/status-update-2');
+    })
+})
+
+describe('status update page 2', () => {
+    it('links read about ... to dashboard', async () => {
+        await browser.goto('localhost:2000/status-update-2');
+        await browser.clickLink("read about your treatment options and who you might speak to");
+        expect(browser.url().pathname).toBe('/dashboard');
+    })
+})
+
