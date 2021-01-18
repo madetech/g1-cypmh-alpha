@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Blank template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+href: "/",
+text: "Home"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <h1>
+            Placeholder page that will explain the NHS partner services
+        </h1>
+
+        <a href="/landing-page" class="nhsuk-button nhsuk-u-margin-bottom-8">
+            Back
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}
