@@ -147,7 +147,7 @@ describe('referral received page', () => {
     it('links 3 weeks later button to dashboard 1', async () => {
         await browser.goto('localhost:2000/referral-received');
         await browser.clickElement('three-weeks-later-button');
-        expect(browser.url().pathname).toBe('/dashboard');
+        expect(browser.url().pathname).toBe('/status-update-1');
     })
 })
 

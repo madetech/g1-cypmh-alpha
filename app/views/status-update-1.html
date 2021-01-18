@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Blank template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+href: "/",
+text: "Home"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <h1>
+            You received a text message:
+        </h1>
+
+        <div class="nhsuk-inset-text">
+            <span class="nhsuk-u-visually-hidden">Information: </span>
+            <p>"Thank you for sending your referral through. We've received it safely, and we'll be in touch within a week. The first step is a 30 minute phone call with one of our clinical team to agree what the best way of supporting you is."</p>
+        </div>
+
+        <div style="display: flex; justify-content: center">
+            <a href="/status-update-2", id="three-weeks-later-button">
+                <button
+                        style="
+        background-color: rgb(239,197,61);
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        font-size: 20px;
+      "
+                >
+                    Skip to after the phone call
+                </button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
