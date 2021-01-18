@@ -114,7 +114,12 @@ describe('Find support - results (page 1)', () => {
         await browser.clickLink('Free online counselling and support network')
         expect(browser.url().href).toBe('https://www.kooth.com/')
     })
-    
+
+    it('links text service... to results 2', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results')
+        await browser.clickLink('text service')
+        expect(browser.url().pathname).toBe('/mental-health-check-in/results-2')
+    })
 })
 
 describe('Find support - results (page 2)', () => {
@@ -127,5 +132,145 @@ describe('Find support - results (page 2)', () => {
         await browser.goto('localhost:2000/mental-health-check-in/results-2')
         await browser.clickLink('Gloucestershire self-harm helpline')
         expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
+    })
+})
+
+describe('self referral page', () => {
+    it('links submit button to referral received', async () => {
+        await browser.goto('localhost:2000/self-referral')
+        await browser.clickLink('Submit')
+        expect(browser.url().pathname).toBe('/referral-received')
+    })
+})
+
+describe('referral received page', () => {
+    it('links 3 weeks later button to dashboard 1', async () => {
+        await browser.goto('localhost:2000/referral-received');
+        await browser.clickElement('three-weeks-later-button');
+        expect(browser.url().pathname).toBe('/dashboard');
+    })
+})
+
+describe('dashboard', () => {
+    it('links opt in to check-in service to text check-ins', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('opt in to the text check-in service');
+        expect(browser.url().pathname).toBe('/text-check-ins');
+    })
+    it('links learn more to read about your treatment', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('This page');
+        expect(browser.url().pathname).toBe('/read-about-your-treatment');
+    })
+    it('links share their.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('share their stories and answer common questions');
+        expect(browser.url().pathname).toBe('/stories-from-others');
+    })
+    it('links join a private.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('join a private online forum');
+        expect(browser.url().pathname).toBe('/stories-from-others');
+    })
+    it('links tic+.. to tic website', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('tic+');
+        expect(browser.url().href).toBe('https://www.ticplus.org.uk/');
+    })
+    it('links kooth.. to kooth website', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('Kooth');
+        expect(browser.url().href).toBe('https://www.kooth.com/');
+    })
+    it('links Update your free times.. to your schedule', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('Update your free times');
+        expect(browser.url().pathname).toBe('/your-schedule');
+    })
+    xit('links let us know .. ???', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('Let us know');
+        expect(browser.url().pathname).toBe('???');
+    })
+    it('links eight weeks .. dashboard 2', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickElement('eight-weeks-later-button');
+        expect(browser.url().pathname).toBe('/dashboard-2');
+    })
+})
+
+describe('dashboard-2', () => {
+    xit('links change appointment time to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('Change your appointment time or date');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links care plan to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('Care plan 151220.pdf');
+        expect(browser.url().pathname).toBe('???');
+    })
+    it('links appointment with to appointment summary', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('Appointment with Dr. Matthew Marsh.');
+        expect(browser.url().pathname).toBe('/appointment-summary');
+    })
+    xit('links appointment with 9/11/20 to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('Appointment with Dr. Matthew Marsh.');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/10/20 to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('9th October 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/9/20 to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('9th September 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/8/20 to ???', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('9th August 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    it('links update your free times to your schedule', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('Update your free times');
+        expect(browser.url().pathname).toBe('/your-schedule');
+    })
+})
+
+describe('appointment summary', () => {
+    xit('links on the NHS website to ???', async () => {
+        await browser.goto('localhost:2000/appointment summary');
+        await browser.clickLink('on the NHS website');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/11/20 to ???', async () => {
+        await browser.goto('localhost:2000/appointment-summary');
+        await browser.clickLink('Appointment with Dr. Matthew Marsh.');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/10/20 to ???', async () => {
+        await browser.goto('localhost:2000/appointment-summary');
+        await browser.clickLink('9th October 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/9/20 to ???', async () => {
+        await browser.goto('localhost:2000/appointment-summary');
+        await browser.clickLink('9th September 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links appointment with 9/8/20 to ???', async () => {
+        await browser.goto('localhost:2000/appointment-summary');
+        await browser.clickLink('9th August 2020');
+        expect(browser.url().pathname).toBe('???');
+    })
+    it('links update your free times to your schedule', async () => {
+        await browser.goto('localhost:2000/appointment-summary');
+        await browser.clickLink('Update your free times');
+        expect(browser.url().pathname).toBe('/your-schedule');
     })
 })
