@@ -317,3 +317,41 @@ describe('learn about treatment', () => {
         expect(browser.url().pathname).toBe('???');
     })
 })
+
+describe('stories from others page', () => {
+    xit('links Josh, 21 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Josh, 21');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Leah,14 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Leah,14');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Tia, 18 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Tia, 18');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Brit, 19 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Brit, 19');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Holly, 16 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Holly, 16');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Tom, 22 to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Tom, 22');
+        expect(browser.url().pathname).toBe('???');
+    })
+    xit('links Join our forum here to ???', async () => {
+        await browser.goto('localhost:2000/stories-from-others');
+        await browser.clickElement('Join our forum here');
+        expect(browser.url().pathname).toBe('???');
+    })
+})
