@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Blank template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+href: "/",
+text: "Home"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <h1>
+            You received a text message:
+        </h1>
+
+        <div class="nhsuk-inset-text">
+            <span class="nhsuk-u-visually-hidden">Information: </span>
+            <p>
+                "Thank you for taking the time to speak to one of our team today. We've added you to the waiting list to speak to a psychotherapist who specialises in anxiety."
+            </p>
+            <p>
+                Our waiting times are about 4 months at the moment. We know that's longer than you'd like to wait, and we're sorry.
+            </p>
+            <p>
+                You can <a href="/dashboard">read about your treatment options and who you might speak to, and choose where and at what time you'd like your first appointment here</a>.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
