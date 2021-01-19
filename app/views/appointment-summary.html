@@ -13,7 +13,11 @@
 <!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
 <!-- Breadcrumb -->
-{{ breadcrumb({ href: "/dashboard-2", text: "Your dashboard" }) }} {% endblock %}
+{{ breadcrumb({
+  href: "javascript:history.back()",
+  text: "Your dashboard"
+}) }}
+{% endblock %}
 
 <!-- Your page content goes inside the content block -->
 <!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
