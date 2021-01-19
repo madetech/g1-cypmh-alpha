@@ -186,7 +186,7 @@ describe('dashboard', () => {
     it('links join a private.. to stories from others', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('join a private online forum');
-        expect(browser.url().pathname).toBe('/stories-from-others');
+        expect(browser.url().pathname).toBe('/forum');
     })
     it('links tic+.. to tic website', async () => {
         await browser.goto('localhost:2000/dashboard');
