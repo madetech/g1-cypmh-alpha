@@ -157,6 +157,16 @@ describe('dashboard', () => {
         await browser.clickLink('here');
         expect(browser.url().pathname).toBe('???');
     })
+    xit('links tic+.. to tic website', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('tic+');
+        expect(browser.url().href).toBe('https://www.ticplus.org.uk/');
+    })
+    xit('links kooth.. to kooth website', async () => {
+        await browser.goto('localhost:2000/dashboard');
+        await browser.clickLink('Kooth');
+        expect(browser.url().href).toBe('https://www.kooth.com/');
+    })
     it('links clinic allocation to your-schedule', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickElement('clinic-allocation-expander');
@@ -188,16 +198,7 @@ describe('dashboard', () => {
         await browser.clickLink('join a private online forum');
         expect(browser.url().pathname).toBe('/forum');
     })
-    it('links tic+.. to tic website', async () => {
-        await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('tic+');
-        expect(browser.url().href).toBe('https://www.ticplus.org.uk/');
-    })
-    it('links kooth.. to kooth website', async () => {
-        await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('Kooth');
-        expect(browser.url().href).toBe('https://www.kooth.com/');
-    })
+
     it('links which loc is best for you.. to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('Let us know which location is best for you');
