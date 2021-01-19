@@ -251,9 +251,9 @@ describe('dashboard-2', () => {
         await browser.clickLink('9th August 2020');
         expect(browser.url().pathname).toBe('???');
     })
-    it('links update your free times to your schedule', async () => {
+    it('links let us know which location... to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard-2');
-        await browser.clickLink('Update your free times');
+        await browser.clickLink('Let us know which location');
         expect(browser.url().pathname).toBe('/your-schedule');
     })
 })
