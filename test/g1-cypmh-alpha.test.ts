@@ -381,9 +381,9 @@ describe('status update page 1', () => {
 })
 
 describe('status update page 2', () => {
-    it('links read about ... to dashboard', async () => {
+    it('links let us know ... to dashboard', async () => {
         await browser.goto('localhost:2000/status-update-2');
-        await browser.clickLink("read about your treatment options and who you might speak to");
+        await browser.clickLink("let us know which location is best for you");
         expect(browser.url().pathname).toBe('/dashboard');
     })
 })
