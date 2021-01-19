@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {{ breadcrumb({
-    href: "/dashboard",
-    text: "Your dashboard"
-  }) }}
+{{ breadcrumb({
+  href: "javascript:history.back()",
+  text: "Your dashboard"
+}) }}
 {% endblock %}
 
 {% block content %}
