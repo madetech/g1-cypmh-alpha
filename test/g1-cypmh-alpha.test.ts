@@ -63,7 +63,7 @@ describe('Landing page', () => {
     it('links speak to someone ... to mental-health-check-in/questions', async () => {
         await browser.goto('localhost:2000/landing-page')
         await browser.clickLink('Speak to someone')
-        expect(browser.url().pathname).toBe('/mental-health-check-in/questions')
+        expect(browser.url().pathname).toBe('/speak-to-someone-placeholder')
     })
 })
 
