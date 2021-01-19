@@ -231,7 +231,16 @@ describe('dashboard-2', () => {
         await browser.clickLink('This page');
         expect(browser.url().pathname).toBe('/read-about-your-treatment');
     })
-
+    it('links share their.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('share their stories and answer common questions');
+        expect(browser.url().pathname).toBe('/stories-from-others');
+    })
+    it('links join a private.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('join a private online forum');
+        expect(browser.url().pathname).toBe('/forum');
+    })
     it('links appointment with to appointment summary', async () => {
         await browser.goto('localhost:2000/dashboard-2');
         await browser.clickLink('Appointment with Dr. Matthew Marsh.');
