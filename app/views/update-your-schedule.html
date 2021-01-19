@@ -1,0 +1,130 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %}
+Your schedule
+{% endblock %}
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+<!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+<!-- Breadcrumb -->
+{{ breadcrumb({
+href: "/",
+text: "Home"
+}) }}
+{% endblock %}
+
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+
+<div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <!-- Change the page title here -->
+        <h1>
+            Tell us when you aren't free
+        </h1>
+
+        <div class="nhsuk-form-group">
+
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="select-1">
+                    From:
+                </label>
+                <select class="nhsuk-select" id="select-1" name="select-1">
+                    <option value="1">am</option>
+                    <option value="2">pm</option>
+                </select>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="select-1">
+                    To:
+                </label>
+                <select class="nhsuk-select" id="select-1" name="select-1">
+                    <option value="1">am</option>
+                    <option value="2">pm</option>
+                </select>
+            </div>
+
+            <br>
+
+            <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+
+                <div class="nhsuk-hint" id="example-hint">
+                    Select the days this time applies to.
+                </div>
+
+                <div class="nhsuk-checkboxes">
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                            Monday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+                            Tuesday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            Wednesday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            Thursday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            Friday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            Saturday
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                            Sunday
+                        </label>
+                    </div>
+
+                </div>
+            </fieldset>
+
+        </div>
+        <a href="/dashboard" class="nhsuk-button nhsuk-u-margin-bottom-8">
+            Submit
+        </a>
+
+    </div>
+
+
+</div>
+{% endblock %}
