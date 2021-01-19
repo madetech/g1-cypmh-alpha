@@ -186,7 +186,7 @@ describe('dashboard', () => {
     it('links join a private.. to stories from others', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('join a private online forum');
-        expect(browser.url().pathname).toBe('/stories-from-others');
+        expect(browser.url().pathname).toBe('/forum');
     })
     it('links tic+.. to tic website', async () => {
         await browser.goto('localhost:2000/dashboard');
@@ -226,6 +226,21 @@ describe('dashboard-2', () => {
         await browser.clickLink('Care plan 151220.pdf');
         expect(browser.url().pathname).toBe('???');
     })
+    it('links learn more to read about your treatment', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('This page');
+        expect(browser.url().pathname).toBe('/read-about-your-treatment');
+    })
+    it('links share their.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('share their stories and answer common questions');
+        expect(browser.url().pathname).toBe('/stories-from-others');
+    })
+    it('links join a private.. to stories from others', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('join a private online forum');
+        expect(browser.url().pathname).toBe('/forum');
+    })
     it('links appointment with to appointment summary', async () => {
         await browser.goto('localhost:2000/dashboard-2');
         await browser.clickLink('Appointment with Dr. Matthew Marsh.');
@@ -251,9 +266,9 @@ describe('dashboard-2', () => {
         await browser.clickLink('9th August 2020');
         expect(browser.url().pathname).toBe('???');
     })
-    it('links update your free times to your schedule', async () => {
+    it('links let us know which location... to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard-2');
-        await browser.clickLink('Update your free times');
+        await browser.clickLink('Let us know which location');
         expect(browser.url().pathname).toBe('/your-schedule');
     })
 })
@@ -365,11 +380,6 @@ describe('stories from others page', () => {
         await browser.clickElement('Tom, 22');
         expect(browser.url().pathname).toBe('???');
     })
-    xit('links Join our forum here to ???', async () => {
-        await browser.goto('localhost:2000/stories-from-others');
-        await browser.clickElement('Join our forum here');
-        expect(browser.url().pathname).toBe('???');
-    })
 })
 
 describe('status update page 1', () => {
@@ -381,9 +391,9 @@ describe('status update page 1', () => {
 })
 
 describe('status update page 2', () => {
-    it('links read about ... to dashboard', async () => {
+    it('links let us know ... to dashboard', async () => {
         await browser.goto('localhost:2000/status-update-2');
-        await browser.clickLink("read about your treatment options and who you might speak to");
+        await browser.clickLink("let us know which location is best for you");
         expect(browser.url().pathname).toBe('/dashboard');
     })
 })
