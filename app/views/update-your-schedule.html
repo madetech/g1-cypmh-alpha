@@ -16,9 +16,10 @@ Your schedule
 {% block beforeContent %}
 <!-- Breadcrumb -->
 {{ breadcrumb({
-href: "/",
-text: "Home"
-}) }}
+    {{ breadcrumb({
+        href: "javascript:history.back()",
+        text: "Your dashboard"
+      }) }}
 {% endblock %}
 
 <!-- Your page content goes inside the content block -->
