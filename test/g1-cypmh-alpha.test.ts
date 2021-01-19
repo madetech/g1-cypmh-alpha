@@ -123,15 +123,15 @@ describe('Find support - results (page 1)', () => {
 })
 
 describe('Find support - results (page 2)', () => {
+    xit('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
+        await browser.goto('localhost:2000/mental-health-check-in/results-2')
+        await browser.clickLink('Gloucestershire self-harm helpline')
+        expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
+    })
     it('links Gloucest... to self-referral', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results-2')
         await browser.clickLink('Gloucestershire specialist mental health services')
         expect(browser.url().pathname).toBe('/self-referral')
-    })
-    it('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
-        await browser.goto('localhost:2000/mental-health-check-in/results-2')
-        await browser.clickLink('Gloucestershire self-harm helpline')
-        expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
     })
 })
 
