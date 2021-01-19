@@ -175,7 +175,7 @@ describe('dashboard', () => {
     })
     it('links text check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
-        await browser.clickElement("register-for-text-check-ins-link");
+        await browser.clickLink("text check-ins");
         expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
     it('links phone check-ins to text check-ins', async () => {
