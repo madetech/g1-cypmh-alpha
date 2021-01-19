@@ -226,6 +226,12 @@ describe('dashboard-2', () => {
         await browser.clickLink('Care plan 151220.pdf');
         expect(browser.url().pathname).toBe('???');
     })
+    it('links learn more to read about your treatment', async () => {
+        await browser.goto('localhost:2000/dashboard-2');
+        await browser.clickLink('This page');
+        expect(browser.url().pathname).toBe('/read-about-your-treatment');
+    })
+
     it('links appointment with to appointment summary', async () => {
         await browser.goto('localhost:2000/dashboard-2');
         await browser.clickLink('Appointment with Dr. Matthew Marsh.');
