@@ -165,12 +165,12 @@ describe('dashboard', () => {
     })
     it('links text check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('text check-ins');
+        await browser.clickElement("register-for-text-check-ins-link");
         expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
     it('links phone check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
-        await browser.clickLink('phone check-ins');
+        await browser.clickElement("register-for-phone-check-ins-link");
         expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
     it('links learn more to read about your treatment', async () => {
@@ -404,3 +404,10 @@ describe('text check-in page', () => {
     })
 })
 
+describe('register for text check-in page', () => {
+    it('links submit button ... to dashboard', async () => {
+        await browser.goto('localhost:2000/register-for-text-check-ins');
+        await browser.clickElement("submit-test-check-in-registration");
+        expect(browser.url().pathname).toBe('/dashboard');
+    })
+})
