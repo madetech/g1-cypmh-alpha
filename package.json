@@ -35,7 +35,8 @@
     "nhsuk-frontend": "^4.0.0",
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "progress-tracker": "^2.0.6"
   },
   "devDependencies": {
     "@types/node": "^14.14.21",
