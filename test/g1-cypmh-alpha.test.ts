@@ -166,12 +166,12 @@ describe('dashboard', () => {
     it('links text check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('text check-ins');
-        expect(browser.url().pathname).toBe('/text-check-ins');
+        expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
     it('links phone check-ins to text check-ins', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('phone check-ins');
-        expect(browser.url().pathname).toBe('/text-check-ins');
+        expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
     it('links learn more to read about your treatment', async () => {
         await browser.goto('localhost:2000/dashboard');
