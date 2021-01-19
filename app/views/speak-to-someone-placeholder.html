@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Blank template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+href: "/",
+text: "Home"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <h1>
+            Speak to someone
+        </h1>
+
+        <p>
+            Placeholder page for a text service where you can describe what you're feeling and a mental health expert will suggest the best support for you.
+          </p>
+
+        <a href="/landing-page" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
+            Back
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}
