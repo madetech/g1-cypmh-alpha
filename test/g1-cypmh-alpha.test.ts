@@ -89,7 +89,7 @@ describe('mental health check questions 2 page', () => {
 })
 
 describe('Find support - results (page 1)', () => {
-    it('links Free online cog... to getselfhelp.co.uk', async () => {
+    xit('links Free online cog... to getselfhelp.co.uk', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
         await browser.clickLink('Free online cognitive behavioural therapy (CBT) course')
         expect(browser.url().href).toBe('https://www.getselfhelp.co.uk/')
@@ -99,17 +99,17 @@ describe('Find support - results (page 1)', () => {
         await browser.clickLink('proven to help with mental health problems')
         expect(browser.url().pathname).toBe('???')
     })
-    it('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
+    xit('links Gloucester self... to gloucestershireselfharm.co.uk', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
         await browser.clickLink('Gloucestershire self-harm helpline')
         expect(browser.url().href).toBe('https://www.gloucestershireselfharm.org/')
     })
-    it('links tic+... to tic+.co.uk', async () => {
+    xit('links tic+... to tic+.co.uk', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
         await browser.clickLink('tic+ - free counselling and helpline')
         expect(browser.url().href).toBe('https://www.ticplus.org.uk/')
     })
-    it('links Free online counci... to kooth.com', async () => {
+    xit('links Free online counci... to kooth.com', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
         await browser.clickLink('Free online counselling and support network')
         expect(browser.url().href).toBe('https://www.kooth.com/')
