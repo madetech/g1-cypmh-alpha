@@ -365,11 +365,6 @@ describe('stories from others page', () => {
         await browser.clickElement('Tom, 22');
         expect(browser.url().pathname).toBe('???');
     })
-    xit('links Join our forum here to ???', async () => {
-        await browser.goto('localhost:2000/stories-from-others');
-        await browser.clickElement('Join our forum here');
-        expect(browser.url().pathname).toBe('???');
-    })
 })
 
 describe('status update page 1', () => {
