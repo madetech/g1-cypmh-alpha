@@ -59,7 +59,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=10>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -92,7 +92,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=5>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -124,7 +124,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=20>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -157,7 +157,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=20>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -190,7 +190,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=10>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -223,7 +223,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=10>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -257,7 +257,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=5>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -291,7 +291,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=20>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -325,7 +325,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=20>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -359,7 +359,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=10>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -393,7 +393,7 @@ text: "Back"
                     <div class="nhsuk-checkboxes">
                 
                       <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                        <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value=10>
                         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                           
                         </label>
@@ -407,8 +407,26 @@ text: "Back"
           </div>
       
         </li>
+        
   </div>
+  <h1 id="variable_paragraph"> </h1>
+  <button onclick="sum_values()">Calculate Cost</button>
+  
+  <script type="text/javascript">
+    
+    const sum_values = () => {
+      let checkboxes = document.getElementsByClassName("nhsuk-checkboxes__input");
+      let sum = 0
+      for(var i=0; checkboxes[i]; ++i){
+            if(checkboxes[i].checked){
+                sum+= parseInt(checkboxes[i].value);
+            }
+            console.log(sum)
+      } document.getElementById("variable_paragraph").innerHTML = `your total cost is £${sum}`
+    } 
+  </script>
 
 
+  
 </div>
 {% endblock %}
