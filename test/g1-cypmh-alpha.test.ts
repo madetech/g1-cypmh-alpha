@@ -183,17 +183,17 @@ describe('dashboard', () => {
         await browser.clickElement("register-for-phone-check-ins-link");
         expect(browser.url().pathname).toBe('/register-for-text-check-ins');
     })
-    it('links learn more to read about your treatment', async () => {
+    xit('links learn more to dead link', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('This page');
         expect(browser.url().pathname).toBe('/read-about-your-treatment');
     })
-    it('links share their.. to stories from others', async () => {
+    xit('links share their.. to now dead link', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('share their stories and answer common questions');
         expect(browser.url().pathname).toBe('/stories-from-others');
     })
-    it('links join a private.. to stories from others', async () => {
+    it('links join a private.. to forum', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('join a private online forum');
         expect(browser.url().pathname).toBe('/forum');
