@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Forum
+{% endblock %}
+
+{% block beforeContent %}
+  {{ breadcrumb({
+    href: "javascript:history.back()",
+    text: "Your dashboard"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-full">
+
+      <!-- Add your content here -->
+      <h1>Text service</h1>
+
+      
+      <p>You have a text message conversation with a mental health expert. They ask you questions about how you're feeling, and a few to make sure they recommend something you're eligible for, and suggest the best places for you to go for help.</p>
+
+    </div>  
+
+  </div>
+
+  <div style="display: flex; justify-content: center">
+    <a href="mental-health-check-in/results-2" id="skip-phone-call-button">
+        <button class="journey-button">
+            See your options
+        </button>
+    </a>
+</div>
+
+
+{% endblock %}
