@@ -117,8 +117,8 @@ describe('Find support - results (page 1)', () => {
 
     it('links text service... to results 2', async () => {
         await browser.goto('localhost:2000/mental-health-check-in/results')
-        await browser.clickLink('our text service')
-        expect(browser.url().pathname).toBe('/mental-health-check-in/results-2')
+        await browser.clickLink('have a text message')
+        expect(browser.url().pathname).toBe('/text-triage')
     })
 })
 
@@ -167,7 +167,7 @@ describe('dashboard', () => {
         await browser.clickLink('Kooth');
         expect(browser.url().href).toBe('https://www.kooth.com/');
     })
-    it('links clinic allocation to your-schedule', async () => {
+    xit('links clinic allocation to your-schedule', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickElement('clinic-allocation-expander');
         await browser.clickElement('clinic-to-schedule');
@@ -199,7 +199,7 @@ describe('dashboard', () => {
         expect(browser.url().pathname).toBe('/forum');
     })
 
-    it('links which loc is best for you.. to your schedule', async () => {
+    xit('links which loc is best for you.. to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard');
         await browser.clickLink('Let us know which location is best for you');
         expect(browser.url().pathname).toBe('/your-schedule');
@@ -269,8 +269,8 @@ describe('dashboard-2', () => {
     })
     it('links let us know which location... to your schedule', async () => {
         await browser.goto('localhost:2000/dashboard-2');
-        await browser.clickLink('Let us know which location');
-        expect(browser.url().pathname).toBe('/your-schedule');
+        await browser.clickLink('Update your free times');
+        expect(browser.url().pathname).toBe('/update-your-schedule');
     })
 })
 
@@ -303,7 +303,7 @@ describe('appointment summary', () => {
     it('links update your free times to your schedule', async () => {
         await browser.goto('localhost:2000/appointment-summary');
         await browser.clickLink('Update your free times');
-        expect(browser.url().pathname).toBe('/your-schedule');
+        expect(browser.url().pathname).toBe('/update-your-schedule');
     })
 })
 
@@ -394,7 +394,7 @@ describe('status update page 1', () => {
 describe('status update page 2', () => {
     it('links let us know ... to dashboard', async () => {
         await browser.goto('localhost:2000/status-update-2');
-        await browser.clickLink("let us know which location is best for you");
+        await browser.clickLink("dashboard");
         expect(browser.url().pathname).toBe('/dashboard');
     })
 })
