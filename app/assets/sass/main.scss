@@ -19,4 +19,28 @@
     cursor: pointer;
 }
 
+#page-wrap {
+    margin: 15px auto;
+    position: relative;
+}
+
+#sidebar {
+    width: 190px;
+    position: fixed;
+    margin-left: 1000px;
+}
+
+@media (max-width: 1300px) {
+    #page-wrap {
+        margin: 15px auto;
+        position: relative;
+    }
+
+    #sidebar {
+        width: unset;
+        position: unset;
+        margin-left: 0;
+    }
+}
+
 ///////////////////////////////////////////
