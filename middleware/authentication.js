@@ -20,15 +20,17 @@ module.exports = function (req, res, next) {
   const env = (process.env.NODE_ENV || 'development').toLowerCase();
   const username = process.env.PROTOTYPE_USERNAME;
   const password = process.env.PROTOTYPE_PASSWORD;
+  
 
-  if (env === 'production' || env === 'staging') {
+  if (env === 'production' || env === 'staging' || env === 'development') {
     if (!username || !password) {
       return res.send('<p>Username or password not set in environment variables.</p>');
     }
 
-    const user = basicAuth(req)
+    const usernames = username.split(" ");
 
-    if (!user || user.name !== username || user.pass !== password) {
+    const user = basicAuth(req)
+    if (!user || !usernames.includes(user.name) || user.pass !== password) {
       res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
       return res.sendStatus(401)
     }
