@@ -165,6 +165,11 @@ if(onlyDocumentation == 'true') {
   });
 }
 
+app.post('/tracking',(req, res)=>{
+  console.log(req.body);
+  res.send();
+})
+
 // Use custom application routes
 app.use('/', routes);
 
