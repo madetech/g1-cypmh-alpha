@@ -20,6 +20,7 @@ function renderPath (path, res, next) {
       res.end(html)
       return
     }
+    
     if (error.message.startsWith('template not found')){
 
       if (path.substr(0,8)==="showcase") {
@@ -52,6 +53,11 @@ exports.matchRoutes = function (req, res, next) {
 
   
   if (path === '') { // [7] //
+    path = 'index'
+  }
+
+  if (path === 'logout') {
+    res.status(401)
     path = 'index'
   }
 
