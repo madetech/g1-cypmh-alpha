@@ -1,0 +1,311 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %} Your dashboard {% endblock %}
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+<!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+<!-- Breadcrumb -->
+{{ breadcrumb({ href: "/", text: "Home" }) }} {% endblock %}
+
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<h1>Your dashboard</h1>
+<div class="nhsuk-width-container-fluid">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <div class="nhsuk-grid-row">
+
+            <div class="nhsuk-grid-column-two-thirds">
+                <div class="nhsuk-warning-callout" style="margin-top:0px">
+                    <h3 class="nhsuk-warning-callout__label">
+            <span role="text">
+              <span class="nhsuk-u-visually-hidden">Important: </span>
+              Important
+            </span>
+                    </h3>
+                    <p>
+                        Please <a href="/your-schedule">let us know</a> which location and time is best for your first appointment.
+                    </p>
+                </div>
+
+                <h2>Your journey</h2>
+                <p>Your current stage: Waiting for treatment</p>
+
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+
+                        <ul class="progress-tracker progress-tracker--vertical">
+                            <li class="progress-step is-complete">
+                                <div class="progress-marker" style="z-index: 10;"></div>
+                                <div class="progress-text">
+                                    <div class="progress-title">
+                                        <details class="nhsuk-details">
+                                            <summary class="nhsuk-details__summary">
+                        <span class="nhsuk-details__summary-text">
+                          Request for support received
+                        </span>
+                                            </summary>
+                                            <div class="nhsuk-details__text" style="border-left:0px">
+                                                <p>
+                                                    Your request for support has been received by the
+                                                    Children's MH services team and they will be reviewing
+                                                    it shortly and will be in touch for more information.
+                                                </p>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="progress-step is-complete">
+                                <div class="progress-marker" style="z-index: 10;"></div>
+                                <div class="progress-text">
+                                    <details class="nhsuk-details">
+                                        <summary class="nhsuk-details__summary">
+                      <span class="nhsuk-details__summary-text">
+                        Request for support accepted
+                      </span>
+                                        </summary>
+                                        <div class="nhsuk-details__text" style="border-left:0px">
+                                            <p>
+                                                Your request for support has been reviewed, discussed
+                                                with you and we have agreed a way forward. You will be
+                                                referred to the most appropriate team.
+                                            </p>
+                                        </div>
+                                    </details>
+                                </div>
+                            </li>
+                            <li class="progress-step is-active" aria-current="step">
+                                <div class="progress-marker" style="z-index: 10;"></div>
+                                <div class="progress-text">
+                                    <details class="nhsuk-details" open="true">
+                                        <summary class="nhsuk-details__summary">
+                      <span class="nhsuk-details__summary-text">
+                        Waiting for treatment
+                      </span>
+                                        </summary>
+                                        <div class="nhsuk-details__text" style="border-left:0px">
+                                            <p>
+                                                You have been placed on a waiting list for treatment appropriate to your needs. We'll let you know when an appointment slot is available.
+                                            </p>
+                                        </div>
+                                    </details>
+                                </div>
+                            </li>
+
+                            <li class="progress-step">
+                                <div class="progress-marker" style="z-index: 10;"></div>
+                                <div class="progress-text">
+                                    <details
+                                            class="nhsuk-details"
+                                            id="clinic-allocation-expander"
+                                    >
+                                        <summary class="nhsuk-details__summary">
+                      <span class="nhsuk-details__summary-text">
+                        Clinic allocation
+                      </span>
+                                        </summary>
+                                        <div class="nhsuk-details__text" style="border-left:0px">
+                                            <p>
+                                                You will receive a notification of your upcoming
+                                                appointment once you have been assigned to a clinic and
+                                                clinician. You can let us know which location is best
+                                                for you as well as the best times for appointments
+                                                <a href="/your-schedule" id="clinic-to-schedule">here</a
+                                                >.
+                                            </p>
+                                        </div>
+                                    </details>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <h2>While you wait</h2>
+
+                <p>
+                    You can use as many of these as you like. Accessing counselling from
+                    other sources won't affect your position on the waiting list.
+                </p>
+
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>Register for check-ins</h5>
+
+                        <p>
+                            We'd like to check in with you regularly while you're waiting for
+                            your treatment. We'll check on how you're doing, reassure you
+                            we've not forgotten about you and remind you where to go for help
+                            if things get worse.
+                        </p>
+                        <p>You can opt in to either <a href="/register-for-text-check-ins">text check-ins</a> or <a href="/register-for-text-check-ins" id="register-for-phone-check-ins-link">phone check-ins</a>.</p>
+                        <br>
+                        <h5>Learn more about what's going on</h5>
+                        <p>
+                            <a href="/read-about-your-treatment">This page</a> explains what
+                            we're planning to help you with, and how we might do that. You can
+                            read about:
+                        </p>
+                        <ul>
+                            <li>the treatments you might get</li>
+                            <li>anxiety and what it means for you</li>
+                            <li>
+                                what happens when you're referred to CAMHS and how the service
+                                works.
+                            </li>
+                        </ul>
+                        <br />
+                        <h5>
+                            Hear from other young people who've been through something similar
+                        </h5>
+                        <p>
+                            Other young people
+                            <a href="/stories-from-others"
+                            >share their stories and answer common questions</a
+                            >
+                            about mental health and CAMHS.
+                        </p>
+                        <p>
+                            You can also choose to
+                            <a href="/forum">join a private online forum</a>, moderated by one
+                            of our clinical team, to ask your own questions and join in a
+                            conversation with other people who might be having similar
+                            struggles to you.
+                        </p>
+                        <br />
+                        <h5>Access to free counseling</h5>
+                        <p>
+                            NHS partners
+                            <a
+                                    href="https://www.ticplus.org.uk/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                            >tic+</a
+                            >
+                            provide counselling and an anonymous, safe, 1-2-1, online chat and
+                            telephone support service. The waiting list is 2-3 weeks, and
+                            anyone who feels they need support can access both the support
+                            service and counselling.
+                        </p>
+                        <p>
+                            <a
+                                    href="https://www.kooth.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                            >Kooth</a
+                            >
+                            also provide free anonymous counselling for young people aged
+                            between 11 – 24 years and is available up to 10pm every day. There
+                            is no referral needed from a health professional, no waiting
+                            lists, and no criteria to meet to get support.
+                        </p>
+                    </div>
+                </div>
+
+                <h2>Do you need immediate help?</h2>
+                <div class="nhsuk-care-card nhsuk-care-card--urgent">
+                    <div class="nhsuk-care-card__heading-container">
+                        <h3 class="nhsuk-care-card__heading">
+              <span role="text"
+              ><span class="nhsuk-u-visually-hidden">Urgent advice: </span
+              >Call our Crisis Team on 0800 169 0398 if:</span
+              >
+                        </h3>
+                        <span class="nhsuk-care-card__arrow" aria-hidden="true"></span>
+                    </div>
+                    <div class="nhsuk-care-card__content">
+                        <ul>
+                            <li>
+                                you are having suicidal thoughts and feel like you are a risk to
+                                yourself
+                            </li>
+                            <li>you are worried that someone you care for is at risk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF COLUMN 2/3 -->
+
+            <div class="nhsuk-grid-column-one-third">
+                <h2>Your appointment history</h2>
+                <p>No appointments yet</p>
+
+
+                <h2>Our specialist anxiety team</h2>
+                <p class="nhsuk-card__description">
+                    These are some of the people you might meet. We'll let you know
+                    who you'll be working with as soon as you've been assigned to a
+                    clinician.
+                </p>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+
+                        <h5>Dr. Matthew Marsh</h5>
+                        <img src="images/dr-marsh.png" width="100%" />
+                        <p>Clinical Psychologist, Registered Social Worker</p>
+
+                        <h5>Leonie Drake (MBACP)</h5>
+                        <img src="images/drake.png" width="100%" />
+                        <p>Child & Adolescent Therapist</p>
+
+                        <h5>Dr. Elena Della Rosa</h5>
+                        <img src="images/dr-rosa.png" width="100%" />
+                        <p>Child & Adolescent Psychoanalytic Psychotherapist</p>
+
+                    </div>
+                </div>
+                <p>
+                    <a>Let us know</a> if you need to work with someone of a
+                    particular gender or faith.
+                </p>
+
+
+                <h2>Our reception team</h2>
+                <p>
+                    This is who you'll meet when you come in for your appointment.
+                </p>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+
+                        <h5>Helen Rowntree</h5>
+                        <img src="images/Helen.png" width="100%" />
+                        <p>Receptionist - Acorn House</p>
+
+                        <h5>Andy Humberwell</h5>
+                        <img src="images/Andy.png" width="100%" />
+                        <p>Receptionist - Evergreen House</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF COLUMN 1/3 -->
+        </div>
+    </main>
+</div>
+
+<div
+        style="display: flex; justify-content: center"
+        id="eight-weeks-later-button"
+>
+    <a href="/text-check-in-1">
+        <button
+                class="journey-button"
+                style="width: 200px; height: 100px; text-align: center; font-size: 20px"
+        >
+            Move to eight weeks later
+        </button>
+    </a>
+</div>
+
+{% endblock %}

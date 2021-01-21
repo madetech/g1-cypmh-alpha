@@ -1,0 +1,188 @@
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title inside the pageTitle block -->
+{% block pageTitle %} Your dashboard {% endblock %}
+
+<!-- Breadcrumb goes inside the beforeContent block -->
+<!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+<!-- Breadcrumb -->
+{{ breadcrumb({ href: "/", text: "Home" }) }} {% endblock %}
+
+<!-- Your page content goes inside the content block -->
+<!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<h1>Your dashboard</h1>
+<div class="nhsuk-width-container-fluid">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-two-thirds">
+                <h2>Next appointment</h2>
+
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h3>9th February 2021, 13:30 - 14:00</h3>
+                        <p>Appointment with Dr. Matthew Marsh.</p>
+                        <a> Change your appointment time or date. </a>
+                    </div>
+                </div>
+
+                <h2>Your care plan</h2>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <div style="display: flex; align-items: center">
+                            <img src="images/page-icon-blue.png" width="10%" alt="" />
+
+                            <a> Care plan 151220.pdf </a>
+                        </div>
+                        <p class="nhsuk-body-s">
+                            Last reviewed: 12 February 2017<br />
+                            Next review due: 1 February 2020
+                        </p>
+                    </div>
+                </div>
+
+                <h2>Resources</h2>
+
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>Learn more about what's going on</h5>
+                        <p>
+                            <a href="/read-about-your-treatment">This page</a> explains what we're planning to help you with, and how
+                            we might do that. You can read about:
+                        </p>
+                        <ul>
+                            <li>the treatments you might get</li>
+                            <li>anxiety and what it means for you</li>
+                            <li>
+                                what happens when you're referred to CAMHS and how the service
+                                works.
+                            </li>
+                        </ul>
+                        <br />
+                        <h5>
+                            Hear from other young people who've been through something similar
+                        </h5>
+                        <p>
+                            Other young people <a href="/stories-from-others">share their stories and answer common questions</a>
+                            about mental health and CAMHS.
+                        </p>
+                        <p>
+                            You can also choose to <a href="/forum">join a private online forum</a>, moderated by
+                            one of our clinical team, to ask your own questions and join in a
+                            conversation with other people who might be having similar
+                            struggles to you.
+                        </p>
+                    </div>
+                </div>
+                <h2>Any questions?</h2>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <p>You can get in touch with your care co-ordinator via the reception team here:</p>
+                        <div style="display: flex; align-items: center">
+                            <img style="margin-right:3%" src="images/Mail.svg" width="10%" alt="" />
+                            <div>your.care.coordinator@nhs.net</div>
+                        </div><br>
+                        <div style="display: flex; align-items: center">
+                            <img style="margin-right:3%" src="images/Call.svg" width="10%" alt="" />
+                            <div>0117 9734 456</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Do you need immediate help?</h2>
+                <div class="nhsuk-care-card nhsuk-care-card--urgent">
+                    <div class="nhsuk-care-card__heading-container">
+                        <h3 class="nhsuk-care-card__heading">
+                            <span role="text"><span class="nhsuk-u-visually-hidden">Urgent advice: </span>Call our Crisis Team on 0800 169 0398 if:</span>
+                        </h3>
+                        <span class="nhsuk-care-card__arrow" aria-hidden="true"></span>
+                    </div>
+                    <div class="nhsuk-care-card__content">
+                        <ul>
+                            <li>
+                                you are having suicidal thoughts and feel like you are a risk to
+                                yourself
+                            </li>
+                            <li>you are worried that someone you care for is at risk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF COLUMN 2/3 -->
+
+            <div class="nhsuk-grid-column-one-third">
+                <h2>Your clinician</h2>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>Dr. Matthew Marsh</h5>
+                        <img src="images/dr-marsh.png" width="100%" />
+                        <p>Clinical Psychologist, Registered Social Worker</p>
+                        <p class="nhsuk-body-s">
+                            If your relationship with your clinician is getting in the way of
+                            you making progress, you can talk to us about changing who you
+                            see.
+                        </p>
+                        <p class="nhsuk-body-s">
+                            We recommend waiting a few sessions before you get in touch.
+                            Frustration is a normal and important part of the therapeutic
+                            process, and you'll have to return to the waiting list if we do
+                            agree you need to change.
+                        </p>
+                    </div>
+                </div>
+
+                <h2>Your appointment history</h2>
+                <p>Appointment summaries:</p>
+                <ul>
+                    <li>show what you agreed with your clinician</li>
+                    <li>give an explanation of any clinical terms that came up</li>
+                    <li>
+                        allow you to ask your clinical team any questions you need to.
+                    </li>
+                </ul>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>11th January 2021</h5>
+                        <a href='/appointment-summary'> Appointment with Dr. Matthew Marsh. </a>
+                    </div>
+                </div>
+
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>9th November 2020</h5>
+                        <a> Appointment with Dr. Matthew Marsh. </a>
+                    </div>
+                </div>
+
+                <details class="nhsuk-details nhsuk-expander">
+                    <summary class="nhsuk-details__summary">
+                        <span class="nhsuk-details__summary-text"> More appointments </span>
+                    </summary>
+                    <div class="nhsuk-details__text">
+                        <a>9th October 2020</a><br />
+                        <a>9th September 2020</a><br />
+                        <a>9th August 2020</a><br />
+                    </div>
+                </details>
+                <div class="nhsuk-card">
+                    <div class="nhsuk-card__content">
+                        <h5>Scheduling appointments</h5>
+                        <p>
+                            <a href="/update-your-schedule">Update your free times so we can assign appointments that don't clash with your schedule.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF COLUMN 1/3 -->
+        </div>
+    </main>
+</div>
+
+{% endblock %}

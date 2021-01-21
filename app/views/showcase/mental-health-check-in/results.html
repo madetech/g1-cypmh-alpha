@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %} Find support results {% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({ href:
+"/", text: "Home" }) }}
+{% endblock %}
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <h1>Find support - results</h1>
+        <p>
+            Based on what you've told us, we think these are the best ways to get help
+            with what you're feeling right now. You don't need anyone else to refer you to be able to use any of them.
+        </p>
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                    <a class="nhsuk-card__link" href="https://www.getselfhelp.co.uk/step1.htm" target="_blank" rel="noopener noreferrer">
+                        Free online cognitive behavioural therapy (CBT) course
+                    </a>
+                </h2>
+                <p class="nhsuk-card__description">
+
+                    CBT can help you manage your problems by changing the way you think and behave. getselfhelp.co.uk has a free, online course explaining CBT and helping you put it into practice.
+                </p>
+            </div>
+        </div>
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                    <a class="nhsuk-card__link" href="https://www.gloucestershireselfharm.org/" target="_blank" rel="noopener noreferrer">
+                        Gloucestershire self-harm helpline
+                    </a>
+                </h2>
+                <p class="nhsuk-card__description">
+                    Phone, text and web-chat helpline. A trained mental health recovery worker will listen to you, support you, provide options and ways of coping and give information of other places that can help if needed. 5pm - 10pm every day.
+                </p>
+            </div>
+        </div>
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                    <a class="nhsuk-card__link" href="https://www.ticplus.org.uk/" target="_blank" rel="noopener noreferrer">
+                        tic+ - free counselling and helpline
+                    </a>
+                </h2>
+                <p class="nhsuk-card__description">
+                    tic+ provide counselling and an anonymous, safe, 1-2-1, online chat and telephone support service for young people with issues such as depression, anxiety, bereavement, bullying, anger, relationship problems, low self-esteem and self-harm.
+                </p>
+            </div>
+        </div>
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                    <a class="nhsuk-card__link" href="https://www.kooth.com/" target="_blank" rel="noopener noreferrer">
+                        Free online counselling and support network
+                    </a>
+                </h2>
+                <p class="nhsuk-card__description">
+                    Kooth provide free anonymous counselling for young people experiencing issues with their emotional wellbeing, such as anxiety, low mood or stress.
+                    There is no referral needed from a health professional, no waiting lists, and no criteria to meet to get support.
+                </p>
+            </div>
+        </div>
+
+        <h2>Don't think any of these sound right for you?</h2>
+        <p>
+            You can <a href='/text-triage'>have a text message conversation with a mental health expert</a>, who can offer alternative suggestions if these aren't right for you.
+        </p>
+    </div>
+</div>
+
+{% endblock %}
