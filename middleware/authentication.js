@@ -22,11 +22,10 @@ module.exports = function (req, res, next) {
   const password = process.env.PROTOTYPE_PASSWORD;
   
 
-  if (env === 'production' || env === 'staging' || env === 'development') {
+  if (env === 'production' || env === 'staging') {
     if (!username || !password) {
       return res.send('<p>Username or password not set in environment variables.</p>');
     }
-
     const usernames = username.split(" ");
 
     const user = basicAuth(req)

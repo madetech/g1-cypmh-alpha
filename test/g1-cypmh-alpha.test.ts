@@ -1,17 +1,21 @@
 import { Server } from 'http';
 import TestBrowser from './test-browser';
+import {ChildProcess, exec} from 'child_process'
 
-let server: Server;
+
+let server: ChildProcess;
 let browser: TestBrowser;
 
+
 beforeAll(async () => {
-    server = require("../app").server
+    server = exec('npm start', {
+        env: {'PROTOTYPE_USERNAME': 'foo', 'PROTOTYPE_PASSWORD': 'bar'}})
     browser = await TestBrowser.launch()
 });
 
 afterAll(async () => {
     await browser.close()
-    server.close()
+    server.kill()
 });
 
 function delay(ms: number) {
@@ -24,6 +28,8 @@ function delay(ms: number) {
 describe('Index', () => {
     it('links New user... to landing page', async () => {
         await browser.goto('localhost:2000')
+
+        console.log('############################ ' + process.env.PROTOTYPE_USERNAME)
         await browser.clickLink('New user discovering the service')
         expect(browser.url().pathname).toBe('/landing-page')
     })

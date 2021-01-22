@@ -11,9 +11,9 @@ export default class TestBrowser {
     constructor(private readonly puppeteerBrowser: Browser, private readonly page: Page) { 
         page.on('requestfailed', (req, resp) => {
             let failureText = req.failure().errorText;
-            if (failureText == 'net::ERR_ABORTED') {
-                console.log(resp, req.response())
-            }
+            // if (failureText == 'net::ERR_ABORTED') {
+            //     console.log(resp, req.response())
+            // }
         });
     }
 

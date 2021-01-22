@@ -41,10 +41,16 @@ function renderPath (path, res, next) {
 }
 
 exports.matchRoutes = function (req, res, next) {
-  let encodedAuth = req.headers.authorization.split(" ")[1]
-  let buff = new Buffer.from(encodedAuth, 'base64')
-  let decodedAuth = buff.toString('ascii')
-  let decodedUser = decodedAuth.split(":")[0]
+  const env = (process.env.NODE_ENV || 'development').toLowerCase();
+
+  if (env === 'production' || env === 'staging') {
+    let encodedAuth = req.headers.authorization.split(" ")[1]
+    let buff = new Buffer.from(encodedAuth, 'base64')
+    let decodedAuth = buff.toString('ascii')
+    let decodedUser = decodedAuth.split(":")[0]
+  } else {
+    decodedUser = ""
+  }
 
   var path = req.path
 
