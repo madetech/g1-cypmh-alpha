@@ -38,7 +38,7 @@
       <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
 
     <div>
-        <h2 id="variable_paragraph" style="padding-top: 10%">Your total cost is £0</h2>
+        <div id="variable_div"></div>
     </div>
 
 
@@ -50,8 +50,21 @@
 
             fetch("/services").then(res => res.json()).then(res => {
               console.log(res)
-              document.getElementById("variable_paragraph").innerHTML = res.map(result => `<div>${result.serviceName}</div>`).join()
-            })
+              document.getElementById("variable_div").innerHTML = res.map(result => {
+              return `<div class="nhsuk-card nhsuk-card--clickable">
+                <div class="nhsuk-card__content">
+                  <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                    <a class="nhsuk-card__link" href="${result.url}" target="_blank" rel="noopener noreferrer">
+                      ${result.title}
+                  </h2>
+                  <p class="nhsuk-card__description">${result.description}</p>
+                </div>
+              </div>`
+
+              // `<div>${result.serviceName}</div>`
+            }).join()
+            }
+            )
         }
     </script>
 

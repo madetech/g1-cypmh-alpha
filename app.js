@@ -176,7 +176,7 @@ const strapi = bent("http://localhost:1337/",'json')
 app.get('/services', async (req,res)=> {
   try {
   console.log("running query")
-  let results = await strapi("services?maxAge_gt=15")
+  let results = await strapi("services")
   console.log(results)
   res.send(results)
   }
