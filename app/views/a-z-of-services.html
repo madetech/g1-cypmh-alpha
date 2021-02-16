@@ -37,12 +37,14 @@
       <!-- Add your content here -->
       <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
 
-    <div>
-        <div id="variable_div"></div>
-    </div>
+    <a onClick="doSearch()" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
+      Search
+    </a>
 
-
-    <button onClick="doSearch()">Search</button>
+    <div id="search_results"> </div>
+  
+    
+    <!-- <button >Search</button> -->
 
     <script type="text/javascript">
 
@@ -50,14 +52,17 @@
 
             fetch("/services").then(res => res.json()).then(res => {
               console.log(res)
-              document.getElementById("variable_div").innerHTML = res.map(result => {
+              document.getElementById("search_results").innerHTML = res.map(result => {
               return `<div class="nhsuk-card nhsuk-card--clickable">
                 <div class="nhsuk-card__content">
                   <h2 class="nhsuk-card__heading nhsuk-heading-m">
-                    <a class="nhsuk-card__link" href="${result.url}" target="_blank" rel="noopener noreferrer">
+                    <a class="nhsuk-card__link" href="${result.url}">
                       ${result.title}
+                    </a>
                   </h2>
-                  <p class="nhsuk-card__description">${result.description}</p>
+                  <p class="nhsuk-card__description">
+                    ${result.description}
+                  </p>
                 </div>
               </div>`
 
@@ -76,9 +81,7 @@
 
 
 
-      <a href="/landing-page" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
-        Back
-    </a>
+   
 
     
     </div>  
