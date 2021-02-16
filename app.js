@@ -9,6 +9,7 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
+const bent = require('bent')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -168,6 +169,22 @@ if(onlyDocumentation == 'true') {
 app.post('/tracking',(req, res)=>{
   console.log(req.body);
   res.send();
+})
+
+const strapi = bent("http://localhost:1337/",'json')
+
+app.get('/services', async (req,res)=> {
+  try {
+  console.log("running query")
+  let results = await strapi("services?maxAge_gt=15")
+  console.log(results)
+  res.send(results)
+  }
+  catch (err) {
+
+    console.log(err)
+    res.send(404, err)
+  }
 })
 
 // Use custom application routes
