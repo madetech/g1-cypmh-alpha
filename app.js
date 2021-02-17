@@ -11,6 +11,7 @@ const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const bent = require('bent')
 
+
 // Run before other code to make sure variables from .env are available
 dotenv.config()
 
@@ -175,17 +176,25 @@ const strapi = bent("http://localhost:1337/",'json')
 
 app.get('/services', async (req,res)=> {
   try {
-  console.log("running query")
-  let results = await strapi("services")
-  console.log(results)
-  res.send(results)
+    console.log("####################################################")
+    // console.log(req.session.data)
+    filterInfo = req.session.data
+    console.log("running query")
+    let results = await strapi("services" + formatStrapiRequest(filterInfo))
+    // console.log(results)
+    res.send(results)
   }
   catch (err) {
-
     console.log(err)
     res.send(404, err)
   }
 })
+
+
+const formatStrapiRequest = (filterInfo) => {
+  console.log(filterInfo)
+  return ""
+}
 
 // Use custom application routes
 app.use('/', routes);
@@ -237,8 +246,8 @@ if (useDocumentation || onlyDocumentation == 'true') {
 
 }
 
-// Clear all data in session if you open /examples/passing-data/clear-data
-app.post('/examples/passing-data/clear-data', function (req, res) {
+// Clear all data in session if you open /NHSexamples/clear-data
+app.post('/NHSexamples/clear-data', function (req, res) {
   req.session.data = {}
   res.render('examples/passing-data/clear-data-success')
 })

@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Find support - results 
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+  items: [
+    {
+      href: "/landing-page",
+      text: "Home"
+    },
+    {
+      href: "/mental-health-check-in/questions-1", 
+      text: "Questions: about you"
+    }
+  ],
+  href: "/mental-health-check-in/questions-2", 
+  text: "Questions: your feelings"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+
+      <h1>
+        Summary of results
+      </h1>
+
+      <dl class="nhsuk-summary-list"></dl>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Age
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data['age'] }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="/mental-health-check-in/questions-1">
+              Change<span class="nhsuk-u-visually-hidden">age</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+    <br/><br/> 
+      <a onClick="doSearch()" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
+        Search for services
+      </a>
+  
+      <div id="search_results"> </div>
+      <script></script>
+      
+      <!-- <button >Search</button> -->
+  
+      <script type="text/javascript">
+          
+          const doSearch = () => {
+              // const myData = `{{ data }}`
+              
+              
+              const filterInfo = ('{{ data | dump}}').replaceAll("&quot;","'")
+              console.log(filterInfo)
+              fetch("/services").then(res => res.json()).then(res => 
+                {
+                // console.log(res)
+                document.getElementById("search_results").innerHTML = res.map(result => {
+                  return `<div class="nhsuk-card nhsuk-card--clickable">
+                    <div class="nhsuk-card__content">
+                      <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                        <a class="nhsuk-card__link" href="${result.url}">
+                          ${result.title}
+                        </a>
+                      </h2>
+                      <p class="nhsuk-card__description">
+                        ${result.description}
+                      </p>
+                    </div>
+                </div>`
+                }).join()
+              }
+            )
+          }
+      </script>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ footer({
+    "links": [
+      {
+        "URL": "/docs",
+        "label": "Home"
+      },
+      {
+        "URL": "/NHSexamples/clear-data",
+        "label": "Clear data"
+      },
+      {
+        "URL": "/docs/about",
+        "label": "About and support"
+      },
+      {
+        "URL": "https://github.com/nhsuk/nhsuk-prototype-kit",
+        "label": "NHS.UK prototype kit - GitHub"
+      }
+    ]
+  })}}
+{% endblock %}

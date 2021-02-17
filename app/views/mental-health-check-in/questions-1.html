@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Find support
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({ href: "/landing-page", text: "Home" }) }} 
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>Find support</h1>
+      <p>
+        Let us know how you're feeling by answering the following questions so
+        we can work out the right support for you.
+      </p>
+      <h1>About you</h1><br />
+      <form action="/mental-health-check-in/questions-2" method="post">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading" for="age">How old are you?</h1>
+          </legend>
+          <div class="nhsuk-hint" id="example-with-hint-text-hint">
+            This will help us only recommend help that's appropriate and
+            available for people your age.
+          </div>
+          <select class="nhsuk-select" id="age" name="age">
+            <option value=9 {{ checked("age", 9) }}>9 years old or younger</option>
+            <option value=10 {{ checked("age", 10) }}>10 years old</option>
+            <option value=11 {{ checked("age", 11) }}>11 years old</option>
+            <option value=12 {{ checked("age", 12) }}>12 years old</option>
+            <option value=13 {{ checked("age", 13) }}>13 years old</option>
+            <option value=14 {{ checked("age", 14) }}>14 years old</option>
+            <option value=15 {{ checked("age", 15) }}>15 years old</option>
+            <option value=16 {{ checked("age", 16) }}>16 years old</option>
+            <option value=17 {{ checked("age", 17) }}>17 years old</option>
+            <option value=18 {{ checked("age", 18) }}>18 years old</option>
+            <option value=19 {{ checked("age", 19) }}>19 years old</option>
+            <option value=20 {{ checked("age", 20) }}>20 years old</option>
+            <option value=21 {{ checked("age", 21) }}>21 years old</option>
+            <option value=22 {{ checked("age", 22) }}>22 years old</option>
+            <option value=23+ {{ checked("age", 23) }}>23+ years old</option>
+          </select>
+        </fieldset>
+        <br /><br />
+        <!-- <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              What is your name?
+            </h1>
+          </legend>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="first-name">
+              First name
+            </label>
+            <input class="nhsuk-input nhsuk-u-width-three-quarters" id="firstName" name="firstName" value="{{ data['first-name'] }}" type="text">
+          </div>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="last-name">
+              Last name
+            </label>
+            <input class="nhsuk-input nhsuk-u-width-three-quarters" id="lastName" name="lastName" value="{{ data['last-name'] }}" type="text">
+          </div>
+        </fieldset> -->
+        <button class="nhsuk-button">Continue</button>
+    </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ footer({
+    "links": [
+      {
+        "URL": "/mental-health-check-in/clear-data",
+        "label": "Clear data"
+      }
+    ]
+  })}}
+{% endblock %}
