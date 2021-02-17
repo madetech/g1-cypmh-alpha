@@ -37,7 +37,8 @@
     "node-sass": "^4.14.1",
     "nunjucks": "^3.2.2",
     "path": "^0.12.7",
-    "progress-tracker": "^2.0.6"
+    "progress-tracker": "^2.0.6",
+    "qs": "^6.9.6"
   },
   "devDependencies": {
     "@types/node": "^14.14.21",

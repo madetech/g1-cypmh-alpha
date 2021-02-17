@@ -10,6 +10,7 @@ const nunjucks = require('nunjucks');
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const bent = require('bent')
+const qs = require('qs')
 
 
 // Run before other code to make sure variables from .env are available
