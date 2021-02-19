@@ -24,8 +24,12 @@ Find support - results
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
-
-      <h1>
+    <h1>Find support - results</h1>
+    <p>
+      Based on what you've told us, we think these are the best ways to get help
+      with what you're feeling right now. You don't need anyone else to refer you to be able to use any of them.
+    </p>
+      <!-- <h1>
         Summary of results
       </h1>
 
@@ -43,28 +47,23 @@ Find support - results
             </a>
           </dd>
         </div>
-      </dl>
+      </dl> -->
     <br/><br/> 
       <a onClick="doSearch()" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
-        Search for services
+        See my results
       </a>
   
       <div id="search_results"> </div>
-      <script></script>
       
-      <!-- <button >Search</button> -->
-  
       <script type="text/javascript">
-          
+
           const doSearch = () => {
-              // const myData = `{{ data }}`
-              
-              
-              const filterInfo = ('{{ data | dump}}').replaceAll("&quot;","'")
-              console.log(filterInfo)
-              fetch("/services").then(res => res.json()).then(res => 
-                {
-                // console.log(res)
+              fetch("/services").then(res => res.json()).then(res => {
+                console.log(res.length)
+                if (res.length == 0) {
+                  document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
+                  return null
+                }
                 document.getElementById("search_results").innerHTML = res.map(result => {
                   return `<div class="nhsuk-card nhsuk-card--clickable">
                     <div class="nhsuk-card__content">
@@ -87,25 +86,3 @@ Find support - results
   </div>
 {% endblock %}
 
-{% block footer %}
-  {{ footer({
-    "links": [
-      {
-        "URL": "/docs",
-        "label": "Home"
-      },
-      {
-        "URL": "/NHSexamples/clear-data",
-        "label": "Clear data"
-      },
-      {
-        "URL": "/docs/about",
-        "label": "About and support"
-      },
-      {
-        "URL": "https://github.com/nhsuk/nhsuk-prototype-kit",
-        "label": "NHS.UK prototype kit - GitHub"
-      }
-    ]
-  })}}
-{% endblock %}

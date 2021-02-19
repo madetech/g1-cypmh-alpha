@@ -11,7 +11,7 @@ const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const bent = require('bent')
 const qs = require('qs')
-
+const url = require('url')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -173,28 +173,48 @@ app.post('/tracking',(req, res)=>{
   res.send();
 })
 
-const strapi = bent("http://localhost:1337/",'json')
+const unauthContentPost = bent(process.env.CONTENT_API_URL,'json','POST')
+
+let contentToken = null
+const contentAuth = async () => {
+const current_time = new Date().getTime() / 1000;
+  if (contentToken === null ||  current_time > contentToken.exp) {
+    console.log("getting new token...")
+    contentToken = await unauthContentPost('/auth/local',{
+      identifier: process.env.CONTENT_API_USERNAME,
+      password: process.env.CONTENT_API_PASSWORD,
+    });
+  }
+  return contentToken;
+}
 
 app.get('/services', async (req,res)=> {
+  const token = await contentAuth()
+  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
+    Authorization:
+    'Bearer ' + token.jwt
+  })
   try {
-    console.log("####################################################")
     // console.log(req.session.data)
-    filterInfo = req.session.data
+    userData = req.session.data
     console.log("running query")
-    let results = await strapi("services" + formatStrapiRequest(filterInfo))
-    // console.log(results)
+    let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
+    
+    // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
     res.send(results)
   }
   catch (err) {
-    console.log(err)
     res.send(404, err)
   }
 })
 
 
-const formatStrapiRequest = (filterInfo) => {
-  console.log(filterInfo)
-  return ""
+const formatStrapiRequest = (userData) => {
+  return qs.stringify({_where : Object.keys(userData).map(key => {
+    switch (key)
+    {case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]}
+  }).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
+
 }
 
 // Use custom application routes
@@ -247,10 +267,10 @@ if (useDocumentation || onlyDocumentation == 'true') {
 
 }
 
-// Clear all data in session if you open /NHSexamples/clear-data
-app.post('/NHSexamples/clear-data', function (req, res) {
+// Clear all data in session if you open /mental-health-check-in/clear-data
+app.post('/mental-health-check-in/clear-data', function (req, res) {
   req.session.data = {}
-  res.render('examples/passing-data/clear-data-success')
+  res.redirect('/landing-page')
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData

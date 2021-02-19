@@ -13,12 +13,11 @@
 <!-- More info and code for the breadcrumb can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
 <!-- Breadcrumb -->
-{{ breadcrumb({ href: "/mental-health-check-in/questions", text: "Back" }) }} 
+{{ breadcrumb({ href: "/mental-health-check-in/questions-1", text: "Back" }) }} 
 {%endblock %}
 
 <!-- Your page content goes inside the content block -->
 {% block content %}
-<p>This is a test your answer was: {{ data['first-name'] }}</p>
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
@@ -192,7 +191,7 @@
           <li class="nhsuk-pagination-item--previous">
             <a
               class="nhsuk-pagination__link nhsuk-pagination__link--prev"
-              href="/mental-health-check-in/questions"
+              href="/mental-health-check-in/questions-1"
               id="previous_about_you"
             >
               <span class="nhsuk-pagination__title">Previous</span>
