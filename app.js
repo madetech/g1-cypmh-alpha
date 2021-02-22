@@ -214,13 +214,17 @@ const formatStrapiRequest = (userData) => {
   let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
     switch (key) {
       case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]
-      // case "virtualness": {
-      //   if 
-      //   return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]}
-      // }
-  }).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
-  console.log(queryString)
-  return queryString
+      case "virtualness": {
+        if (Array.isArray(userData.virtualness)) {
+          return [{_or: userData.virtualness.reduce((accumulator,item) =>{return [...accumulator, {'virtualnesses.name': item}]}, [])}]
+        } else {
+          return [{'virtualnesses.name': userData.virtualness}]
+        }
+      }
+      case "dianosis" : return [{'diagnoses.name': userData.diagnosis}]
+    }
+}).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
+  return (queryString)
 
 
 }
