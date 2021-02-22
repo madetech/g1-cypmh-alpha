@@ -198,6 +198,7 @@ app.get('/services', async (req,res)=> {
     // console.log(req.session.data)
     userData = req.session.data
     console.log("running query")
+    console.log(userData)
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
@@ -210,10 +211,17 @@ app.get('/services', async (req,res)=> {
 
 
 const formatStrapiRequest = (userData) => {
-  return qs.stringify({_where : Object.keys(userData).map(key => {
-    switch (key)
-    {case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]}
+  let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
+    switch (key) {
+      case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]
+      // case "virtualness": {
+      //   if 
+      //   return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]}
+      // }
   }).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
+  console.log(queryString)
+  return queryString
+
 
 }
 

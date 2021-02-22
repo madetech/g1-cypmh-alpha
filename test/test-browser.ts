@@ -5,11 +5,14 @@ export default class TestBrowser {
         let browser = await pLaunch({ headless: false, args: ['--window-size=1200,800'] });
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36');
+        let raw_auth = Buffer.from(`${process.env.SHOWCASE_USER}:${process.env.PROTOTYPE_PASSWORD}`)
+        await page.setExtraHTTPHeaders({ Authorization: 'Basic ' + raw_auth.toString("base64")})
         return new TestBrowser(browser, page);
-
     }
     constructor(private readonly puppeteerBrowser: Browser, private readonly page: Page) { 
         page.on('requestfailed', (req, resp) => {
+
+            
             let failureText = req.failure().errorText;
             if (failureText == 'net::ERR_ABORTED') {
                 console.log(resp, req.response())
