@@ -48,7 +48,6 @@ Find support
         </fieldset>
         <br /><br />
 
-        <div class="nhsuk-form-group">
 
           <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
             <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -58,7 +57,7 @@ Find support
             </legend>
         
             <div class="nhsuk-hint" id="example-hint">
-              Select all options that are relevant to you.
+              Select all options that you would be interested in
             </div>
         
             <div class="nhsuk-checkboxes">
@@ -71,14 +70,14 @@ Find support
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="phone" {{ checked("virtualness", "phone") }}>
+                <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "phone") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
                   By phone
                 </label>
               </div>
         
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-in-person" name="virtualness" type="checkbox" value="person" {{ checked("virtualness", "person") }}>
+                <input class="nhsuk-checkboxes__input" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "person") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
                   In person
                 </label>
@@ -86,9 +85,7 @@ Find support
         
             </div>
           </fieldset>
-        
-        </div>
-        
+        </br></br>
         <button class="nhsuk-button">Continue</button>
     </form>
 
