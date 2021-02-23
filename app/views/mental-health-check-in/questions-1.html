@@ -20,7 +20,7 @@ Find support
       </p>
       
       <form action="/mental-health-check-in/questions-2" method="post">
-        <h1>About you</h1><br />
+        <h1>About you</h1>
         <!-- How Old are you-->
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -59,22 +59,22 @@ Find support
       
           <div class="nhsuk-radios">
             <div class="nhsuk-radios__item">
-              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="yes" {{ checked("glos-full-time", "yes") }}>
-              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+              <input class="nhsuk-radios__input" id="glosFullTime" name="glosFullTime" type="radio" value="yes" {{ checked("glosFullTime", "yes") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glosFullTime">
                 Yes
               </label>
             </div>
       
             <div class="nhsuk-radios__item">
-              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="no" {{ checked("glos-full-time", "no") }}>
-              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+              <input class="nhsuk-radios__input" id="glosFullTime" name="glosFullTime" type="radio" value="no" {{ checked("glosFullTime", "no") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glosFullTime">
                 No
               </label>
             </div>
 
             <div class="nhsuk-radios__item">
-              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="not sure" {{ checked("glos-full-time", "not sure") }}>
-              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+              <input class="nhsuk-radios__input" id="glosFullTime" name="glosFullTime" type="radio" value="not sure" {{ checked("glosFullTime", "not sure") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glosFullTime">
                 Not sure
               </label>
             </div>
@@ -93,21 +93,65 @@ Find support
         </fieldset>
         <br/> <br />
 
-        <!-- What school do you go to? -->
-        <!-- Searchbox or location dependant? -->
+        <!--- Do you go to school?----->
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-            <h1 class="nhsuk-fieldset__heading" for="diagnosis">What school do you go to?</h1>
+            <h1 class="nhsuk-fieldset__heading">
+              Do you go to school?
+            </h1>
           </legend>
-          <select class="nhsuk-select" id="schools" name="schools">
-            <option>Loading...</option>
-          </select>
+      
+          <div class="nhsuk-radios">
+      
+            <div class="nhsuk-radios__item" onClick="showSchool()">
+              <input class="nhsuk-radios__input" id="school-yes" name="schoolBool" type="radio" value="true" {{ checked("schoolBool", "true")}}>
+              <label class="nhsuk-label nhsuk-radios__label" for="school-yes">
+                Yes
+              </label>
+            </div>
+            <!-- What school do you go to? -->
+            <!-- Searchbox or location dependant? -->
+            
+      
+            <div class="nhsuk-radios__item" onClick="showSchool()">
+              <input class="nhsuk-radios__input" id="school-no" name="schoolBool" type="radio" value="false" {{ checked("schoolBool", "false")}}>
+              <label class="nhsuk-label nhsuk-radios__label" for="school-yes">
+                No
+              </label>
+            </div>
+      
+          </div>
         </fieldset>
-        <br/> <br />
-
+      <div id="school-name-select"></div>
+      </br></br>
         <!-- Are you in care or a carer? -->
         <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              Are you in care or a carer?
+            </h1>
+          </legend>
+      
+          <div class="nhsuk-radios">
+      
+            <div class="nhsuk-radios__item" onClick="showCarer()">
+              <input class="nhsuk-radios__input" id="care-yes" name="careBool" type="radio" value="true" {{ checked("careBool", "true")}}>
+              <label class="nhsuk-label nhsuk-radios__label" for="care-yes">
+                Yes
+              </label>
+            </div>
+            
+      
+            <div class="nhsuk-radios__item" onClick="showCarer()">
+              <input class="nhsuk-radios__input" id="care-no" name="careBool" type="radio" value="false" {{ checked("careBool", "false")}}>
+              <label class="nhsuk-label nhsuk-radios__label" for="care-no">
+                No
+              </label>
+            </div>
+      
+          </div>
         </fieldset>
+        <div id="care-type-select"></div>
         <br/> <br />
 
         <!--how would you like to speak to the service?-->
@@ -150,18 +194,80 @@ Find support
       <button class="nhsuk-button">Continue</button>
     </form>
     <script>
-
+      // Scripts on page loading
       const getFormContent = async (contentName, renderer) => 
         fetch("/" + contentName).then(res => res.json()).then(body => {
         document.getElementById(contentName).innerHTML = body.map(renderer).join("")
       })
       
       getFormContent("locations",item => `<option value="${item.name}" {{ checked("locations", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
-      getFormContent("schools",item => `<option value="${item.name}" {{ checked("schools", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
-          
-        
-
       
+      
+
+      // Script for carer popup
+      const showCarer = () =>{
+      let carerQuestions = `<fieldset class="nhsuk-fieldset" aria-describedby="carer-questions">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+        <h1 class="nhsuk-fieldset__heading">
+          Please select all that apply to you
+        </h1>
+        </legend>
+
+        <div class="nhsuk-checkboxes">
+
+          <div class="nhsuk-checkboxes__item">
+            <input class="nhsuk-checkboxes__input" id="care-carer" name="care" type="checkbox" value="carer" {{ checked("care", "carer")}}>
+            <label class="nhsuk-label nhsuk-checkboxes__label" for="care-carer">
+              I am a carer
+            </label>
+          </div>
+
+          <div class="nhsuk-checkboxes__item">
+            <input class="nhsuk-checkboxes__input" id="care-in-care" name="care" type="checkbox" value="in-care" {{ checked("care", "in-care")}}>
+            <label class="nhsuk-label nhsuk-checkboxes__label" for="care-carer">
+              I am in care
+            </label>
+          </div>
+
+        </div>
+      </fieldset>`
+
+      if (document.getElementById("care-yes").checked === true){
+        document.getElementById("care-type-select").innerHTML= `<div class="nhsuk-inset-text">
+          ${carerQuestions}
+        </div>`
+      } else {
+
+        document.getElementById("care-type-select").innerHTML= ``
+      }
+    } 
+      
+
+    showCarer()
+
+    // Script for schools popup
+    const showSchool = () =>{
+      let schoolQuestions = `<fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading" for="diagnosis">What school do you go to?</h1>
+          </legend>
+          <select class="nhsuk-select" id="schools" name="schools">
+            <option>Loading...</option>
+          </select>
+        </fieldset>`
+      if (document.getElementById("school-yes").checked === true){
+        document.getElementById("school-name-select").innerHTML= `<div class="nhsuk-inset-text">
+          ${schoolQuestions}
+        </div>`
+        getFormContent("schools",item => `<option value="${item.name}" {{ checked("schools", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
+      } else {
+        document.getElementById("school-name-select").innerHTML= ``
+      }
+    } 
+
+
+    showSchool()
+
     </script>
     </div>
   </div>
