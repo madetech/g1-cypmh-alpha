@@ -8,6 +8,8 @@ Find support - results
 {{ breadcrumb({ href: "/landing-page", text: "Home" }) }} {% endblock %}
 
 {% block content %}
+
+
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
     <h1>A-Z of services</h1>
@@ -17,12 +19,11 @@ Find support - results
       
     <br/><br/> 
   
-      <div id="search_results"> </div>
+      <div id="search_results"> Loading...</div>
       
       <script type="text/javascript">
    
               fetch("/services").then(res => res.json()).then(res => {
-                console.log(res.length)
                 if (res.length == 0) {
                   document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
                   return null
