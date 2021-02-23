@@ -206,7 +206,11 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
     res.send(404, err)
   }
 }
-
+// app.post("/carer", (req,res) => {
+//   // delete req.session.data.care
+//   console.log("You got here",req.session.data)
+//   res.send(200)
+// })
 app.get("/treatment-type", buildContentHandler("treatment-types"))
 app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
@@ -239,6 +243,7 @@ app.get('/services', async (req,res)=> {
     // console.log(req.session.data)
     userData = req.session.data
     console.log("running query")
+    console.log(userData)
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
@@ -312,6 +317,8 @@ if (useDocumentation || onlyDocumentation == 'true') {
   })
 
 }
+
+
 
 // Clear all data in session if you open /mental-health-check-in/clear-data
 app.post('/mental-health-check-in/clear-data', function (req, res) {
