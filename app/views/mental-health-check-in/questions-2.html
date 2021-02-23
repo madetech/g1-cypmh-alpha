@@ -24,6 +24,7 @@ Find support (continued)
     <div class="nhsuk-grid-column-two-thirds">
       <form action="/mental-health-check-in/summary" method="post">
         <h1>Your feelings</h1><br />
+        
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading" for="diagnosis">I am looking for help with:</h1>
@@ -33,16 +34,30 @@ Find support (continued)
           </div>
           <select class="nhsuk-select" id="diagnoses" name="diagnoses">
             <option>Loading...</option>
-            <!-- <option value="anxiety" {{ checked("diagnosis", "anxiety") }}>Anxiety</option>
-            <option value="depression" {{ checked("diagnosis", "depression") }}>Depression</option>
-            <option value="bullying" {{ checked("diagnosis", "bullying") }}>Bullying</option>
-            <option value="self_harming" {{ checked("diagnosis", "self_harming") }}>Self harming</option>
-            <option value="eating_disorder" {{ checked("diagnosis", "eating_disorder") }}>An eating disorder</option>
-            <option value="suicidal_thoughts" {{ checked("diagnosis", "suicidal_thoughts") }}>Suicidal thoughts</option> -->
           </select>
         </fieldset>
         <br /><br />
 
+        <!--How much has (answer above) been affecting you {severity?}-->
+        <fieldset class="nhsuk-fieldset">
+        </fieldset>
+        </br> </br>
+
+        <!-- Has your appetite changed recently? {diagnosis -> eating disorder}-->
+        <fieldset class="nhsuk-fieldset"></fieldset>
+        </br></br>
+
+        <!-- Have you had trouble falling or staying asleep/or sleeping too much? {tags: sleep hygiene}-->
+        <fieldset class="nhsuk-fieldset"></fieldset>
+        </br></br>
+
+        <!-- Have you been affected by a recent traumatic event? {tags: traumatic events? }-->
+        <fieldset class="nhsuk-fieldset"></fieldset>
+        </br></br>
+
+        <!-- Is there an adult in your life that you trust and can talk to? {tags: no-support} -->
+        <fieldset class="nhsuk-fieldset"></fieldset>
+        </br></br>
 
         <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -50,7 +65,7 @@ Find support (continued)
               What kind of help are you looking for?
             </h1>
           </legend>
-      
+          
           <div class="nhsuk-hint" id="example-hint">
             Select all options that you would be interested in
           </div>

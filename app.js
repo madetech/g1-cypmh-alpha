@@ -208,6 +208,8 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
 }
 
 app.get("/treatment-type", buildContentHandler("treatment-types"))
+app.get("/locations", buildContentHandler("locations"))
+app.get("/schools", buildContentHandler("schools"))
 
 app.get('/diagnoses', async(req,res) => {
   const token = await contentAuth()

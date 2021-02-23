@@ -21,6 +21,7 @@ Find support
       
       <form action="/mental-health-check-in/questions-2" method="post">
         <h1>About you</h1><br />
+        <!-- How Old are you-->
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading" for="age">How old are you?</h1>
@@ -48,47 +49,120 @@ Find support
           </select>
         </fieldset>
         <br /><br />
-
-
-          <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
-            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-              <h1 class="nhsuk-fieldset__heading">
-                How would you like to speak to the service?
-              </h1>
-            </legend>
-        
-            <div class="nhsuk-hint" id="example-hint">
-              Select all options that you would be interested in
+        <!---- do you live in gloucestershire full time? -->
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              Do you live in Gloucestershire full-time?
+            </h1>
+          </legend>
+      
+          <div class="nhsuk-radios">
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="yes" {{ checked("glos-full-time", "yes") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+                Yes
+              </label>
             </div>
-        
-            <div class="nhsuk-checkboxes">
-        
-              <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-online" name="virtualness" type="checkbox" value="online" {{ checked("virtualness", "online") }}>
-                <label class="nhsuk-label nhsuk-checkboxes__label" for="online">
-                  Online
-                </label>
-              </div>
-
-              <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "by_phone") }}>
-                <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
-                  By phone
-                </label>
-              </div>
-        
-              <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" onClick="showLocations()" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "in_person") }}>
-                <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
-                  In person
-                </label>
-              </div>
+      
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="no" {{ checked("glos-full-time", "no") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+                No
+              </label>
             </div>
-          </fieldset>
-        </br></br>
-        <button class="nhsuk-button">Continue</button>
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="glos-full-time" name="glos-full-time" type="radio" value="not sure" {{ checked("glos-full-time", "not sure") }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="glos-full-time">
+                Not sure
+              </label>
+            </div>
+      
+          </div>
+        </fieldset>
+        <br/> <br />
+        <!-- where do you live in gloucestershire? -->
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading" for="diagnosis">Where do you live in Gloucestershire?</h1>
+          </legend>
+          <select class="nhsuk-select" id="locations" name="locations">
+            <option>Loading...</option>
+          </select>
+        </fieldset>
+        <br/> <br />
+
+        <!-- What school do you go to? -->
+        <!-- Searchbox or location dependant? -->
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading" for="diagnosis">What school do you go to?</h1>
+          </legend>
+          <select class="nhsuk-select" id="schools" name="schools">
+            <option>Loading...</option>
+          </select>
+        </fieldset>
+        <br/> <br />
+
+        <!-- Are you in care or a carer? -->
+        <fieldset class="nhsuk-fieldset">
+        </fieldset>
+        <br/> <br />
+
+        <!--how would you like to speak to the service?-->
+        <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              How would you like to speak to the service?
+            </h1>
+          </legend>
+      
+          <div class="nhsuk-hint" id="example-hint">
+            Select all options that you would be interested in
+          </div>
+      
+          <div class="nhsuk-checkboxes">
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="virtualness-online" name="virtualness" type="checkbox" value="online" {{ checked("virtualness", "online") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="online">
+                Online
+              </label>
+            </div>
+
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "by_phone") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
+                By phone
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" onClick="showLocations()" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "in_person") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
+                In person
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </br></br>
+      <button class="nhsuk-button">Continue</button>
     </form>
+    <script>
 
+      const getFormContent = async (contentName, renderer) => 
+        fetch("/" + contentName).then(res => res.json()).then(body => {
+        document.getElementById(contentName).innerHTML = body.map(renderer).join("")
+      })
+      
+      getFormContent("locations",item => `<option value="${item.name}" {{ checked("locations", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
+      getFormContent("schools",item => `<option value="${item.name}" {{ checked("schools", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
+          
+        
+
+      
+    </script>
     </div>
   </div>
 {% endblock %}
