@@ -206,11 +206,7 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
     res.send(404, err)
   }
 }
-// app.post("/carer", (req,res) => {
-//   // delete req.session.data.care
-//   console.log("You got here",req.session.data)
-//   res.send(200)
-// })
+
 app.get("/treatment-type", buildContentHandler("treatment-types"))
 app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
