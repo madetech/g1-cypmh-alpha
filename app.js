@@ -257,11 +257,11 @@ const formatStrapiRequest = (userData) => {
       case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]
       case "virtualness": return [{_or: [].concat(userData.virtualness).reduce((accumulator,item) =>{return [...accumulator, {'virtualnesses.name': item}]}, [])}]
       case "diagnosis" : return [{'diagnoses.name': userData.diagnosis}]
+      case "care" : return [{_or: [].concat(userData.care).reduce((accumulator,item) =>{return [...accumulator, {'tags.name': item}]}, [])}]
     }
 }).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
+  console.log(decodeURI(queryString))
   return (queryString)
-
-
 }
 
 // Use custom application routes
