@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-Find support
+Find support (continued)
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,34 +22,73 @@ Find support
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
+      <form action="/mental-health-check-in/summary" method="post">
+        <h1>Your feelings</h1><br />
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading" for="diagnosis">I am looking for help with:</h1>
+          </legend>
+          <div class="nhsuk-hint" id="example-with-hint-text-hint">
+            If you know what you are looking for, choose from the list below. 
+          </div>
+          <select class="nhsuk-select" id="diagnoses" name="diagnoses">
+            <option>Loading...</option>
+            <!-- <option value="anxiety" {{ checked("diagnosis", "anxiety") }}>Anxiety</option>
+            <option value="depression" {{ checked("diagnosis", "depression") }}>Depression</option>
+            <option value="bullying" {{ checked("diagnosis", "bullying") }}>Bullying</option>
+            <option value="self_harming" {{ checked("diagnosis", "self_harming") }}>Self harming</option>
+            <option value="eating_disorder" {{ checked("diagnosis", "eating_disorder") }}>An eating disorder</option>
+            <option value="suicidal_thoughts" {{ checked("diagnosis", "suicidal_thoughts") }}>Suicidal thoughts</option> -->
+          </select>
+        </fieldset>
+        <br /><br />
 
-      <form action="/mental-health-check-in/summary" method="post" class="form">
-        <h1>Find support (continued)</h1>
-        <!-- <fieldset class="nhsuk-fieldset">
+
+        <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading">
-              How would you prefer the GP to contact you?
+              What kind of help are you looking for?
             </h1>
           </legend>
-          <div class="nhsuk-form-group">
-            <div class="nhsuk-radios">
-              <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="contact-phone" name="contact" type="radio" value="By phone" {{ checked("contact", "By phone") }}>
-                <label class="nhsuk-label nhsuk-radios__label" for="contact-phone">By phone</label>
-              </div>
-              <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="contact-email" name="contact" type="radio" value="By email" {{ checked("contact", "By email") }}>
-                <label class="nhsuk-label nhsuk-radios__label" for="contact-email">By email</label>
-              </div>
-              <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="contact-post" name="contact" type="radio" value="By post" {{ checked("contact", "By post") }}>
-                <label class="nhsuk-label nhsuk-radios__label" for="contact-post">By post</label>
-              </div>
-            </div>
+      
+          <div class="nhsuk-hint" id="example-hint">
+            Select all options that you would be interested in
           </div>
-        </fieldset> -->
-        <button type="submit" class="nhsuk-button">Continue</button>
-      </form>
+      
+          <div class="nhsuk-checkboxes">
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="support-type-cbt" name="support-type" type="checkbox" value="cbt" {{ checked("support-type", "cbt") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-type-cbt">Cognitive behavioural therapy (CBT)</label>
+            </div>
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="support-type-art" name="support-type" type="checkbox" value="art" {{ checked("support-type", "art") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-type-art">Art based therapy</label>
+            </div>
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="support-type-counselling" name="support-type" type="checkbox" value="counselling" {{ checked("support-type", "counselling") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-type-counselling">Counselling</label>
+            </div>
+
+            
+      
+          </div>
+        </fieldset>
+        </br></br>
+        <button class="nhsuk-button">Continue</button>
+    </form>
+
+
+    <script>
+
+      const getFormContent = async (contentName, renderer) => 
+        fetch("/" + contentName).then(res => res.json()).then(body => {
+        document.getElementById(contentName).innerHTML = body.map(renderer).join("")
+      })
+      
+      getFormContent("diagnoses",item => `<option value="${item.name}" {{ checked("diagnoses", "${item.name}") }}>${item.human_text || item.name} </option>`)
+
+      
+    </script>
       <div class="nhsuk-back-link">
         <a href="/mental-health-check-in/questions-1" class="nhsuk-back-link__link">
         <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">

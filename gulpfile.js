@@ -61,7 +61,7 @@ function startNodemon(done) {
     script: 'app.js',
     stdout: false,
     ext: 'scss js html',
-    quiet: true,
+    quiet: false,
   });
   let starting = false;
 
