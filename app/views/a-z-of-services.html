@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Find support - results 
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({ href: "/landing-page", text: "Home" }) }} {% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+    <h1>A-Z of services</h1>
+    <p>
+      Below is a list of all services available for young people in Gloucestershire
+    </p>
+      
+    <br/><br/> 
+  
+      <div id="search_results"> </div>
+      
+      <script type="text/javascript">
+   
+              fetch("/services").then(res => res.json()).then(res => {
+                console.log(res.length)
+                if (res.length == 0) {
+                  document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
+                  return null
+                }
+                document.getElementById("search_results").innerHTML = res.map(result => {
+                  return `<div class="nhsuk-card nhsuk-card--clickable">
+                    <div class="nhsuk-card__content">
+                      <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                        <a class="nhsuk-card__link" href="${result.url}">
+                          ${result.title}
+                        </a>
+                      </h2>
+                      <p class="nhsuk-card__description">
+                        ${result.description}
+                      </p>
+                    </div>
+                </div>`
+                }).join("")
+              }
+            )
+      </script>
+    </div>
+  </div>
+{% endblock %}
+
