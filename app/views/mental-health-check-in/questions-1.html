@@ -18,8 +18,9 @@ Find support
         Let us know how you're feeling by answering the following questions so
         we can work out the right support for you.
       </p>
-      <h1>About you</h1><br />
+      
       <form action="/mental-health-check-in/questions-2" method="post">
+        <h1>About you</h1><br />
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading" for="age">How old are you?</h1>
@@ -52,7 +53,7 @@ Find support
           <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
             <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
               <h1 class="nhsuk-fieldset__heading">
-                What sort of service are you looking for?
+                How would you like to speak to the service?
               </h1>
             </legend>
         
@@ -70,21 +71,58 @@ Find support
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "phone") }}>
+                <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "by_phone") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
                   By phone
                 </label>
               </div>
         
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "person") }}>
+                <input class="nhsuk-checkboxes__input" onClick="showLocations()" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "in_person") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
                   In person
                 </label>
               </div>
-        
             </div>
           </fieldset>
+          <div id="location-question"></div>
+          <script type="text/javascript">
+            const showLocations = () => {
+                if (document.getElementById("virtualness-in-person").checked === true){
+                  document.getElementById("location-question").innerHTML = `<div>
+                    </br>
+
+                    <div class="nhsuk-checkboxes">
+        
+                        <div class="nhsuk-checkboxes__item">
+                          <input class="nhsuk-checkboxes__input" id="virtualness-online" name="virtualness" type="checkbox" value="online" {{ checked("virtualness", "online") }}>
+                          <label class="nhsuk-label nhsuk-checkboxes__label" for="online">
+                            Online
+                          </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                          <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "by_phone") }}>
+                          <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
+                            By phone
+                          </label>
+                        </div>
+                  
+                        <div class="nhsuk-checkboxes__item">
+                          <input class="nhsuk-checkboxes__input" onClick="showLocations()" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "in_person") }}>
+                          <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
+                            In person
+                          </label>
+                        </div>
+                      </div>
+
+                    </div>`
+                  console.log("it was true")
+                } else {
+                  document.getElementById("location-question").innerHTML = ``
+                }
+            }
+        </script>
         </br></br>
         <button class="nhsuk-button">Continue</button>
     </form>
