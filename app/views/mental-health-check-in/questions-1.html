@@ -85,44 +85,6 @@ Find support
               </div>
             </div>
           </fieldset>
-          <div id="location-question"></div>
-          <script type="text/javascript">
-            const showLocations = () => {
-                if (document.getElementById("virtualness-in-person").checked === true){
-                  document.getElementById("location-question").innerHTML = `<div>
-                    </br>
-
-                    <div class="nhsuk-checkboxes">
-        
-                        <div class="nhsuk-checkboxes__item">
-                          <input class="nhsuk-checkboxes__input" id="virtualness-online" name="virtualness" type="checkbox" value="online" {{ checked("virtualness", "online") }}>
-                          <label class="nhsuk-label nhsuk-checkboxes__label" for="online">
-                            Online
-                          </label>
-                        </div>
-
-                        <div class="nhsuk-checkboxes__item">
-                          <input class="nhsuk-checkboxes__input" id="virtualness-by-phone" name="virtualness" type="checkbox" value="by_phone" {{ checked("virtualness", "by_phone") }}>
-                          <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
-                            By phone
-                          </label>
-                        </div>
-                  
-                        <div class="nhsuk-checkboxes__item">
-                          <input class="nhsuk-checkboxes__input" onClick="showLocations()" id="virtualness-in-person" name="virtualness" type="checkbox" value="in_person" {{ checked("virtualness", "in_person") }}>
-                          <label class="nhsuk-label nhsuk-checkboxes__label" for="in-person">
-                            In person
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>`
-                  console.log("it was true")
-                } else {
-                  document.getElementById("location-question").innerHTML = ``
-                }
-            }
-        </script>
         </br></br>
         <button class="nhsuk-button">Continue</button>
     </form>
