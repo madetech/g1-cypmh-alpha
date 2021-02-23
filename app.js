@@ -236,9 +236,7 @@ app.get('/services', async (req,res)=> {
   try {
     // console.log(req.session.data)
     userData = req.session.data
-    console.log('Bearer ' + token.jwt)
     console.log("running query")
-    console.log(userData)
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
