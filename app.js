@@ -210,24 +210,7 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
 app.get("/treatment-type", buildContentHandler("treatment-types"))
 app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
-
-app.get('/diagnoses', async(req,res) => {
-  const token = await contentAuth()
-  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
-    Authorization:
-    'Bearer ' + token.jwt
-  })
-  try {
-    // console.log(req.session.data)
-    let results = await contentGet("/diagnoses")
-    
-    // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
-    res.send(results)
-  }
-  catch (err) {
-    res.send(404, err)
-  }
-})
+app.get('/diagnoses', buildContentHandler("diagnoses"))
 
 app.get('/services', async (req,res)=> {
   const token = await contentAuth()
@@ -237,6 +220,7 @@ app.get('/services', async (req,res)=> {
   })
   try {
     // console.log(req.session.data)
+    
     userData = req.session.data
     console.log("running query")
     console.log(userData)
@@ -256,11 +240,11 @@ const formatStrapiRequest = (userData) => {
     switch (key) {
       case "age": return  [{ minAge_lte: Number(userData.age) }, { maxAge_gte: Number(userData.age)}]
       case "virtualness": return [{_or: [].concat(userData.virtualness).reduce((accumulator,item) =>{return [...accumulator, {'virtualnesses.name': item}]}, [])}]
-      case "diagnosis" : return [{'diagnoses.name': userData.diagnosis}]
-      case "care" : return [{_or: [].concat(userData.care).reduce((accumulator,item) =>{return [...accumulator, {'tags.name': item}]}, [])}]
+      case "diagnosis" : return {'diagnoses.name': userData.diagnosis}
+      case "national" : return {national: userData.national}
+      // case "care" : return [{_or: [].concat(userData.care).reduce((accumulator,item) =>{return [...accumulator, {'tags.name': item}]}, [])}]
     }
 }).reduce((clauses, singleClause)=> clauses.concat(singleClause), [])})
-  console.log(decodeURI(queryString))
   return (queryString)
 }
 

@@ -14,7 +14,7 @@ Find support - results
     <div class="nhsuk-grid-column-three-quarters">
     <h1>A-Z of services</h1>
     <p>
-      Below is a list of all services available for young people in Gloucestershire
+      Below is a list of all services available for young people including national services and helplines 
     </p>
       
     <br/><br/> 
@@ -22,8 +22,8 @@ Find support - results
       <div id="search_results"> Loading...</div>
       
       <script type="text/javascript">
-              
-              fetch("/services?national=false").then(res => res.json()).then(res => {
+            
+              fetch("/services").then(res => res.json()).then(res => {
                 if (res.length == 0) {
                   document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
                   return null
