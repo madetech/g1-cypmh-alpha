@@ -34,7 +34,7 @@ const onlyDocumentation = process.env.DOCS_ONLY;
 // Initialise applications
 const app = express();
 const documentationApp = express();
-
+const govNofifyAPI = require('./src/notify.js');
 
 // Set up configuration variables
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
