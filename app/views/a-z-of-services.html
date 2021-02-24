@@ -12,7 +12,7 @@ Find support - results
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
-    <h1>A-Z of services</h1>
+    <h1>A-Z of services in Gloucestershire</h1>
     <p>
       Below is a list of all services available for young people in Gloucestershire
     </p>
@@ -23,7 +23,7 @@ Find support - results
       
       <script type="text/javascript">
               
-              fetch("/services?national=false").then(res => res.json()).then(res => {
+              fetch("/services-gloucester").then(res => res.json()).then(res => {
                 if (res.length == 0) {
                   document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
                   return null
@@ -44,6 +44,7 @@ Find support - results
                 }).join("")
               }
             )
+            sessionStorage.clear()
       </script>
     </div>
   </div>
