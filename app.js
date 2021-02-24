@@ -234,6 +234,22 @@ app.get('/services', async (req,res)=> {
   }
 })
 
+app.get('/services-gloucester', async (req,res)=> {
+  const token = await contentAuth()
+  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
+    Authorization:
+    'Bearer ' + token.jwt
+  })
+  try {
+    console.log("running query")
+    let results = await contentGet("/services?national=false")
+    res.send(results)
+  }
+  catch (err) {
+    res.send(404, err)
+  }
+})
+
 
 const formatStrapiRequest = (userData) => {
   let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
