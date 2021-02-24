@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Text message
+{% endblock %}
+
+{% block beforeContent %}
+  {{ breadcrumb({
+    href: "/new-user-landing-page",
+    text: "Previous page"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <!-- Add your content here -->
+      <h1>Find help</h1>
+
+      
+      <p>To help you find the best place to get help as quickly as possible, this is an automated service.</p>
+
+      <p>If any of the questions and answers don't reflect whats going on for you, you can opt to speak to a person. We pick up these messages between 8am and 6pm. There might be a short delay before someone's available, but we'll repond as soon as we can.</p>
+      
+      
+    </div>
+    <div class="nhsuk-grid-column-two-thirds">
+      <form action="/text-triage" method="post">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              What is your name?
+            </h1>
+          </legend>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="name">
+              Your name
+            </label>
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              What would you like us to call you? You don't have to give your full name.
+            </div>
+            <input class="nhsuk-input nhsuk-u-width-one-half" id="name" name="name" value="{{ data['name'] }}" type="text">
+          </div>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="phoneNumber">
+              Your number
+            </label>
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              Messages will come from a generic, non-named UK mobile number. You'll get the first one straight away, then you can reply in your own time. 
+              The service doesn't time out.
+            </div>
+            <input class="nhsuk-input nhsuk-u-width-one-half" id="phoneNumber" name="phoneNumber" value="{{ data['phoneNumber'] }}" type="text">
+          </div>
+        </fieldset>
+        <button class="nhsuk-button nhsuk-u-width-one-quarter">Start</button>
+        <div id="confirmationMessage"></div>
+      </form>
+      <div class="nhsuk-care-card nhsuk-care-card--non-urgent">
+        <div class="nhsuk-care-card__heading-container">
+          <h3 class="nhsuk-care-card__heading"><span role="text"><span class="nhsuk-u-visually-hidden">Non-urgent advice: </span>Do you need to speak to a person?</span></h3>
+          <span class="nhsuk-care-card__arrow" aria-hidden="true"></span>
+        </div>
+        <div class="nhsuk-care-card__content">
+          <p>If you'd like to text someone about how you're feeling now, rather than find help, you can use one of these text helplines:
+          <ul>
+            <li><a href="#">tic+</a>: 07342 XXXXXX (Open 9am-3pm, Mon-Fri)</li>
+            <li>other</li>
+            <li>other</li>
+          </ul>
+          
+        </p>
+        
+        </div>
+      </div>
+    </div>
+     
+</div>
+
+
+
+{% endblock %}

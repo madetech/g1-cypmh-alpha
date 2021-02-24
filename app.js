@@ -248,6 +248,12 @@ const formatStrapiRequest = (userData) => {
   return (queryString)
 }
 
+app.get("/text-triage", (req, res) => {
+  console.log(`Name: ${req.session.data.name}`)
+  console.log(`Phone number: ${req.session.data.phoneNumber}`)
+  res.redirect('/text-service-confirm')
+})
+
 // Use custom application routes
 app.use('/', routes);
 
