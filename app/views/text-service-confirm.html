@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Text message
+{% endblock %}
+
+{% block beforeContent %}
+  {{ breadcrumb({
+    href: "/new-user-landing-page",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <!-- Add your content here -->
+      <h1>We have sent you a text message</h1>
+
+      <p>It should arrive instantly</p>
+      <p>In the meantime, you can <a>read stories</a> about mental health from other young people or <a>find out more</a> about mental heath services in Gloucestershire.</p>
+
+    </div>  
+
+  </div>
+
+
+
+{% endblock %}
