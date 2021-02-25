@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Text message
+{% endblock %}
+
+{% block beforeContent %}
+  {{ breadcrumb({
+    href: "/text-service-intro",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <!-- Add your content here -->
+      <h1>There was an error with sending you a message</h1>
+
+      <p>Sorry, something went wrong, please <a>try again</a> or browse services online <a>here</a></p>
+
+    </div>  
+
+  </div>
+
+
+
+{% endblock %}

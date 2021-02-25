@@ -1,17 +1,18 @@
 const jwt = require('jsonwebtoken');
 const bent = require('bent')
 
-
 let govUKToken = null
 const contentAuth = async () => {
   console.log("getting new gov token...")
   govUKToken = jwt.sign({
     "iss": process.env.GOV_NOTIFY_ISS,
-  }, process.env.GOV_NOTIFY_SECRET_KEY);
+  }, process.env.GOV_NOTIFY_TEST_SECRET_KEY);
 return govUKToken;
 }
 
-const sendMessage = async (message,phoneNumber) =>{
+const textBot = async (req,res) =>{
+  console.log(req.session.data)
+  
   const token = await contentAuth()
   const contentPost = bent(process.env.GOV_NOTIFY_URL,'POST','json',201,{
     Authorization:
@@ -19,11 +20,12 @@ const sendMessage = async (message,phoneNumber) =>{
   })
   console.log("sending message..")
   try {
+    // console.log(req.session.data)
     let results = await contentPost("/v2/notifications/sms", {
-      "phone_number": `${phoneNumber}`,
+      "phone_number": `${req.session.data.phoneNumber}`,
       "template_id": `${process.env.GOV_NOTIFY_MESSAGE_TEMPlATE_ID}`,
       "personalisation": {
-        "messageBody": `${message}`,
+        "messageBody": `Hi ${req.session.data.name}, this is a welcome message`,
       }
 
     })
@@ -36,4 +38,4 @@ const sendMessage = async (message,phoneNumber) =>{
   }
 }
 
-module.exports = {sendMessage}
+module.exports = {textBot}

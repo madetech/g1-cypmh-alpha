@@ -14,26 +14,31 @@
 
 module.exports = function (req, res, next) {
   // External dependencies
-  const basicAuth = require('basic-auth')
+  const basicAuth = require("basic-auth");
 
   // Set configuration variables
-  const env = (process.env.NODE_ENV || 'development').toLowerCase();
+  const env = (process.env.NODE_ENV || "development").toLowerCase();
   const username = process.env.PROTOTYPE_USERNAME;
   const password = process.env.PROTOTYPE_PASSWORD;
-  
 
-  if (env === 'production' || env === 'staging' || env === 'development') {
-    if (!username || !password) {
-      return res.send('<p>Username or password not set in environment variables.</p>');
+  if (env === "production" || env === "staging" || env === "development") {
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+      const token = process.env.GOV_NOTIFY_CALLBACK_API_TOKEN;
+
+      if (req.headers.authorization !== "Bearer " + token) {
+        return res.sendStatus(401);
+      }
+      next();
+    } else {
+
+      const usernames = username.split(" ");
+
+      const user = basicAuth(req);
+      if (!user || !usernames.includes(user.name) || user.pass !== password) {
+        res.set("WWW-Authenticate", "Basic realm=Authorization Required");
+        return res.sendStatus(401);
+      }
     }
-
-    const usernames = username.split(" ");
-
-    const user = basicAuth(req)
-    if (!user || !usernames.includes(user.name) || user.pass !== password) {
-      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-      return res.sendStatus(401)
-    }
+    next();
   }
-  next()
-}
+};

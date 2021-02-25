@@ -26,6 +26,7 @@ const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils.js')
 const govNotifyAPI = require('./src/notify.js');
+const textBot = require('./src/textbot.js')
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -145,8 +146,10 @@ if (!sessionDataDefaultsFileExists) {
 // Check if the app is documentation only
 if(onlyDocumentation !== 'true') {
   // Require authentication if not
+  // app.use("/api/message-callback", require("./middleware/bearer-authentication"))
   app.use(authentication);
 }
+
 
 // Local variables
 app.use(locals(config));
@@ -268,17 +271,26 @@ const formatStrapiRequest = (userData) => {
 app.get("/text-triage", (req, res) => {
   console.log(`Name: ${req.session.data.name}`)
   console.log(`Phone number: ${req.session.data.phoneNumber}`)
+
+  const message = `Hi ${req.session.data.name}, welcome to our text bot! Please reply YES to confirm this message was received`
+  const phoneNumber =  req.session.data.phoneNumber
   // let results = await govNotifyAPI.sendWelcomeMessage(req,res)
-  govNotifyAPI.sendWelcomeMessage(req,res)
-    .then(results => {
-      console.log(results)
+  govNotifyAPI.sendMessage(message,phoneNumber)
+    .then(
       res.redirect('/text-service-confirm')
+    )
+    .catch(err => {
+      console.log(err)
+      res.redirect('/text-service-error')
     })
-    .catch(err => console.log(err))
 
     // res.redirect('/text-service-confirm') 
 })
 
+app.post("/api/message-callback", (req,res) => {
+  console.log(req.body.message)
+  res.send(200)
+})
 // Use custom application routes
 app.use('/', routes);
 
