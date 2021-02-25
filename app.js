@@ -25,6 +25,7 @@ const locals = require('./app/locals');
 const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils.js')
+const govNotifyAPI = require('./src/notify.js');
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -267,7 +268,15 @@ const formatStrapiRequest = (userData) => {
 app.get("/text-triage", (req, res) => {
   console.log(`Name: ${req.session.data.name}`)
   console.log(`Phone number: ${req.session.data.phoneNumber}`)
-  res.redirect('/text-service-confirm')
+  // let results = await govNotifyAPI.sendWelcomeMessage(req,res)
+  govNotifyAPI.sendWelcomeMessage(req,res)
+    .then(results => {
+      console.log(results)
+      res.redirect('/text-service-confirm')
+    })
+    .catch(err => console.log(err))
+
+    // res.redirect('/text-service-confirm') 
 })
 
 // Use custom application routes
