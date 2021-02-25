@@ -279,10 +279,6 @@ app.get("/text-triage", (req, res) => {
     // res.redirect('/text-service-confirm') 
 })
 
-app.post("/message-callback", (req, res)=>{
-  console.log(req)
-})  
-
 // Use custom application routes
 app.use('/', routes);
 
