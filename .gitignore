@@ -59,6 +59,7 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
+.env.test
 
 # System Files
 .DS_Store
