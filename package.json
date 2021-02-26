@@ -35,13 +35,15 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "keypather": "^3.0.0",
+    "lodash": "^4.17.21",
     "nhsuk-frontend": "^4.0.0",
     "node-sass": "^4.14.1",
     "notifications-node-client": "^5.1.0",
     "nunjucks": "^3.2.2",
     "path": "^0.12.7",
     "progress-tracker": "^2.0.6",
-    "qs": "^6.9.6"
+    "qs": "^6.9.6",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "^14.14.21",

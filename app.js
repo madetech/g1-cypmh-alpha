@@ -12,6 +12,7 @@ const sessionInMemory = require('express-session')
 const bent = require('bent')
 const qs = require('qs')
 const url = require('url')
+const _ = require('lodash')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -25,8 +26,8 @@ const locals = require('./app/locals');
 const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils.js')
-const govNotifyAPI = require('./src/notify.js');
-const textBot = require('./src/textbot.js')
+const govNotifyAPI = require('./src/notify');
+const getNextChatState = require('./src/chatbot');
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -36,6 +37,29 @@ const onlyDocumentation = process.env.DOCS_ONLY;
 // Initialise applications
 const app = express();
 const documentationApp = express();
+
+
+// Set up logger
+const winston = require('winston');
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console({level: 'warning'})
+  ],
+});
+
+//
+// If we're not in production then log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+//
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+    level: 'debug',
+  }));
+}
 
 
 // Set up configuration variables
@@ -134,7 +158,7 @@ const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults
 const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
 
 if (!sessionDataDefaultsFileExists) {
-  console.log('Creating session data defaults file')
+  logger.debug('Creating session data defaults file')
   if (!fs.existsSync(dataDirectory)) {
     fs.mkdirSync(dataDirectory)
   }
@@ -173,7 +197,7 @@ if(onlyDocumentation == 'true') {
 }
 
 app.post('/tracking',(req, res)=>{
-  console.log(req.body);
+  logger.debug(req.body);
   res.send();
 })
 
@@ -183,7 +207,7 @@ let contentToken = null
 const contentAuth = async () => {
 const current_time = new Date().getTime() / 1000;
   if (contentToken === null ||  current_time > contentToken.exp) {
-    console.log("getting new token...")
+    logger.debug("getting new token...")
     contentToken = await unauthContentPost('/auth/local',{
       identifier: process.env.CONTENT_API_USERNAME,
       password: process.env.CONTENT_API_PASSWORD,
@@ -200,7 +224,7 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
     'Bearer ' + token.jwt
   })
   try {
-    // console.log(req.session.data)
+    // logger.debug(req.session.data)
     let results = await contentGet("/" + endpoint)
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
@@ -223,11 +247,11 @@ app.get('/services', async (req,res)=> {
     'Bearer ' + token.jwt
   })
   try {
-    // console.log(req.session.data)
+    // logger.debug(req.session.data)
     
     userData = req.session.data
-    console.log("running query")
-    console.log(userData)
+    logger.debug("running query")
+
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
@@ -245,7 +269,7 @@ app.get('/services-gloucester', async (req,res)=> {
     'Bearer ' + token.jwt
   })
   try {
-    console.log("running query")
+    logger.debug("running query")
     let results = await contentGet("/services?national=false")
     res.send(results)
   }
@@ -268,29 +292,83 @@ const formatStrapiRequest = (userData) => {
   return (queryString)
 }
 
-app.get("/text-triage", (req, res) => {
-  console.log(`Name: ${req.session.data.name}`)
-  console.log(`Phone number: ${req.session.data.phoneNumber}`)
+const phoneData = {}
+// const textEmitter = new EventEmitter()
 
-  const message = `Hi ${req.session.data.name}, welcome to our text bot! Please reply YES to confirm this message was received`
-  const phoneNumber =  req.session.data.phoneNumber
-  // let results = await govNotifyAPI.sendWelcomeMessage(req,res)
+// phoneData["447857550857"] = {
+//   "name":"Emma",
+//   "phoneNumber":"447857550857",
+//   "sentMessages": ["Intro Message"],
+//   "receivedMessages":[],
+//   "chatState": 0,
+//   "history": []
+// }
+
+const formatTemplatedMessage = (message, data) => {
+  const templatedRegexMatches = [...message.matchAll(/\(\(([^\)]*)\)\)/igm)]
+  return templatedRegexMatches.reduce((adjustedMessage, regexMatch)=> adjustedMessage.replace(regexMatch[0], data[regexMatch[1]]), message)
+}
+
+
+app.get("/text-triage", async (req, res) => {
+  let nextChatState = await getNextChatState()
+  const name = req.session.data.name 
+  let phoneNumber = req.session.data.phoneNumber
+
+  const message = formatTemplatedMessage(nextChatState.message, req.session.data)
+
   govNotifyAPI.sendMessage(message,phoneNumber)
-    .then(
+    .then((result)=>{
+      phoneData[phoneNumber] = {
+        "name":`${name}`,
+        "phoneNumber":`${phoneNumber}`,
+        "sentMessages": [`${result.content.body}`],
+        "receivedMessages":[],
+        "chatState": nextChatState.chatState,
+        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
+      }
       res.redirect('/text-service-confirm')
+    }
     )
     .catch(err => {
-      console.log(err)
+      logger.warn(err)
       res.redirect('/text-service-error')
     })
-
-    // res.redirect('/text-service-confirm') 
 })
 
-app.post("/api/message-callback", (req,res) => {
-  console.log(req.body.message)
+app.post("/api/message-callback", async (req,res) => {
+  logger.log(req.body.message)
+  const messageReceived = req.body.message
+  const phoneNumber = req.body.source_number
+
+  const currentChatState = phoneData[phoneNumber].chatState
+
+  let nextChatState = await getNextChatState(currentChatState,messageReceived)
+  
+  const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
+
+  logger.debug("message Callback", phoneData[phoneNumber])
+
+
+  phoneData[phoneNumber] = {
+    ...phoneData[phoneNumber],
+    "receivedMessages":_.get(phoneData,phoneNumber + ".receivedMessages", []).concat([req.body.message]),
+    chatState: nextChatState.chatState,
+    "history": _.get(phoneData,phoneNumber + ".history", []).concat([req.body])
+  } 
+
+  govNotifyAPI.sendMessage(message,phoneNumber)
+    .then((result)=>{
+      phoneData[phoneNumber] = {
+        ...phoneData[phoneNumber],
+        "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
+        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
+      } 
+    })
+
   res.send(200)
 })
+
 // Use custom application routes
 app.use('/', routes);
 
@@ -369,6 +447,12 @@ app.use(function (err, req, res, next) {
 })
 
 // Run the application
-server = app.listen(port);
+server = app.listen(port, (err, data) => {
+  if (err) {
+    logger.error(err)
+  } 
+  else {
+    console.log("listening on port" + port)
+  } });
 
 module.exports = {app, server};
