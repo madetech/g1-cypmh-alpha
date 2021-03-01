@@ -31,7 +31,7 @@
         <fieldset class="nhsuk-fieldset">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading">
-              What is your name?
+              Your Details
             </h1>
           </legend>
           <div class="nhsuk-form-group">
@@ -49,9 +49,9 @@
             </label>
             <div class="nhsuk-hint" id="example-with-hint-text-hint">
               Messages will come from a generic, non-named UK mobile number. You'll get the first one straight away, then you can reply in your own time. 
-              The service doesn't time out.
+              The service doesn't time out.</br>Please write your number like this: 07654 665 334
             </div>
-            <input class="nhsuk-input nhsuk-u-width-one-half" id="phoneNumber" name="phoneNumber" value="{{ data['phoneNumber'] }}" type="text">
+            <input class="nhsuk-input nhsuk-u-width-one-half" id="phoneNumber" type="tel" name="phoneNumber" value="{{ data['phoneNumber'] }}">
           </div>
         </fieldset>
         <button class="nhsuk-button nhsuk-u-width-one-quarter">Start</button>

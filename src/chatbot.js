@@ -19,7 +19,7 @@ const getNextChatState = (currentChatState, response) => {
             });  
           case "Hungry":return Promise.resolve({
               chatState: 3,
-              message: "Sorry that you're feeling hungry, would you like to: 1. Order a pizza, 2. Make some food, 3. Eat a chocolate bar?"
+              message: "Sorry that you're feeling hungry, would you like to: 1. Speak to someone on the phone, 2. Chat to someone online, 3. Speak to someone in person?"
             });  
         default: return Promise.resolve({
           chatState: currentChatState,
