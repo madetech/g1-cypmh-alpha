@@ -471,12 +471,11 @@ function shutdown(signal) {
   return (err) => {
     logger.info(`${ signal }...`);
     if (err) logger.error(err.stack || err);
+    sendOutShutdownMessage();
     setTimeout(() => {
-
-      sendOutShutdownMessage();
-      console.log('...waited 20s, exiting.');
+      console.log('...waited 10s, exiting.');
       process.exit(err ? 1 : 0);
-    }, 20000).unref();
+    }, 10000).unref();
   };
 }
 
