@@ -317,9 +317,7 @@ app.get("/text-triage", async (req, res) => {
   let nextChatState = await getNextChatState()
   const name = req.session.data.name 
   let phoneNumber = req.session.data.phoneNumber.replace(/\D/g,'').replace(/^07|^00447/,"447")
-  console.log("formattedNumber", phoneNumber)
   const message = formatTemplatedMessage(nextChatState.message, req.session.data)
-  console.log("message", message)
   govNotifyAPI.sendMessage(message,phoneNumber)
     .then(result=>{
       phoneData[phoneNumber] = {
