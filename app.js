@@ -295,14 +295,14 @@ const formatStrapiRequest = (userData) => {
 const phoneData = {}
 // const textEmitter = new EventEmitter()
 
-// phoneData["447857550857"] = {
-//   "name":"Emma",
-//   "phoneNumber":"447857550857",
-//   "sentMessages": ["Intro Message"],
-//   "receivedMessages":[],
-//   "chatState": 0,
-//   "history": []
-// }
+phoneData["447857550857"] = {
+  "name":"Emma",
+  "phoneNumber":"447857550857",
+  "sentMessages": ["Intro Message"],
+  "receivedMessages":[],
+  "chatState": 0,
+  "history": []
+}
 
 const formatTemplatedMessage = (message, data) => {
   const templatedRegexMatches = [...message.matchAll(/\(\(([^\)]*)\)\)/igm)]
@@ -336,8 +336,6 @@ app.get("/text-triage", async (req, res) => {
     })
 })
 
-// process.on('SIGTERM', shutDown);
-
 app.post("/api/message-callback", async (req,res) => {
   logger.info(req.body.message)
   const messageReceived = req.body.message
@@ -367,8 +365,7 @@ app.post("/api/message-callback", async (req,res) => {
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
       } 
     })
-
-  res.sendStatus(200)
+  logger.info("response sent")
 })
 
 // Use custom application routes
@@ -452,14 +449,22 @@ app.use(function (err, req, res, next) {
 server = app.listen(port, (err, data) => {
   if (err) {
     logger.error(err)
-  } 
-  else {
-    console.log("listening on port" + port)
-  } });
+  }});
 
-  process.once('SIGTERM', function (code) {
-    logger.warn('Personalized message - SIGTERM received...');
-    server.close();
-  });
+process
+  .on('SIGTERM', shutdown('SIGTERM - shutting down'))
+  .on('SIGINT',shutdown('SIGINT - shutting down'))
+  .on('uncaughtException',shutdown('uncaughtException - shutting down'));
+
+function shutdown(signal) {
+  return (err) => {
+    logger.info(`${ signal }...`);
+    if (err) logger.error(err.stack || err);
+    setTimeout(() => {
+      console.log('...waited 5s, exiting.');
+      process.exit(err ? 1 : 0);
+    }, 5000).unref();
+  };
+}
 
 module.exports = {app, server};
