@@ -293,16 +293,17 @@ const formatStrapiRequest = (userData) => {
 }
 
 const phoneData = {}
-// const textEmitter = new EventEmitter()
 
-phoneData["447857550857"] = {
-  "name":"Emma",
-  "phoneNumber":"447857550857",
-  "sentMessages": ["Intro Message"],
-  "receivedMessages":[],
-  "chatState": 0,
-  "history": []
-}
+// phoneData["447857550857"] = {
+//   "name":"Emma",
+//   "phoneNumber":"447857550857",
+//   "sentMessages": ["Intro Message"],
+//   "receivedMessages":[],
+//   "chatState": 0,
+//   "history": []
+// }
+
+
 
 const formatTemplatedMessage = (message, data) => {
   const templatedRegexMatches = [...message.matchAll(/\(\(([^\)]*)\)\)/igm)]
@@ -374,8 +375,8 @@ const sendOutShutdownMessage = () => {
   Object.entries(phoneData).forEach((item) => {
     const message = "Thanks for taking part in the Gloucester NHS prototype testing. This service is now shutting down. If you need to text someone about your mental health, here are some options: \n tic+: 07520 634063"
     govNotifyAPI.sendMessage(message,item[1].phoneNumber)
-    .then(console.log("Shutdown message sent to: " + item[1].name))
-    .catch (err => {console.log("error sending message to:" + item[1].name, err)})    
+    .then(logger.info("Shutdown message sent to: " + item[1].name))
+    .catch (err => {logger.info("Error sending message to:" + item[1].name, err)})    
   })   
 }
 
@@ -473,7 +474,7 @@ function shutdown(signal) {
     if (err) logger.error(err.stack || err);
     sendOutShutdownMessage();
     setTimeout(() => {
-      console.log('...waited 10s, exiting.');
+      logger.info('...waited 10s, exiting.');
       process.exit(err ? 1 : 0);
     }, 10000).unref();
   };

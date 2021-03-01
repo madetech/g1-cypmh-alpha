@@ -4,7 +4,7 @@ const bent = require('bent')
 
 let govUKToken = null
 const contentAuth = async () => {
-  console.log("getting new gov token...")
+  logger.info("getting new gov token...")
   govUKToken = jwt.sign({
     "iss": process.env.GOV_NOTIFY_ISS,
   }, process.env.GOV_NOTIFY_SECRET_KEY);
@@ -17,7 +17,7 @@ const sendMessage = async (message,phoneNumber) =>{
     Authorization:
     'Bearer ' + token
   })
-  console.log("sending message..")
+  logger.info("sending message..")
   try {
     let results = await contentPost("/v2/notifications/sms", {
       "phone_number": `${phoneNumber}`,
@@ -27,11 +27,11 @@ const sendMessage = async (message,phoneNumber) =>{
       }
 
     })
-    console.log("sent message")
+    logger.info("sent message")
     return results
   }
   catch (err) {
-    console.log("error happened\n",err)
+    logger.error("error happened\n",err)
     throw err
   }
 }
