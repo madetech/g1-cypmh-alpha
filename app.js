@@ -336,8 +336,10 @@ app.get("/text-triage", async (req, res) => {
     })
 })
 
+// process.on('SIGTERM', shutDown);
+
 app.post("/api/message-callback", async (req,res) => {
-  logger.log(req.body.message)
+  logger.info(req.body.message)
   const messageReceived = req.body.message
   const phoneNumber = req.body.source_number
 
@@ -366,7 +368,7 @@ app.post("/api/message-callback", async (req,res) => {
       } 
     })
 
-  res.send(200)
+  res.sendStatus(200)
 })
 
 // Use custom application routes
@@ -454,5 +456,10 @@ server = app.listen(port, (err, data) => {
   else {
     console.log("listening on port" + port)
   } });
+
+  process.once('SIGTERM', function (code) {
+    logger.warn('Personalized message - SIGTERM received...');
+    server.close();
+  });
 
 module.exports = {app, server};
