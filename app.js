@@ -309,6 +309,21 @@ const formatTemplatedMessage = (message, data) => {
   return templatedRegexMatches.reduce((adjustedMessage, regexMatch)=> adjustedMessage.replace(regexMatch[0], data[regexMatch[1]]), message)
 }
 
+const gracefulShutdown = () => {
+
+  Object.entries(phoneData).forEach((item) => {
+    const message = "Thanks for taking part in the Gloucester NHS prototype testing. This service is now shutting down. If you need to text someone about your mental health, here are some options: \n tic+: 07520 634063"
+    govNotifyAPI.sendMessage(message,item[1].phoneNumber)
+    .then(console.log("Shutdown message sent to: " + item[1].name))
+    .catch (err => {console.log("error sending message to:" + item[1].name, err)})
+    
+  })
+    
+}
+
+
+
+
 
 app.get("/text-triage", async (req, res) => {
   let nextChatState = await getNextChatState()
@@ -461,6 +476,8 @@ function shutdown(signal) {
     logger.info(`${ signal }...`);
     if (err) logger.error(err.stack || err);
     setTimeout(() => {
+
+      gracefulShutdown();
       console.log('...waited 5s, exiting.');
       process.exit(err ? 1 : 0);
     }, 5000).unref();
