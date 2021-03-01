@@ -27,7 +27,7 @@ const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils.js')
 const govNotifyAPI = require('./src/notify');
-const getNextChatState = require('./src/chatbot');
+const getNextChatState = require('./src/chatbot-return-message');
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
