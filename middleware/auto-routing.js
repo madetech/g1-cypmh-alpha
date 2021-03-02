@@ -22,10 +22,10 @@ function renderPath (path, res, next) {
     }
     
     if (error.message.startsWith('template not found')){
-
       if (path.substr(0,8)==="showcase") {
         path = path.substr(9)
         renderPath(path, res, next)
+        return
       }
     }
     if (!error.message.startsWith('template not found')) { // [3] //
