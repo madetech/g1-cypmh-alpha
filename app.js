@@ -368,16 +368,20 @@ app.post("/api/message-callback", async (req,res) => {
   } 
 
   govNotifyAPI.sendMessage(message,phoneNumber)
-    .then((result)=>{
+    .then(result=>{
       phoneData[phoneNumber] = {
         ...phoneData[phoneNumber],
         "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
       } 
-      res.send(201)
+      
       logger.info("response sent")
+      res.send(201)
     })
-  
+    .catch(err => {
+      logger.info("error sending response", err)
+      res.send(err)
+    })
   
 })
 
