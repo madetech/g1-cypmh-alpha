@@ -450,7 +450,7 @@ app.post('/mental-health-check-in/clear-data', function (req, res) {
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, function (req, res) {
+app.post(/^\/((?!api)[^.]+)$/, function (req, res) {
   res.redirect('/' + req.params[0])
 })
 
