@@ -45,7 +45,9 @@ Find support
             <option value=20 {{ checked("age", 20) }}>20 years old</option>
             <option value=21 {{ checked("age", 21) }}>21 years old</option>
             <option value=22 {{ checked("age", 22) }}>22 years old</option>
-            <option value=23+ {{ checked("age", 23) }}>23+ years old</option>
+            <option value=23 {{ checked("age", 23) }}>23 years old</option>
+            <option value=24 {{ checked("age", 24) }}>24 years old</option>
+            <option value=25 {{ checked("age", 25) }}>25 years old</option>
           </select>
         </fieldset>
         <br /><br />
@@ -90,6 +92,7 @@ Find support
           <select class="nhsuk-select" id="locations" name="locations">
             <option>Loading...</option>
           </select>
+          
         </fieldset>
         <br/> <br />
 
@@ -195,14 +198,18 @@ Find support
     </form>
     <script>
       // Scripts on page loading
-      const getFormContent = async (contentName, renderer) => 
+      const getFormContent = async (contentName, renderer, appendHTML = "") => 
         fetch("/" + contentName).then(res => res.json()).then(body => {
         document.getElementById(contentName).innerHTML = body.map(renderer).join("")
+        document.getElementById(contentName).innerHTML = document.getElementById(contentName).innerHTML + appendHTML
       })
-      
-      getFormContent("locations",item => `<option value="${item.name}" {{ checked("locations", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`)
-      
-      
+
+      getFormContent(
+          "locations",
+          item => `<option value="${item.name}" {{ checked("locations", "${item.name}") }}>${item.human_text !== "" ? item.human_text : item.name} </option>`,
+          `<option value="not-sure" {{ checked("locations", "not-sure") }}>I'm not sure</option>`
+          )
+
 
       // Script for carer popup
       const showCarer = () =>{
