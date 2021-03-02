@@ -378,11 +378,9 @@ app.post("/api/message-callback", async (req,res) => {
       } 
       
       logger.info("response sent")
-      res.send(201)
     })
     .catch(err => {
       logger.info("error sending response", err)
-      res.send(err)
     })
   
 })
