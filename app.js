@@ -41,12 +41,13 @@ const documentationApp = express();
 
 // Set up logger
 const winston = require('winston');
+const { logError } = require('gulp-sass');
 
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [
-    new winston.transports.Console({level: 'warning'})
+    new winston.transports.Console({level: 'info'})
   ],
 });
 
@@ -251,7 +252,7 @@ app.get('/services', async (req,res)=> {
     
     userData = req.session.data
     logger.debug("running query")
-
+    console.log(gatherUserData(userData))
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
@@ -277,6 +278,15 @@ app.get('/services-gloucester', async (req,res)=> {
     res.send(404, err)
   }
 })
+
+// const formatUserDataForQuery = (userData) => {
+//   console.log(userData)
+//   Object.keys(userData).map(key => {
+//     switch (key)
+//     console.log("key",key)
+//     console.log(userData[key])
+//   })
+// }
 
 
 const formatStrapiRequest = (userData) => {
@@ -364,17 +374,21 @@ app.post("/api/message-callback", async (req,res) => {
         "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
       } 
+      res.send(201)
+      logger.info("response sent")
     })
-  logger.info("response sent")
+  
+  
 })
 
-const sendOutShutdownMessage = () => {
-  Object.entries(phoneData).forEach((item) => {
+const sendOutShutdownMessage = async () => {
+  let promises = Object.entries(phoneData).map((item) => {
     const message = "Thanks for taking part in the Gloucester NHS prototype testing. This service is now shutting down. If you need to text someone about your mental health, here are some options: \n tic+: 07520 634063"
-    govNotifyAPI.sendMessage(message,item[1].phoneNumber)
-    .then(logger.info("Shutdown message sent to: " + item[1].name))
-    .catch (err => {logger.info("Error sending message to:" + item[1].name, err)})    
-  })   
+    return govNotifyAPI.sendMessage(message,item[1].phoneNumber)
+    .then(logger.info("Shutdown message sent" ))
+    .catch (err => {logger.info("Error sending message", err)})    
+  })
+  return Promise.all(promises)   
 }
 
 // Use custom application routes
@@ -449,9 +463,11 @@ app.use(function (req, res, next) {
 
 // Display error
 app.use(function (err, req, res, next) {
-  console.error(err.message)
-  res.status(err.status || 500)
-  res.send(err.message)
+  if (err) { 
+    logger.error(err.message)
+    res.send(err.status || 500, err.message)
+
+  }
 })
 
 // Run the application
@@ -469,11 +485,9 @@ function shutdown(signal) {
   return (err) => {
     logger.info(`${ signal }...`);
     if (err) logger.error(err.stack || err);
-    sendOutShutdownMessage();
-    setTimeout(() => {
-      logger.info('...waited 10s, exiting.');
-      process.exit(err ? 1 : 0);
-    }, 10000).unref();
+    sendOutShutdownMessage()
+    .then(() => logger.info("shutdown messages all sent"))
+    .catch(() => logger.warn("problem sending shutdown messages"))
   };
 }
 
