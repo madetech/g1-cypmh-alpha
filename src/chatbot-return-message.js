@@ -1,5 +1,5 @@
 const getNextChatState = (currentChatState, response) => {
-  if (currentChatState === undefined && response === undefined) {
+  if (currentChatState === undefined || response === undefined) {
     return Promise.resolve({
       chatState: 0,
       message:"Welcome to the Mental Health check-in ((name)). Are you feeling 1. Anxious, 2. Depressed, 3. Hungry?"
