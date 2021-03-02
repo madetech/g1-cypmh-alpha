@@ -487,7 +487,6 @@ process
 
 function shutdown(signal) {
   return (err) => {
-    logger.info(`${ signal }...`);
     if (err) logger.error(err.stack || err);
     sendOutShutdownMessage()
     .then(() => {
