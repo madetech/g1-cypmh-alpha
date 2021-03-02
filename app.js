@@ -350,7 +350,9 @@ app.post("/api/message-callback", async (req,res) => {
   logger.info(req.body.message)
   const messageReceived = req.body.message
   const phoneNumber = req.body.source_number
-
+  if (phoneData[phoneNumber] == undefined) {
+    phoneData[phoneNumber] = {}}
+  
   const currentChatState = phoneData[phoneNumber].chatState
 
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
