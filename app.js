@@ -347,19 +347,18 @@ app.get("/text-triage", async (req, res) => {
 })
 
 app.post("/api/message-callback", async (req,res) => {
-  logger.info(req.body.message)
   const messageReceived = req.body.message
   const phoneNumber = req.body.source_number
   if (phoneData[phoneNumber] == undefined) {
-    phoneData[phoneNumber] = {}}
+    phoneData[phoneNumber] = {name: ''}}
   
   const currentChatState = phoneData[phoneNumber].chatState
 
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
-  
+
   const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
 
-  logger.debug("message Callback", phoneData[phoneNumber])
+  
 
 
   phoneData[phoneNumber] = {
@@ -376,13 +375,13 @@ app.post("/api/message-callback", async (req,res) => {
         "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
       } 
-      
       logger.info("response sent")
+
     })
     .catch(err => {
       logger.info("error sending response", err)
     })
-  
+    
 })
 
 const sendOutShutdownMessage = async () => {
@@ -469,7 +468,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   if (err) { 
     logger.error(err.message)
-    res.send(err.status || 500, err.message)
+    res.status(err.status || 500).send(err.message)
 
   }
 })

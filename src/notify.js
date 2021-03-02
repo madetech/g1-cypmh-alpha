@@ -28,7 +28,7 @@ const sendMessage = async (message,phoneNumber) =>{
     return results
   }
   catch (err) {
-    throw err
+    return err
   }
 }
 
