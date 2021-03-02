@@ -481,17 +481,23 @@ server = app.listen(port, (err, data) => {
   }});
 
 process
-  .on('SIGTERM', shutdown('SIGTERM - shutting down'))
-  .on('SIGINT',shutdown('SIGINT - shutting down'))
-  .on('uncaughtException',shutdown('uncaughtException - shutting down'));
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT',shutdown('SIGINT'))
+  .on('uncaughtException',shutdown('uncaughtException'));
 
 function shutdown(signal) {
   return (err) => {
     logger.info(`${ signal }...`);
     if (err) logger.error(err.stack || err);
     sendOutShutdownMessage()
-    .then(() => logger.info("shutdown messages all sent"))
-    .catch(() => logger.warn("problem sending shutdown messages"))
+    .then(() => {
+      logger.info("shutdown messages all sent")
+      process.exit(err ? 1 : 0);})
+    .catch(() => {
+      logger.warn("problem sending shutdown messages")
+      process.exit(err ? 1 : 0);
+    })
+    
   };
 }
 
