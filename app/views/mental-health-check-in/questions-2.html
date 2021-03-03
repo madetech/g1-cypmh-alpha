@@ -34,14 +34,27 @@ Find support (continued)
             </legend>
         
             <div class="nhsuk-radios">
-        
               <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="appetiteBool" name="appetiteBool" type="radio" value="true" {{ checked("appetiteBool", "true")}}>
-                <label class="nhsuk-label nhsuk-radios__label" for="appetiteBool">
-                  "I've not noticed a change in my appetite
+                <input class="nhsuk-radios__input" id="appetites-not-sure" name="appetites" type="radio" value="notSure" {{ checked("appetites", "notSure")}}>
+                <label class="nhsuk-label nhsuk-radios__label" for="appetites">
+                  I'm not sure
                 </label>
               </div>
-              <div id="appetites">Loading... </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="appetites-no-change" name="appetites" type="radio" value="no-change" {{ checked("appetites", "no-change")}}>
+                <label class="nhsuk-label nhsuk-radios__label" for="appetites">
+                  I've not noticed a change in my appetite
+                </label>
+              </div>
+              <div id="appetites">
+                <div class="nhsuk-radios__item">
+                
+                <label class="nhsuk-label nhsuk-radios__label" for="appetites">
+                  Loading more options.. 
+                </label>
+                </div>
+              </div>
+            </div>
               
 
         
@@ -56,7 +69,7 @@ Find support (continued)
             If you know what you are looking for, choose from the list below. 
           </div>
           <select class="nhsuk-select" id="diagnoses" name="diagnoses">
-            <option>Loading...</option>
+            <option>Loading..</option>
           </select>
         </fieldset>
         <br /><br />
