@@ -240,6 +240,23 @@ app.get("/treatment-type", buildContentHandler("treatment-types"))
 app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
 app.get('/diagnoses', buildContentHandler("diagnoses"))
+app.get('/appetites', buildContentHandler("appetites"))
+
+// const cleanUserData = (userData) => {
+//   let cleanedData = {}
+//   let notSure = []
+//   logger.debug(JSON.stringify(userData))
+//   Object.keys(userData).forEach((key) => {
+//     if (userData[key] = "notSure"){
+//       notSure = [...notSure, key]
+//     } else {
+//       cleanedData[key] = 
+//     }
+//     logger.debug(`key: ${key}, value: ${value}`)
+//   })
+//   logger.debug(notSure)
+//   return cleanedData;
+// }
 
 app.get('/services', async (req,res)=> {
   const token = await contentAuth()
@@ -252,7 +269,8 @@ app.get('/services', async (req,res)=> {
     
     userData = req.session.data
     logger.debug("running query")
-    console.log(gatherUserData(userData))
+    // logger.debug(JSON.stringify(req.session.data))
+    // cleanUserData(userData)
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
     
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
