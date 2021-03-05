@@ -7,8 +7,9 @@
     "build": "gulp build",
     "postinstall": "npm run build",
     "start": "node app.js",
-    "test": "jest",
-    "journey-test": "jest",
+    "test": "jest -c jest.unit.config.js",
+    "test:watch": "jest --watchAll -c jest.unit.config.js ",
+    "e2e:test": "jest -c jest.e2e.config.js",
     "prewatch": "gulp build",
     "watch": "gulp"
   },
