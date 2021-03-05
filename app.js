@@ -297,15 +297,6 @@ app.get('/services-gloucester', async (req,res)=> {
   }
 })
 
-// const formatUserDataForQuery = (userData) => {
-//   console.log(userData)
-//   Object.keys(userData).map(key => {
-//     switch (key)
-//     console.log("key",key)
-//     console.log(userData[key])
-//   })
-// }
-
 
 const formatStrapiRequest = (userData) => {
   let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
@@ -338,15 +329,14 @@ const formatTemplatedMessage = (message, data) => {
   return templatedRegexMatches.reduce((adjustedMessage, regexMatch)=> adjustedMessage.replace(regexMatch[0], data[regexMatch[1]]), message)
 }
 
-
-
-
 app.get("/text-triage", async (req, res) => {
   let nextChatState = await getNextChatState()
   const name = req.session.data.name 
   let phoneNumber = req.session.data.phoneNumber.replace(/\D/g,'').replace(/^07|^00447/,"447")
-  const message = formatTemplatedMessage(nextChatState.message, req.session.data)
-  govNotifyAPI.sendMessage(message,phoneNumber)
+  let message = [].concat(nextChatState.message).map(eachMessage => {
+      return formatTemplatedMessage(eachMessage, req.session.data)
+    }).join("\n\n\n")
+    govNotifyAPI.sendMessage(message,phoneNumber)
     .then(result=>{
       phoneData[phoneNumber] = {
         "name":`${name}`,
