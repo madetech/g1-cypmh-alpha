@@ -241,22 +241,7 @@ app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
 app.get('/diagnoses', buildContentHandler("diagnoses"))
 app.get('/appetites', buildContentHandler("appetites"))
-
-// const cleanUserData = (userData) => {
-//   let cleanedData = {}
-//   let notSure = []
-//   logger.debug(JSON.stringify(userData))
-//   Object.keys(userData).forEach((key) => {
-//     if (userData[key] = "notSure"){
-//       notSure = [...notSure, key]
-//     } else {
-//       cleanedData[key] = 
-//     }
-//     logger.debug(`key: ${key}, value: ${value}`)
-//   })
-//   logger.debug(notSure)
-//   return cleanedData;
-// }
+app.get('/services-gloucester', buildContentHandler("services?national=false"))
 
 app.get('/services', async (req,res)=> {
   const token = await contentAuth()
@@ -272,7 +257,6 @@ app.get('/services', async (req,res)=> {
     // logger.debug(JSON.stringify(req.session.data))
     // cleanUserData(userData)
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
-    
     // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
     res.send(results)
   }
@@ -280,23 +264,6 @@ app.get('/services', async (req,res)=> {
     res.send(404, err)
   }
 })
-
-app.get('/services-gloucester', async (req,res)=> {
-  const token = await contentAuth()
-  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
-    Authorization:
-    'Bearer ' + token.jwt
-  })
-  try {
-    logger.debug("running query")
-    let results = await contentGet("/services?national=false")
-    res.send(results)
-  }
-  catch (err) {
-    res.send(404, err)
-  }
-})
-
 
 const formatStrapiRequest = (userData) => {
   let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
