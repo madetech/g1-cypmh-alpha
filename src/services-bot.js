@@ -3,9 +3,18 @@
 const { get } = require("http")
 const { builtinModules } = require("module")
 
-const getServicesArray = () => {
+const getServicesArray = (results) => {
+  if (results === undefined){
+    return null
+  }
+  let count = 0
+  return results.map(service => {
+      count = count + 1
+      return `Option ${count}: ${service.title}\n\n${service.description}\n\nWebsite:${service.url}\n`
+  })
 
-  return true
+
+
 }
 
 module.exports = getServicesArray

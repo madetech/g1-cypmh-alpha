@@ -66,3 +66,4 @@ jspm_packages/
 Thumbs.db
 
 /g1-cypmh-content-api
+/test/example*
