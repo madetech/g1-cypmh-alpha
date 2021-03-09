@@ -65,7 +65,7 @@ const chatStates =
       returnData: {},
       captureStrings: "",
       outgoingMessage: `Do you know what kind of help you're looking for?\n\n1 - No, I'm still figuring that out\n2 - Some information and self-help resources\n3 - I want to speak to someone about this now (like a helpline)\n4 - I want some ongoing help to get better`,
-      returnOptionIds : [21,22,23]
+      returnOptionIds : [99]
       }, 
     10: {
       returnData: {tags:"bereavement"},

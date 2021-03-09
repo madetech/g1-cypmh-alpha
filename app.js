@@ -28,6 +28,7 @@ const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils.js')
 const govNotifyAPI = require('./src/notify');
 const getNextChatState = require('./src/chatbot-return-message');
+const getServicesArray = require('./src/services-bot')
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -249,13 +250,29 @@ app.get('/services', async (req,res)=> {
     logger.debug("running query")
 
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
-
     res.send(results)
   }
   catch (err) {
     res.send(404, err)
   }
 })
+
+app.get('/services-gloucester', async (req,res)=> {
+  const token = await contentAuth()
+  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
+    Authorization:
+    'Bearer ' + token.jwt
+  })
+  try {
+    logger.debug("running query")
+    let results = await contentGet("/services?national=false")
+    res.send(results)
+  }
+  catch (err) {
+    res.send(404, err)
+  }
+})
+
 
 const formatStrapiRequest = (userData) => {
   let queryString = qs.stringify({_where : Object.keys(userData).map(key => {
@@ -313,7 +330,7 @@ app.get("/text-triage", async (req, res) => {
     })
 })
 
-const callStrapiApi = (endpoint, query) => {
+const callStrapiApi = async (endpoint, query) => {
   const token = await contentAuth()
   const contentGet = bent(process.env.CONTENT_API_URL,'json',{
     Authorization:
@@ -328,12 +345,12 @@ const callStrapiApi = (endpoint, query) => {
   }
 }
 
-phoneData["07857550857"] = {
+phoneData["447857550857"] = {
   "name":"Emma",
   "phoneNumber": "07857550857",
   "sentMessages": [],
-  "receivedMessages":[99],
-  "chatState": nextChatState.chatState,
+  "receivedMessages":[],
+  "chatState": 99,
   "history": [],
   "data":[]
 }
@@ -346,31 +363,10 @@ app.post("/api/message-callback", async (req,res) => {
   
   const currentChatState = phoneData[phoneNumber].chatState
 
-  if (currentChatState.chatState === 100) {
-    let messages = await callStrapiApi("services", "")
-    firstThree = messages.slice(0,3)
-    console.log(firstThree)
-    try{
-    firstThree.forEach(async message => {
-      let result = await govNotifyAPI.sendMessage(message,phoneNumber)
-      phoneData[phoneNumber] = {
-        ...phoneData[phoneNumber],
-        "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
-        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
-      } 
-      logger.info("response sent")
-      })
-    } catch (err) {
-        logger.info("error sending message")
-      }
-    }
-
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
 
-  const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
-
   
-
+  const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
 
   phoneData[phoneNumber] = {
     ...phoneData[phoneNumber],
@@ -394,6 +390,24 @@ app.post("/api/message-callback", async (req,res) => {
       logger.info("error sending response", err)
     })
     
+  if (nextChatState.chatState === 100) {
+    let messages = await callStrapiApi("services", "")
+    
+    firstThree = messages.slice(0,3)
+
+    formattedMessages = getServicesArray(firstThree)
+
+    formattedMessages.forEach(async message => {
+      console.log(message)
+      let result = await govNotifyAPI.sendMessage(message,phoneNumber)
+      phoneData[phoneNumber] = {
+        ...phoneData[phoneNumber],
+        "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
+        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
+      } 
+      logger.info("response sent")
+    })
+    }
 })
 
 const sendOutShutdownMessage = async () => {
