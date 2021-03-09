@@ -12,9 +12,6 @@ const getServicesArray = (results) => {
       count = count + 1
       return `Option ${count}: ${service.title}\n\n${service.description}\n\nWebsite:${service.url}\n`
   })
-
-
-
 }
 
 module.exports = getServicesArray

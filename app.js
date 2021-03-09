@@ -225,10 +225,8 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
     'Bearer ' + token.jwt
   })
   try {
-    // logger.debug(req.session.data)
     let results = await contentGet("/" + endpoint)
     
-    // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
     res.send(results)
   }
   catch (err) {
@@ -236,11 +234,8 @@ const buildContentHandler = (endpoint) => async (req,res) =>{
   }
 }
 
-app.get("/treatment-type", buildContentHandler("treatment-types"))
 app.get("/locations", buildContentHandler("locations"))
 app.get("/schools", buildContentHandler("schools"))
-app.get('/diagnoses', buildContentHandler("diagnoses"))
-app.get('/appetites', buildContentHandler("appetites"))
 app.get('/services-gloucester', buildContentHandler("services?national=false"))
 
 app.get('/services', async (req,res)=> {
@@ -250,14 +245,11 @@ app.get('/services', async (req,res)=> {
     'Bearer ' + token.jwt
   })
   try {
-    // logger.debug(req.session.data)
-    
     userData = req.session.data
     logger.debug("running query")
-    // logger.debug(JSON.stringify(req.session.data))
-    // cleanUserData(userData)
+
     let results = await contentGet("/services" + "?" + formatStrapiRequest(userData))
-    // let results = await strapi(url.format({path: "services", query: formatStrapiRequest(userData)}))
+
     res.send(results)
   }
   catch (err) {
@@ -321,13 +313,57 @@ app.get("/text-triage", async (req, res) => {
     })
 })
 
+const callStrapiApi = (endpoint, query) => {
+  const token = await contentAuth()
+  const contentGet = bent(process.env.CONTENT_API_URL,'json',{
+    Authorization:
+    'Bearer ' + token.jwt
+  })
+  try {
+    let results = await contentGet("/" + endpoint + "?" + query)
+    return results 
+  } catch (err){
+    logger.error(err)
+    return err
+  }
+}
+
+phoneData["07857550857"] = {
+  "name":"Emma",
+  "phoneNumber": "07857550857",
+  "sentMessages": [],
+  "receivedMessages":[99],
+  "chatState": nextChatState.chatState,
+  "history": [],
+  "data":[]
+}
+
 app.post("/api/message-callback", async (req,res) => {
   const messageReceived = req.body.message
   const phoneNumber = req.body.source_number
   if (phoneData[phoneNumber] == undefined) {
-    phoneData[phoneNumber] = {name: ''}}
+    phoneData[phoneNumber] = {"name": ''}}
   
   const currentChatState = phoneData[phoneNumber].chatState
+
+  if (currentChatState.chatState === 100) {
+    let messages = await callStrapiApi("services", "")
+    firstThree = messages.slice(0,3)
+    console.log(firstThree)
+    try{
+    firstThree.forEach(async message => {
+      let result = await govNotifyAPI.sendMessage(message,phoneNumber)
+      phoneData[phoneNumber] = {
+        ...phoneData[phoneNumber],
+        "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
+        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
+      } 
+      logger.info("response sent")
+      })
+    } catch (err) {
+        logger.info("error sending message")
+      }
+    }
 
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
 
@@ -339,7 +375,8 @@ app.post("/api/message-callback", async (req,res) => {
   phoneData[phoneNumber] = {
     ...phoneData[phoneNumber],
     "receivedMessages":_.get(phoneData,phoneNumber + ".receivedMessages", []).concat([req.body.message]),
-    chatState: nextChatState.chatState,
+    "chatState": nextChatState.chatState,
+    // "data":_get.get(phoneData,phoneNumber + ".data", []).concat([nextChatState.data]),
     "history": _.get(phoneData,phoneNumber + ".history", []).concat([req.body])
   } 
 
