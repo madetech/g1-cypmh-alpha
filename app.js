@@ -345,15 +345,6 @@ const callStrapiApi = async (endpoint, query) => {
   }
 }
 
-phoneData["447857550857"] = {
-  "name":"Emma",
-  "phoneNumber": "07857550857",
-  "sentMessages": [],
-  "receivedMessages":[],
-  "chatState": 99,
-  "history": [],
-  "data":[]
-}
 
 app.post("/api/message-callback", async (req,res) => {
   const messageReceived = req.body.message
@@ -392,7 +383,7 @@ app.post("/api/message-callback", async (req,res) => {
     
   if (nextChatState.chatState === 100) {
     let messages = await callStrapiApi("services", "")
-    
+
     firstThree = messages.slice(0,3)
 
     formattedMessages = getServicesArray(firstThree)
