@@ -68,5 +68,5 @@ Thumbs.db
 /g1-cypmh-content-api
 /test/example*
 /src/ServiceA-Z-Pivot.tsv
-/src/massImportStrapi.js
+/src/mass-import-strapi.js
 /src/strapiQuery.js

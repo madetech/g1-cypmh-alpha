@@ -5,6 +5,23 @@ describe('basic ChatBot', ()=> {
     expect(newChatState.chatState).toBe(0)
     done()
   }) 
+  it ("returns sorry didn't get that when user messages random string", async () =>{
+    const response = await getNextChatState(6,"d")
+    expect(response.chatState).toBe(6)
+    expect(response.message).toBe(`Sorry I didn't quite get that, please try again`)
+  })
+
+  it ("returns sorry didn't get that when user messages number that isn't an option", async () =>{
+    const response = await getNextChatState(0,"100")
+    expect(response.chatState).toBe(0)
+    expect(response.message).toBe(`Sorry I didn't quite get that, please try again`)
+  })
+
+  it ("returns sorry didn't get that when user messages number that isn't an option", async () =>{
+    const response = await getNextChatState(0,"1 ")
+    expect(response.chatState).toBe(9)
+    expect(response.message).toBe(`Do you know what kind of help you're looking for?\n\n1 - No, I'm still figuring that out\n2 - Some information and self-help resources\n3 - I want to speak to someone about this now (like a helpline)\n4 - I want some ongoing help to get better`)
+  })
 
   it ("returns welcome state if undefined is passed in", async done => {
     const bothUndefined = await getNextChatState(undefined, undefined)
