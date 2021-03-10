@@ -192,7 +192,7 @@ describe("after the second message", () => {
     
     expect(nextChatState.chatState).toBe(21)
     expect(nextChatState.message).toEqual(`Do you have a preference about how you contact someone?\n\n1 - Phone\n2 - Email\n3 - Online chat\n4 - etc\n5 - No preference`)
-    expect(nextChatState.data).toEqual({})
+    expect(nextChatState.data).toEqual({support_types: "helpline"})
 
   })
 

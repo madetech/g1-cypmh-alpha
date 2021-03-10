@@ -132,7 +132,7 @@ const chatStates = {
     returnOptionIds: [9],
   },
   21: {
-    returnData: {},
+    returnData: {support_types:"helpline"},
     captureStrings: "3",
     outgoingMessage: `Do you have a preference about how you contact someone?\n\n1 - Phone\n2 - Email\n3 - Online chat\n4 - etc\n5 - No preference`,
     returnOptionIds: [25,26,27,28,29],
@@ -208,6 +208,7 @@ const getNextChatState = async (currentChatState, response) => {
     return Promise.resolve({
       chatState: 0,
       message: chatStates[0].outgoingMessage,
+      data: {}
     });
   }
 
@@ -217,6 +218,7 @@ const getNextChatState = async (currentChatState, response) => {
     return Promise.resolve({
       chatState: 999,
       message: chatStates[999].outgoingMessage,
+      data: {}
     });
   }
 
@@ -256,6 +258,7 @@ const getNextChatState = async (currentChatState, response) => {
     return Promise.resolve({
       chatState: currentChatState,
       message: "Sorry I didn't quite get that, please try again",
+      data: {}
     });
   }
 

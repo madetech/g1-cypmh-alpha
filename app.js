@@ -309,7 +309,8 @@ app.get("/text-triage", async (req, res) => {
         "sentMessages": [`${result.content.body}`],
         "receivedMessages":[],
         "chatState": nextChatState.chatState,
-        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
+        "history": _.get(phoneData,phoneNumber + ".history", []).concat([result]),
+        "data":[]
       }
       res.redirect('/text-service-confirm')
     })
@@ -345,14 +346,13 @@ app.post("/api/message-callback", async (req,res) => {
 
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
 
-  
   const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
 
   phoneData[phoneNumber] = {
     ...phoneData[phoneNumber],
     "receivedMessages":_.get(phoneData,phoneNumber + ".receivedMessages", []).concat([req.body.message]),
     "chatState": nextChatState.chatState,
-    // "data":_get.get(phoneData,phoneNumber + ".data", []).concat([nextChatState.data]),
+    "data":_.get(phoneData,phoneNumber + ".data", []).concat([nextChatState.data]).filter(value => Object.keys(value).length !== 0),
     "history": _.get(phoneData,phoneNumber + ".history", []).concat([req.body])
   } 
 
@@ -371,8 +371,14 @@ app.post("/api/message-callback", async (req,res) => {
     })
     
   if (nextChatState.chatState === 100) {
-    let messages = await callStrapiApi("services", "")
+    phoneData[phoneNumber] = {
+      ...phoneData[phoneNumber],
+        "data":_.get(phoneData,phoneNumber + ".data", []).concat([{age: messageReceived}]).filter(value => Object.keys(value).length !== 0)
+      }
 
+    
+    let messages = await callStrapiApi("services", "")
+    
     firstThree = messages.slice(0,3)
 
     formattedMessages = getServicesArray(firstThree)
