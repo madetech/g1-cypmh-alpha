@@ -391,7 +391,7 @@ app.post("/api/message-callback", async (req,res) => {
 
 const sendOutShutdownMessage = async () => {
   let promises = Object.entries(phoneData).map((item) => {
-    const message = "Thanks for taking part in the Gloucester NHS prototype testing. This service is now shutting down. If you need to text someone about your mental health, here are some options: \n tic+: 07520 634063"
+    const message = "Thanks for taking part in the Gloucester NHS prototype testing. The chatbot won’t reply to you after the research session. If you need to talk to someone about your mental health, here are some options:\n\ntic+chat is an anonymous, safe, confidential, 1-2-1 support service for young people aged 9-21 living in Gloucestershire. It’s open 5-9pm, Sunday to Thursday. Website: https://www.ticplus.org.uk/ticpluschat/.\nKooth provides free online counselling and a support network, available 24/7. Website: https://www.kooth.com/."
     return govNotifyAPI.sendMessage(message,item[1].phoneNumber)
     .then(logger.info("Shutdown message sent" ))
     .catch (err => {logger.info("Error sending message", err)})    

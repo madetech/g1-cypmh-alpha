@@ -1,6 +1,6 @@
 const chatStates = {
   999: {
-    outgoingMessage: `Sorry that our service finding chatbot wasn't helpful for you.\nIf you want to text a person about your mental health, tic+ (077XXXXXXX) is a text chatting service.\nIf you want to see a full list of the services, please go here:  https://g1-cypmh-alpha.herokuapp.com/a-z-of-services-national. You can restart your questions at any time by texting this number back`,
+    outgoingMessage: `Sorry that our service finding chatbot wasn't helpful for you.\nIf you want to text a person about your mental health, tic+chat (https://www.ticplus.org.uk/ticpluschat/) is an anonymous, safe, confidential, 1-2-1 support service for young people aged 9-21 living in Gloucestershire. It’s open 5-9pm, Sunday to Thursday.\nIf you want to see a full list of the services, please go here:  https://g1-cypmh-alpha.herokuapp.com/a-z-of-services-national.`,
   },
   0: {
     returnData: {},
@@ -127,7 +127,7 @@ const chatStates = {
   },
   20: {
     returnData: {},
-    captureStrings: "9",
+    captureStrings: "1",
     outgoingMessage: `If you're feeling like you want to die, it's important to tell someone.\nHelp and support is available right now if you need it. You do not have to struggle with difficult feelings alone.\n\nThese free helplines are there to help when you're feeling down or desperate.\n\nSamaritans – for everyone\nCall 116 123\nEmail jo@samaritans\Website: Samaritans.org\n\nChildline – for children and young people under 19\nCall 0800 1111 – the number will not show up on your phone bill\nWebsite: https://www.childline.org.uk/.\n\nIf you don't want to make a phone call right now, the NHS website has lots more options here: https://www.nhs.uk/conditions/suicide/`,
     returnOptionIds: [9],
   },
@@ -193,7 +193,7 @@ const chatStates = {
   },
   100: {
     returnData: {},
-    captureStrings: "",
+    captureStrings: "[0-9]+",
     outgoingMessage: `OK, thanks for answering all those questions. Based on how you're feeling right now, i'd suggest the following options for getting help:`,
     returnOptionIds: [101],
   },
