@@ -63,7 +63,7 @@ const chatStates = {
     returnData: {},
     captureStrings: "",
     outgoingMessage: `Do you know what kind of help you're looking for?\n\n1 - No, I'm still figuring that out\n2 - Some information and self-help resources\n3 - I want to speak to someone about this now (like a helpline)\n4 - I want some ongoing help to get better`,
-    returnOptionIds: [99],
+    returnOptionIds: [21,22,23,24],
   },
   10: {
     returnData: { tags: "bereavement" },
@@ -131,7 +131,60 @@ const chatStates = {
     outgoingMessage: `If you're feeling like you want to die, it's important to tell someone.\nHelp and support is available right now if you need it. You do not have to struggle with difficult feelings alone.\n\nThese free helplines are there to help when you're feeling down or desperate.\n\nSamaritans – for everyone\nCall 116 123\nEmail jo@samaritans\Website: Samaritans.org\n\nChildline – for children and young people under 19\nCall 0800 1111 – the number will not show up on your phone bill\nWebsite: https://www.childline.org.uk/.\n\nIf you don't want to make a phone call right now, the NHS website has lots more options here: https://www.nhs.uk/conditions/suicide/`,
     returnOptionIds: [9],
   },
-
+  21: {
+    returnData: {},
+    captureStrings: "3",
+    outgoingMessage: `Do you have a preference about how you contact someone?\n\n1 - Phone\n2 - Email\n3 - Online chat\n4 - etc\n5 - No preference`,
+    returnOptionIds: [25,26,27,28,29],
+  },
+  22: {
+    returnData: {},
+    captureStrings: "4",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  23: {
+    returnData: {},
+    captureStrings: "1",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  24: {
+    returnData: {},
+    captureStrings: "2",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  25: {
+    returnData: {helpline_types:"phone"},
+    captureStrings: "1",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  26: {
+    returnData: {helpline_types:"email"},
+    captureStrings: "2",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  27: {
+    returnData: {helpline_types:"online-chat"},
+    captureStrings: "3",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  28: {
+    returnData: {},
+    captureStrings: "4",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
+  29: {
+    returnData: {},
+    captureStrings: "5",
+    outgoingMessage: null,
+    returnOptionIds: [99],
+  },
   99: {
     returnData: {},
     captureStrings: "",

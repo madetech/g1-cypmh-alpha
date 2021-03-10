@@ -50,6 +50,14 @@ describe("after first message",()=> {
     expect(nextChatState.message).toEqual(`Do you know what kind of help you're looking for?\n\n1 - No, I'm still figuring that out\n2 - Some information and self-help resources\n3 - I want to speak to someone about this now (like a helpline)\n4 - I want some ongoing help to get better`)
     done()
   })
+
+  it ("if the user replies 2 (Eating habits or body image) the correct content & tag:eating-disorders is returned ", async done => {
+    const nextChatState = await getNextChatState(0,"2")
+    expect(nextChatState.data).toEqual({tags: "eating-disorders"})
+    expect(nextChatState.chatState).toBe(9)
+    expect(nextChatState.message).toEqual(`Do you know what kind of help you're looking for?\n\n1 - No, I'm still figuring that out\n2 - Some information and self-help resources\n3 - I want to speak to someone about this now (like a helpline)\n4 - I want some ongoing help to get better`)
+    done()
+  })
   it ("if the user replies 6 (something bad has happened) another message is sent asking about the trauma ", async done => {
     const nextChatState = await getNextChatState(0,"6")
     expect(nextChatState.chatState).toBe(6)
@@ -79,5 +87,70 @@ describe("after the second message", () => {
     done()
   })
 
+  it ("if the user is asked about what sort of treatment they need, they reply 3 (want someone now) and receive the right reply", async () => {
+    const nextChatState = await getNextChatState(9,"3")
+    
+    expect(nextChatState.chatState).toBe(21)
+    expect(nextChatState.message).toEqual(`Do you have a preference about how you contact someone?\n\n1 - Phone\n2 - Email\n3 - Online chat\n4 - etc\n5 - No preference`)
+    expect(nextChatState.data).toEqual({})
+
+  })
+
+  it ("if the user is asked about what sort of treatment they need, they reply 4 (ongoing help) and receive the right reply", async () => {
+    const nextChatState = await getNextChatState(9,"4")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({})
+  })
+  it ("if the user is asked about what sort of treatment they need, they reply 1 (figuring it out) and receive the right reply", async () => {
+    const nextChatState = await getNextChatState(9,"1")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({})
+  })
+  it ("if the user is asked about what sort of treatment they need, they reply 2 (some information) and receive the right reply", async () => {
+    const nextChatState = await getNextChatState(9,"2")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({})
+  })
+
+  it ("the user asks for a helpline by phone(1), helpline_type:phone is registered and they are asked the next question", async () => {
+    const nextChatState = await getNextChatState(21,"1")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({helpline_types:"phone"})
+  })
+  it ("the user asks for a helpline by email(2), helpline_types:email is registered and they are asked the next question", async () => {
+    const nextChatState = await getNextChatState(21,"2")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({helpline_types:"email"})
+  })
+  it ("the user asks for a helpline by online chat(3), helpline_types:online-chat is registered and they are asked the next question", async () => {
+    const nextChatState = await getNextChatState(21,"3")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({helpline_types:"online-chat"})
+  })
+  it ("the user asks for a helpline by etc (4), no data is registered and they are asked the next question", async () => {
+    const nextChatState = await getNextChatState(21,"4")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({})
+  })
+  it ("the user asks for a helpline by no preference (5), no data is registered and they are asked the next question", async () => {
+    const nextChatState = await getNextChatState(21,"5")
+    expect(nextChatState.chatState).toBe(99)
+    expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
+    expect(nextChatState.data).toEqual({})
+  })
+
+  // it ("", async () => {
+  //   const nextChatState = await getNextChatState(,)
+  //   expect(nextChatState.chatState).toBe()
+  //   expect(nextChatState.message).toEqual()
+  //   expect(nextChatState.data).toEqual({})
+  // })
 })
   
