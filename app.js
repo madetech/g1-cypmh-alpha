@@ -289,17 +289,6 @@ const formatStrapiRequest = (userData) => {
 
 const phoneData = {}
 
-// phoneData["447857550857"] = {
-//   "name":"Emma",
-//   "phoneNumber":"447857550857",
-//   "sentMessages": ["Intro Message"],
-//   "receivedMessages":[],
-//   "chatState": 99,
-//   "history": []
-// }
-
-
-
 const formatTemplatedMessage = (message, data) => {
   const templatedRegexMatches = [...message.matchAll(/\(\(([^\)]*)\)\)/igm)]
   return templatedRegexMatches.reduce((adjustedMessage, regexMatch)=> adjustedMessage.replace(regexMatch[0], data[regexMatch[1]]), message)
@@ -506,6 +495,8 @@ function shutdown(signal) {
     sendOutShutdownMessage()
     .then(() => {
       logger.info("shutdown messages all sent")
+      phoneData = {}
+      logger.info("phoneData cleared")
       process.exit(err ? 1 : 0);})
     .catch(() => {
       logger.warn("problem sending shutdown messages")
