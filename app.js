@@ -377,7 +377,7 @@ app.post("/api/message-callback", async (req,res) => {
       }
 
     
-    let messages = await callStrapiApi("services", "")
+    let messages = await callStrapiApi("services", "id=6047e095d129840015b3c37b&id=6047e096d129840015b3c38e&id=6047e095d129840015b3c37e")
     
     firstThree = messages.slice(0,3)
 
