@@ -294,7 +294,7 @@ const phoneData = {}
 //   "phoneNumber":"447857550857",
 //   "sentMessages": ["Intro Message"],
 //   "receivedMessages":[],
-//   "chatState": 0,
+//   "chatState": 99,
 //   "history": []
 // }
 
@@ -389,14 +389,13 @@ app.post("/api/message-callback", async (req,res) => {
     formattedMessages = getServicesArray(firstThree)
 
     formattedMessages.forEach(async message => {
-      console.log(message)
       let result = await govNotifyAPI.sendMessage(message,phoneNumber)
+      logger.info("response sent")
       phoneData[phoneNumber] = {
         ...phoneData[phoneNumber],
         "sentMessages":_.get(phoneData,phoneNumber + ".sentMessages", []).concat([result.content.body]),
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result])
       } 
-      logger.info("response sent")
     })
     }
 })
