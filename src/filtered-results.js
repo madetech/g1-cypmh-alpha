@@ -1,8 +1,4 @@
 const bent = require('bent')
-const { filter } = require('lodash')
-
-const qs = require('qs')
-const { servicesVersion } = require('typescript')
 
 const unauthContentPost = bent(process.env.CONTENT_API_URL,'json','POST')
 
