@@ -346,7 +346,9 @@ app.post("/api/message-callback", async (req,res) => {
 
   let nextChatState = await getNextChatState(currentChatState,messageReceived)
 
-  const message = formatTemplatedMessage(nextChatState.message, phoneData[phoneNumber])
+  let message = [].concat(nextChatState.message).map(eachMessage => {
+    return formatTemplatedMessage(eachMessage, phoneData[phoneNumber] )
+  }).join("\n\n\n")
 
   phoneData[phoneNumber] = {
     ...phoneData[phoneNumber],
