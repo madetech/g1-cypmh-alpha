@@ -1,4 +1,5 @@
 const getNextChatState = require('../src/chatbot-return-message');
+
 describe('basic ChatBot', ()=> {
   it ("returns welcome message on first call", async () => {
     let newChatState = await getNextChatState()
@@ -200,7 +201,7 @@ describe("after the second message", () => {
     const nextChatState = await getNextChatState(9,"4")
     expect(nextChatState.chatState).toBe(99)
     expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
-    expect(nextChatState.data).toEqual({})
+    expect(nextChatState.data).toEqual({support_types:["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"]})
   })
   it ("if the user is asked about what sort of treatment they need, they reply 1 (figuring it out) and receive the right reply", async () => {
     const nextChatState = await getNextChatState(9,"1")
@@ -212,7 +213,7 @@ describe("after the second message", () => {
     const nextChatState = await getNextChatState(9,"2")
     expect(nextChatState.chatState).toBe(99)
     expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
-    expect(nextChatState.data).toEqual({})
+    expect(nextChatState.data).toEqual({support_types:["app","self-help"]})
   })
 
   it ("the user asks for a helpline by phone(1), helpline_type:phone is registered and they are asked the next question", async () => {
@@ -233,11 +234,11 @@ describe("after the second message", () => {
     expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
     expect(nextChatState.data).toEqual({helpline_types:"online-chat"})
   })
-  it ("the user asks for a helpline by etc (4), no data is registered and they are asked the next question", async () => {
+  it ("the user asks for a helpline by text (4), helpline_types:text is registered and they are asked the next question", async () => {
     const nextChatState = await getNextChatState(21,"4")
     expect(nextChatState.chatState).toBe(99)
     expect(nextChatState.message).toEqual(`My last question: How old are you?\n\nPlease reply with a number. This helps us only show you the best options for getting the kind of help you want.`)
-    expect(nextChatState.data).toEqual({})
+    expect(nextChatState.data).toEqual({helpline_types:"text"})
   })
   it ("the user asks for a helpline by no preference (5), no data is registered and they are asked the next question", async () => {
     const nextChatState = await getNextChatState(21,"5")

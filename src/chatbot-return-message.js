@@ -54,7 +54,7 @@ const chatStates = {
     returnOptionIds: [9],
   },
   8: {
-    returnData: {},
+    returnData: {tags: "crisis"},
     captureStrings: "8",
     outgoingMessage: `I'm sorry to hear that. Are you feeling suicidal right now?\n1 - Yes, I need some help straightaway\n2 - Not right now`,
     returnOptionIds: [20, 9],
@@ -138,7 +138,7 @@ const chatStates = {
     returnOptionIds: [25,26,27,28,29],
   },
   22: {
-    returnData: {},
+    returnData: {support_types:["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"]},
     captureStrings: "4",
     outgoingMessage: null,
     returnOptionIds: [99],
@@ -150,7 +150,7 @@ const chatStates = {
     returnOptionIds: [99],
   },
   24: {
-    returnData: {},
+    returnData: {support_types:["app","self-help"]},
     captureStrings: "2",
     outgoingMessage: null,
     returnOptionIds: [99],
@@ -174,7 +174,7 @@ const chatStates = {
     returnOptionIds: [99],
   },
   28: {
-    returnData: {},
+    returnData: {helpline_types:"text"},
     captureStrings: "4",
     outgoingMessage: null,
     returnOptionIds: [99],

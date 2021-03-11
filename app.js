@@ -29,6 +29,7 @@ const utils = require('./lib/utils.js')
 const govNotifyAPI = require('./src/notify');
 const getNextChatState = require('./src/chatbot-return-message');
 const getServicesArray = require('./src/services-bot')
+const filteredResults = require('./src/filtered-results')
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -310,7 +311,7 @@ app.get("/text-triage", async (req, res) => {
         "receivedMessages":[],
         "chatState": nextChatState.chatState,
         "history": _.get(phoneData,phoneNumber + ".history", []).concat([result]),
-        "data":[]
+        "data":{}
       }
       res.redirect('/text-service-confirm')
     })
@@ -354,7 +355,7 @@ app.post("/api/message-callback", async (req,res) => {
     ...phoneData[phoneNumber],
     "receivedMessages":_.get(phoneData,phoneNumber + ".receivedMessages", []).concat([req.body.message]),
     "chatState": nextChatState.chatState,
-    "data":_.get(phoneData,phoneNumber + ".data", []).concat([nextChatState.data]).filter(value => Object.keys(value).length !== 0),
+    "data":{..._.get(phoneData,phoneNumber + ".data"),...nextChatState.data},
     "history": _.get(phoneData,phoneNumber + ".history", []).concat([req.body])
   } 
 
@@ -371,15 +372,16 @@ app.post("/api/message-callback", async (req,res) => {
     .catch(err => {
       logger.info("error sending response", err)
     })
-    
+
+
   if (nextChatState.chatState === 100) {
     phoneData[phoneNumber] = {
       ...phoneData[phoneNumber],
-        "data":_.get(phoneData,phoneNumber + ".data", []).concat([{age: messageReceived}]).filter(value => Object.keys(value).length !== 0)
+        "data":{..._.get(phoneData,phoneNumber + ".data"), age: messageReceived}
       }
 
-    
-    let messages = await callStrapiApi("services", "id=6047e095d129840015b3c37b&id=6047e096d129840015b3c38e&id=6047e095d129840015b3c37e")
+    // let messages = await callStrapiApi("services", "id=6047e095d129840015b3c37b&id=6047e096d129840015b3c38e&id=6047e095d129840015b3c37e")
+    let messages = await filteredResults(phoneData[phoneNumber].data)
     
     firstThree = messages.slice(0,3)
 
