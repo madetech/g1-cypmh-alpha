@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Results
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+  items: [
+    {
+      href: "/adults-landing-page",
+      text: "Find support"
+    },
+    {
+      href: "/adults-form/adults-form-page-1", 
+      text: "Support finder - page 1"
+    }
+  ],
+  href: "/adults-form/adults-form-page-2", 
+  text: "Support finder - page 2"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+    <h1>Find support - results</h1>
+    <p>
+      Based on what you've told us, we think these are the best options for the young person you're supporting.
+    </p>
+      <!-- <h1>
+        Summary of results
+      </h1>
+
+      <dl class="nhsuk-summary-list"></dl>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Age
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data['age'] }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="/mental-health-check-in/questions-1">
+              Change<span class="nhsuk-u-visually-hidden">age</span>
+            </a>
+          </dd>
+        </div>
+      </dl> -->
+    <br/><br/> 
+      <a onClick="doSearch()" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
+        See my results
+      </a>
+  
+      <div id="search_results"> </div>
+      
+      <script type="text/javascript">
+
+          const doSearch = () => {
+              fetch("/services").then(res => res.json()).then(res => {
+                if (res.length == 0) {
+                  document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
+                  return null
+                }
+                document.getElementById("search_results").innerHTML = res.map(result => {
+                  return `<div class="nhsuk-card nhsuk-card--clickable">
+                    <div class="nhsuk-card__content">
+                      <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                        <a class="nhsuk-card__link" href="${result.url}">
+                          ${result.title}
+                        </a>
+                      </h2>
+                      <p class="nhsuk-card__description">
+                        ${result.description}
+                      </p>
+                    </div>
+                </div>`
+                }).join()
+              }
+            )
+          }
+      </script>
+    </div>
+  </div>
+{% endblock %}
+

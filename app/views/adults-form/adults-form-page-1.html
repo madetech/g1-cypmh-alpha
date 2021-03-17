@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Find support for a young person
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({ href: "/adults-landing-page", text: "Support options" }) }} 
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <form action="/adults-form/adults-form-page-2" method="post">
+
+      <h1>Support finder</h1>
+      <p class="nhsuk-lede-text app-lede-text">Find the most suitable support services for a young person in Gloucestershire.</p>
+
+      <div class="nhsuk-form-group">
+        
+
+        <!-- Age-->
+        <h1 class="nhsuk-label-wrapper">
+            <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+            Age
+          </label>
+        </h1>
+        <div class="nhsuk-hint" id="example-with-hint-text-hint">
+           How old is the young person who's looking for help?
+          </div>
+          <input class="nhsuk-input nhsuk-input--width-2" id="input-width-2" name="test-width-2" type="text">
+          <br /><br />
+      </div>
+
+        <!--Issue-->
+        <h1 class="nhsuk-label-wrapper">
+            <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+            Mental health concern
+          </label>
+        </h1>
+        <div class="nhsuk-hint" id="example-with-hint-text-hint">
+           What is the young person struggling with? Select all that apply.
+          </div>
+          <div class="nhsuk-checkboxes">
+
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                Mood and motivation
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+                Eating habits or body image
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                Gender identity or sexuality
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Seeing or hearing things
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Self-harm
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Feeling worried and anxious
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Thinking about suicide
+                </label>
+              </div>
+
+
+          </div>
+          <br /><br />
+
+        <!--Trauma types-->
+        <h1 class="nhsuk-label-wrapper">
+            <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+            Trauma
+          </label>
+        </h1>
+        <div class="nhsuk-hint" id="example-with-hint-text-hint">
+           Has the young person experienced something traumatic? Select all that apply.
+          </div>
+          <div class="nhsuk-checkboxes">
+
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                Bereavement
+              </label>
+            </div>
+
+            <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                  Bullying
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    The COVID-19 pandemic
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    Domestic abuse
+                </label>
+                <div class="nhsuk-hint nhsuk-checkboxes__hint" id="nationality-1-item-hint">
+                   either within their family or their own relationship
+                  </div>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    Family illness
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    Miscarriage or pregnancy-related issues
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    Seeking asylum
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    Sexual abuse or assault
+                </label>
+              </div>
+            </div>
+            
+            <br><br>
+
+            <button class="nhsuk-button">Continue</button>
+
+        </div>
+        
+    </form>
+
+
+{% endblock %}
+
+
