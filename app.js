@@ -400,8 +400,16 @@ app.post("/api/message-callback", async (req,res) => {
 })
 
 app.get("/return-service-filter", async (req, res) => {
-  console.log(req.session.data)
-  res.redirect("/temp-page")
+  userData = req.session.data
+  if (userData?.support_types) {
+    userData.support_types = userData.support_types.split(",")
+  }
+  if (userData?.free){
+    userData.free = Boolean(userData.free)
+  }
+  console.log(userData)
+  let results = await filteredResults(userData)
+  res.send(results)
 
 })
 

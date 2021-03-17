@@ -25,6 +25,33 @@
 <!-- More info and code for the page layout can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
 {% block content %}
 
+<script type="text/javascript">
+            
+  const getCards = () => fetch("/return-service-filter").then(res => res.json()).then(res => {
+    if (res.length == 0) {
+      document.getElementById("search_results").innerHTML = `<p>No specific services found<br> <a href="/landing-page">Return to homepage</a></p>`
+      return null
+    }
+    document.getElementById("search_results").innerHTML = res.map(result => {
+      return `<div class="nhsuk-card nhsuk-card--clickable">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">
+            <a class="nhsuk-card__link" href="${result.url}">
+              ${result.title}
+            </a>
+          </h2>
+          <p class="nhsuk-card__description">
+            ${result.description}
+          </p>
+        </div>
+    </div>`
+    }).join("")
+  }
+)
+
+getCards()
+</script>
+
   <div class="nhsuk-grid-row">
 
       <!-- Change the page title here -->
@@ -34,7 +61,7 @@
 
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-one-third">
-          <form action="/return-service-filter" method="post">
+          <form onSubmit="getCards()">
           <div class="nhsuk-form-group">
             <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
               <h1 class="nhsuk-fieldset__heading" for="age">Age</h1>
@@ -54,9 +81,9 @@
               What type off help would the young person like?
             </div>
             <select class="nhsuk-select nhsuk-u-width-full" id="support_types" name="support_types">
-              <option value=['app','self-help'] {{ checked("support_types", ["app","self-help"]) }}>Information and self-help</option>
-              <option value=['helpline'] {{ checked("support_types", ["helpline"]) }}>Somebody to speak to now (e.g. a helpline)</option>
-              <option value=["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"] {{ checked("support_types", ["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"]) }}>Ongoing help to get better</option>
+              <option value="app,self-help" {{ checked("support_types", "app,self-help") }}>Information and self-help</option>
+              <option value="helpline" {{ checked("support_types", "helpline") }}>Somebody to speak to now (e.g. a helpline)</option>
+              <option value="counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing"] {{ checked("support_types", "counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing") }}>Ongoing help to get better</option>
             </select>
           </fieldset>
 
@@ -75,108 +102,108 @@
           <div class="nhsuk-checkboxes">
 
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
-              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+              <input class="nhsuk-checkboxes__input" id="tags" name="tags" type="checkbox" value="mood" {{ checked("tags", "mood") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
                 Mood and motivation
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
-              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+              <input class="nhsuk-checkboxes__input" id="tags" name="tags" type="checkbox" value="eating-disorders" {{ checked("tags", "eating-disorders") }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
                 Eating habits or body image
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+              <input class="nhsuk-checkboxes__input" id="example-3" name="tags" type="checkbox" value="gender">
               <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                 Gender identity or sexuality
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="tags" type="checkbox" value="psychosis">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Seeing or hearing things
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="tags" type="checkbox" value="self-harm">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Self-harm
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="tags" type="checkbox" value="anxiety">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Feeling worried and anxious
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="tags" type="checkbox" value="crisis">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Thinking about suicide
                 </label>
               </div>
 
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+              <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="bereavement">
               <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                 Bereavement
               </label>
             </div>
 
             <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="bullying" >
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                   Bullying
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="covid">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     The COVID-19 pandemic
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="domestic-abuse">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     Domestic abuse
                 </label>
                 <div class="nhsuk-hint nhsuk-checkboxes__hint" id="nationality-1-item-hint">
-                   either within their family or their own relationship
+                   Either within their family or their own relationship
                   </div>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="family-illness">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     Family illness
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="miscarriage">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     Miscarriage or pregnancy-related issues
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="asylum-seeker">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     Seeking asylum
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                <input class="nhsuk-checkboxes__input" id="example-1" name="tags" type="checkbox" value="sexual-violence">
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                     Sexual abuse or assault
                 </label>
@@ -186,42 +213,50 @@
 
             <br/>
 
-            {% from 'radios/macro.njk' import radios %}
-            {% from 'fieldset/macro.njk' import fieldset %}
-            {% from 'hint/macro.njk' import hint %}
+            <fieldset class="nhsuk-fieldset">
+              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                  Show paid options?
+                </h1>
+              </legend>
             
-            {% call fieldset({
-              legend: {
-                "text": "Show paid options?",
-                "classes": "nhsuk-fieldset__legend--l",
-                "isPageHeading": true
-              }
-              }) %}
-              {{ hint({
-                "text": "Some voluntary counselling services are run on a donations basis. These might have shorter waiting periods.",
-                "classes": "nhsuk-u-margin-bottom-2"
-              }) }}
-              {{ radios({
-                "idPrefix": "example-hints",
-                "name": "free",
-                "items": [
-              {
-                "value": "false",
-                "text": "Yes"
-              },
-              {
-                "value": "true",
-                "text": "No"
-              }
-            ]
-            }) }}
-            {% endcall %}
+              <div class="nhsuk-hint">
+                Some voluntary counselling services are run on a donations basis. These might have shorter waiting periods.
+              </div>
+            
+              <div class="nhsuk-form-group">
+            
+                <div class="nhsuk-radios">
+            
+                  <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="free" name="free" type="radio" value="false"{{ checked("free", "false") }} >
+                    <label class="nhsuk-label nhsuk-radios__label" for="free">
+                      Yes
+                    </label>
+                  </div>
+            
+                  <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="free" name="free" type="radio" value="true"{{ checked("free", "true") }} >
+                    <label class="nhsuk-label nhsuk-radios__label" for="free">
+                      No
+                    </label>
+                  </div>
+
+            
+                </div>
+              </div>
+            
+            </fieldset>
 
             <button class="nhsuk-button nhsuk-u-width-full">Apply</button>
         </form>
         </div>
         <div class="nhsuk-grid-column-two-thirds">
-          <h2>Two-thirds column</h2>
+          <h2>Results</h2>
+
+          <div id="search_results"> Loading...</div>
+      
+      
         </div>
       </div>
       <br/><br/>
@@ -230,13 +265,7 @@
       <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
 
       <!-- End of content -->
-
-
-      <a href="/landing-page" class="nhsuk-button nhsuk-u-margin-bottom-8" id="placeholder-page-back-button">
-        Back
-    </a>
-
-
+      
 
   </div>
 {% endblock %}
