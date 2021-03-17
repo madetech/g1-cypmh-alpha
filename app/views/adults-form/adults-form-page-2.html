@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Find support for a young person - page 2
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({ href: "/adults-form/adults-form-page-2", text: "Support finder - page 1" }) }} 
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <form action="/adults-form/adults-form-summary" method="post">
+
+      <h1>Support finder - page 2</h1>
+      
+
+      <div class="nhsuk-form-group">
+        
+<!--Support types-->
+<h1 class="nhsuk-label-wrapper">
+    <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+    Support types
+  </label>
+</h1>
+<div class="nhsuk-hint" id="example-with-hint-text-hint">
+    What type of help would the young person like? Select all that apply.
+  </div>
+  <div class="nhsuk-checkboxes">
+
+    <div class="nhsuk-checkboxes__item">
+      <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+        Information and self-help
+      </label>
+    </div>
+
+    <div class="nhsuk-checkboxes__item">
+      <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
+      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+        Somebody to speak to now (e.g. a helpline)
+      </label>
+    </div>
+
+    <div class="nhsuk-checkboxes__item">
+      <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+        Ongoing support to get better
+      </label>
+    </div>
+
+    <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+          Specialist support (e.g. CAMHS)
+        </label>
+      </div>
+
+   
+
+
+  </div>
+  <br /><br />
+
+    
+        <!--Location-->
+        <h1 class="nhsuk-label-wrapper">
+            <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+            Location
+          </label>
+        </h1>
+        <div class="nhsuk-hint" id="example-with-hint-text-hint">
+            Where could the young person travel to to access support? Select all that apply.
+          </div>
+          <div class="nhsuk-checkboxes">
+
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                Cheltenham
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+                Gloucester city
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                South Cotswolds
+              </label>
+            </div>
+      
+            <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  North Cotswolds
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Forest of Dean
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Tewkesbury, Newent and Staunton
+                </label>
+              </div>
+
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Stroud and Berkley Vale
+                </label>
+              </div>
+
+
+          </div>
+          <br /><br />
+
+
+<!--Show paid options-->
+
+<fieldset class="nhsuk-fieldset">
+    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+      <h1 class="nhsuk-fieldset__heading">
+        Show paid options?
+      </h1>
+    </legend>
+  
+    <div class="nhsuk-hint nhsuk-u-margin-bottom-2">
+      Some voluntary counselling services are run on a donations basis. They might have shorter waiting times.
+    </div>
+  
+  
+    <div class="nhsuk-form-group">
+  
+      <div class="nhsuk-radios">
+  
+        <div class="nhsuk-radios__item">
+          <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="yes">
+          <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
+            Yes, show paid options as well as free services
+          </label>
+        </div>
+  
+        <div class="nhsuk-radios__item">
+          <input class="nhsuk-radios__input" id="example-hints-2" name="example-hints" type="radio" value="no">
+          <label class="nhsuk-label nhsuk-radios__label" for="example-hints-2">
+            No, only show free services
+          </label>
+        </div>
+  
+  
+      </div>
+    </div>
+  
+  </fieldset>
+
+<br><br>
+
+            <button class="nhsuk-button">Continue</button>
+
+        </div>
+        
+    </form>
+
+
+{% endblock %}
+
+
