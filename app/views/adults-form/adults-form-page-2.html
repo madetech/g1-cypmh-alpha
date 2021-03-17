@@ -12,7 +12,7 @@ Find support for a young person - page 2
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-        <form action="/adults-form/adults-form-summary" method="post">
+        <form action="/adults-form/adults-form-summary-list" method="post">
 
       <h1>Support finder - page 2</h1>
       
@@ -22,11 +22,11 @@ Find support for a young person - page 2
 <!--Support types-->
 <h1 class="nhsuk-label-wrapper">
     <label class="nhsuk-label nhsuk-label--l" for="example-heading">
-    Support types
+    What type of help would the young person like?
   </label>
 </h1>
 <div class="nhsuk-hint" id="example-with-hint-text-hint">
-    What type of help would the young person like? Select all that apply.
+    Select all that apply.
   </div>
   <div class="nhsuk-checkboxes">
 
@@ -54,11 +54,19 @@ Find support for a young person - page 2
     <div class="nhsuk-checkboxes__item">
         <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
-          Specialist support (e.g. CAMHS)
+          Specialist medical support 
         </label>
+        <div class="nhsuk-hint nhsuk-checkboxes__hint" id="nationality-1-item-hint">
+            If you'd like to check whether the young person is likely to meet thresholds for specialist support, you can <a href= 'https://harmlessglos.org.uk/assessment.html'>click here.</a>
+           </div>
       </div>
 
-   
+      <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+          Don't know / not sure
+        </label>
+      </div>
 
 
   </div>
@@ -68,11 +76,11 @@ Find support for a young person - page 2
         <!--Location-->
         <h1 class="nhsuk-label-wrapper">
             <label class="nhsuk-label nhsuk-label--l" for="example-heading">
-            Location
+                Where could the young person travel to to access support?
           </label>
         </h1>
         <div class="nhsuk-hint" id="example-with-hint-text-hint">
-            Where could the young person travel to to access support? Select all that apply.
+            Select all that apply.
           </div>
           <div class="nhsuk-checkboxes">
 
@@ -125,6 +133,13 @@ Find support for a young person - page 2
                 </label>
               </div>
 
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                  Don't know / not sure
+                </label>
+              </div>
+
 
           </div>
           <br /><br />
@@ -135,7 +150,7 @@ Find support for a young person - page 2
 <fieldset class="nhsuk-fieldset">
     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
       <h1 class="nhsuk-fieldset__heading">
-        Show paid options?
+        Would you like to see paid options?
       </h1>
     </legend>
   
