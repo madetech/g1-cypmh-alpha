@@ -27,8 +27,6 @@
 
   <div class="nhsuk-grid-row">
 
-    <div class="nhsuk-grid-column-two-thirds">
-
       <!-- Change the page title here -->
       <h1>
         Placeholder for content page
@@ -39,16 +37,33 @@
           <form action="/return-service-filter" method="post">
           <div class="nhsuk-form-group">
             <label class="nhsuk-label" for="age">
-              Age?
+              Age
             </label>
-            <input class="nhsuk-input" id="age" name="age" type="number">
+            <div class="nhsuk-hint">
+              How old is the young person that will be using the service? For example, 15
+            </div>
+            <input class="nhsuk-input" id="age" name="age" value="{{ data['age'] }}" type="number">
           </div>
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading" for="support_types">Support type</h1>
+            </legend>
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              What type off help would the young person like?
+            </div>
+            <select class="nhsuk-select" id="support_types" name="support_types">
+              <option value=['app','self-help'] {{ checked("support_types", ["app","self-help"]) }}>Information and self-help</option>
+              <option value=['helpline'] {{ checked("support_types", ["helpline"]) }}>Somebody to speak to now (e.g. a helpline)</option>
+              <option value=["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"] {{ checked("support_types", ["counselling","group-support",'1-1-support','group-work','residential-stay',"social-prescribing"]) }}>Ongoing help to get better</option>
+            </select>
+          </fieldset>
         </form>
         </div>
         <div class="nhsuk-grid-column-two-thirds">
           <h2>Two-thirds column</h2>
         </div>
       </div>
+      <br/><br/>
 
       <!-- Add your content here -->
       <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
@@ -60,8 +75,7 @@
         Back
     </a>
 
-    
-    </div>  
+
 
   </div>
 {% endblock %}

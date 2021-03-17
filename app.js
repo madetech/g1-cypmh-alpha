@@ -400,7 +400,8 @@ app.post("/api/message-callback", async (req,res) => {
 })
 
 app.get("/return-service-filter", async (req, res) => {
-  console.log("received")
+  console.log(req.session.data)
+  res.redirect("/temp-page")
 
 })
 
