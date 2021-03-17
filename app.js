@@ -399,6 +399,11 @@ app.post("/api/message-callback", async (req,res) => {
     }
 })
 
+app.get("/return-service-filter", async (req, res) => {
+  console.log("received")
+
+})
+
 const sendOutShutdownMessage = async () => {
   let promises = Object.entries(phoneData).map((item) => {
     const message = "Thanks for taking part in the Gloucester NHS prototype testing. The chatbot won’t reply to you after the research session. If you need to talk to someone about your mental health, here are some options:\n\ntic+chat is an anonymous, safe, confidential, 1-2-1 support service for young people aged 9-21 living in Gloucestershire. It’s open 5-9pm, Sunday to Thursday. Website: https://www.ticplus.org.uk/ticpluschat/.\nKooth provides free online counselling and a support network, available 24/7. Website: https://www.kooth.com/."

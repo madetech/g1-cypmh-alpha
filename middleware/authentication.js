@@ -32,7 +32,7 @@ module.exports = function (req, res, next) {
     } else {
 
       const usernames = username.split(" ");
-
+      
       const user = basicAuth(req);
       if (!user || !usernames.includes(user.name) || user.pass !== password) {
         res.set("WWW-Authenticate", "Basic realm=Authorization Required");
