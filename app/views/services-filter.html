@@ -57,7 +57,7 @@
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-one-third">
-      <form onSubmit="getCards()">
+      <form action="/services-filter" method="put" class="form">
         <button class="nhsuk-button nhsuk-u-width-full">Apply Filters</button>
         <div class="nhsuk-form-group">
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -87,29 +87,27 @@
           </div>
           <div class="nhsuk-checkboxes">
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="tags" name="support_types"
-              type="checkbox" value="app, self-help" {{ checked("support_types",
-              "app,self-help") }}>
-              <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
+              <input class="nhsuk-checkboxes__input" id="support-self-help"
+              name="support_types" type="checkbox" value="app,self-help" {{ checked("support_types", "app,self-help") }}/>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-self-help">
                 Information and self-help
               </label>
             </div>
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="tags" name="support_types"
-              type="checkbox" value="helpline" {{ checked("support_types",
-              "helpline") }}>
-              <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
+              <input class="nhsuk-checkboxes__input" id="support-helpline"
+              name="support_types" type="checkbox" value="helpline" {{ checked("support_types", "helpline") }} />
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-helpline">
                 Somebody to speak to now (e.g. a helpline)
               </label>
             </div>
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="tags" name="support_types"
-              type="checkbox"
+              <input class="nhsuk-checkboxes__input" id="support-other"
+              name="support_types" type="checkbox"
               value="counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing"]
               {{ checked("support_types",
               "counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing")
               }}>
-              <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-other">
                 Ongoing help to get better
               </label>
             </div>
@@ -130,7 +128,7 @@
           <div class="nhsuk-checkboxes">
             <div class="nhsuk-checkboxes__item">
               <input class="nhsuk-checkboxes__input" id="tags" name="tags"
-              type="checkbox" value="mood" {{ checked("tags", "mood") }}>
+              type="checkbox" value="mood" {{ checked("tags", "mood") }}/>
               <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
                 Mood and motivation
               </label>
@@ -138,21 +136,16 @@
 
             <div class="nhsuk-checkboxes__item">
               <input class="nhsuk-checkboxes__input" id="tags" name="tags"
-              type="checkbox" value="eating-disorders" {{ checked("tags",
-              "eating-disorders") }}>
+              type="checkbox" value="eating-disorders" {{
+              checked("tags","eating-disorders") }}/>
               <label class="nhsuk-label nhsuk-checkboxes__label" for="tags">
                 Eating habits or body image
               </label>
             </div>
 
             <div class="nhsuk-checkboxes__item">
-              <input
-                class="nhsuk-checkboxes__input"
-                id="example-3"
-                name="tags"
-                type="checkbox"
-                value="gender"
-              />
+              <input class="nhsuk-checkboxes__input" id="example-3" name="tags"
+              type="checkbox" value="gender" {{ checked("tags","gender") }}/>
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
                 for="example-3"
@@ -167,7 +160,7 @@
                 id="example-3"
                 name="tags"
                 type="checkbox"
-                value="psychosis"
+                value="psychosis" {{ checked("tags","psychosis") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -183,7 +176,7 @@
                 id="example-3"
                 name="tags"
                 type="checkbox"
-                value="self-harm"
+                value="self-harm" {{ checked("tags","self-harm") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -199,7 +192,7 @@
                 id="example-3"
                 name="tags"
                 type="checkbox"
-                value="anxiety"
+                value="anxiety" {{ checked("tags","anxiety") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -215,7 +208,7 @@
                 id="example-3"
                 name="tags"
                 type="checkbox"
-                value="crisis"
+                value="crisis" {{ checked("tags","crisis") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -231,7 +224,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="bereavement"
+                value="bereavement" {{ checked("tags","bereavement") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -247,7 +240,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="bullying"
+                value="bullying" {{ checked("tags","bullying") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -263,7 +256,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="covid"
+                value="covid" {{ checked("tags","covid") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -279,7 +272,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="domestic-abuse"
+                value="domestic-abuse"  {{ checked("tags","domestic-abuse") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -317,7 +310,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="miscarriage"
+                value="miscarriage" {{ checked("tags","miscarriage") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -333,7 +326,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="asylum-seeker"
+                value="asylum-seeker" {{ checked("tags","asylum-seeker") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -349,7 +342,7 @@
                 id="example-1"
                 name="tags"
                 type="checkbox"
-                value="sexual-violence"
+                value="sexual-violence" {{ checked("tags","sexual-violence") }}
               />
               <label
                 class="nhsuk-label nhsuk-checkboxes__label"
@@ -377,7 +370,7 @@
             <div class="nhsuk-radios">
               <div class="nhsuk-radios__item">
                 <input class="nhsuk-radios__input" id="free-1" name="free"
-                type="radio" value="false" {{ checked("free", "false") }} >
+                type="radio" value="false" {{ checked("free", "false") }} />
                 <label class="nhsuk-label nhsuk-radios__label" for="free-1">
                   Yes
                 </label>
@@ -385,7 +378,7 @@
 
               <div class="nhsuk-radios__item">
                 <input class="nhsuk-radios__input" id="free-2" name="free"
-                type="radio" value="true" {{ checked("free", "true") }} >
+                type="radio" value="true" {{ checked("free", "true") }}/>
                 <label class="nhsuk-label nhsuk-radios__label" for="free-2">
                   No
                 </label>

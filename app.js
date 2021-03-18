@@ -400,7 +400,8 @@ app.post("/api/message-callback", async (req,res) => {
 })
 
 app.get("/return-service-filter", async (req, res) => {
-  userData = req.session.data
+
+  userData = Object.assign({}, req.session.data)
   if (userData?.support_types) {
     var tempArray = [].concat(userData.support_types)
     tempArray = tempArray.map(element => element.split(','))
@@ -410,6 +411,7 @@ app.get("/return-service-filter", async (req, res) => {
   
   }
   let results = await filteredResults(userData)
+  req.session.data = {}
   res.send(results)
 
 })
@@ -484,6 +486,7 @@ app.post('/mental-health-check-in/clear-data', function (req, res) {
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/((?!api)[^.]+)$/, function (req, res) {
+  console.log(req.params[0])
   res.redirect('/' + req.params[0])
 })
 
