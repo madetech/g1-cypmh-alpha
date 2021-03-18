@@ -44,6 +44,11 @@ const filteredResults = async (data) => {
     age = Number(data.age) 
     filteredServices = filteredServices.filter(service => service.maxAge >= age && service.minAge <= age)
   }
+  if (data?.free && data.free === 'true') {
+    console.log("here?")
+    filteredServices = filteredServices.filter(service => service.free === true)
+    console.log(filteredServices)
+  }
 
   return filteredServices
 }

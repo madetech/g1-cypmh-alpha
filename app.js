@@ -404,9 +404,9 @@ app.get("/return-service-filter", async (req, res) => {
   if (userData?.support_types) {
     userData.support_types = userData.support_types.split(",")
   }
-  if (userData?.free){
-    userData.free = Boolean(userData.free)
-  }
+  // if (userData?.free){
+  //   userData.free = Boolean(userData.free)
+  // }
   console.log(userData)
   let results = await filteredResults(userData)
   res.send(results)
