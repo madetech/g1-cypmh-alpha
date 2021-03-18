@@ -402,12 +402,13 @@ app.post("/api/message-callback", async (req,res) => {
 app.get("/return-service-filter", async (req, res) => {
   userData = req.session.data
   if (userData?.support_types) {
-    userData.support_types = userData.support_types.split(",")
+    var tempArray = [].concat(userData.support_types)
+    tempArray = tempArray.map(element => element.split(','))
+    finalArray = []
+    tempArray.forEach(element => finalArray = finalArray.concat(element)) 
+    userData.support_types = finalArray
+  
   }
-  // if (userData?.free){
-  //   userData.free = Boolean(userData.free)
-  // }
-  console.log(userData)
   let results = await filteredResults(userData)
   res.send(results)
 
