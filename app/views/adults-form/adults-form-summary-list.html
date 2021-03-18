@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Results
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+  items: [
+    {
+      href: "/adults-landing-page",
+      text: "Find support"
+    },
+    {
+      href: "/adults-form/adults-form-page-1", 
+      text: "Support finder - page 1"
+    }
+  ],
+  href: "/adults-form/adults-form-page-2", 
+  text: "Support finder - page 2"
+}) }}
+{% endblock %}
+
+{% block content %}
+  
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <form action="/adults-form/adults-form-summary" method="post">
+
+      <h1>Your answers</h1>
+      
+
+
+
+<dl class="nhsuk-summary-list">
+
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        Age
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <!--insert age-->
+      </dd>
+  
+      <dd class="nhsuk-summary-list__actions">
+  
+        <a href="#">
+          Change<span class="nhsuk-u-visually-hidden"> age</span>
+        </a>
+  
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        Issue
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <!--insert issue-->
+      </dd>
+  
+      <dd class="nhsuk-summary-list__actions">
+  
+        <a href="#">
+          Change<span class="nhsuk-u-visually-hidden"> issue</span>
+        </a>
+  
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        Trauma
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <!--insert trauma types-->
+      </dd>
+  
+      <dd class="nhsuk-summary-list__actions">
+  
+        <a href="#">
+          Change<span class="nhsuk-u-visually-hidden"> trauma type</span>
+        </a>
+  
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        Support types
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <!--insert support types-->
+      </dd>
+  
+      <dd class="nhsuk-summary-list__actions">
+  
+        <a href="#">
+          Change<span class="nhsuk-u-visually-hidden"> support types</span>
+        </a>
+  
+      </dd>
+      </div>
+  
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Location
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <!--insert location-->
+        </dd>
+    
+        <dd class="nhsuk-summary-list__actions">
+    
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> location</span>
+          </a>
+    
+        </dd>
+    </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Show paid options?
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              <!--insert yes/no-->
+            </dd>
+        
+            <dd class="nhsuk-summary-list__actions">
+        
+              <a href="#">
+                Change<span class="nhsuk-u-visually-hidden"> show paid options</span>
+              </a>
+        
+            </dd>
+        </div>
+
+        <br><br>
+
+            <button class="nhsuk-button">Continue</button>
+
+    </div>
+  
+  </dl>
+
+
+
+{% endblock %}
+
