@@ -31,28 +31,35 @@ Find support for a young person - page 2
   <div class="nhsuk-checkboxes">
 
     <div class="nhsuk-checkboxes__item">
-      <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
-      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
-        Information and self-help
-      </label>
+      <input class="nhsuk-checkboxes__input" id="support-self-help"
+              name="support_types" type="checkbox" value="app,self-help" {{ checked("support_types", "app,self-help") }}/>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-self-help">
+                Information and self-help
+              </label>
     </div>
 
     <div class="nhsuk-checkboxes__item">
-      <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
-      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
-        Somebody to speak to now (e.g. a helpline)
-      </label>
+      <input class="nhsuk-checkboxes__input" id="support-helpline"
+              name="support_types" type="checkbox" value="helpline" {{ checked("support_types", "helpline") }} />
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-helpline">
+                Somebody to speak to now (e.g. a helpline)
+              </label>
     </div>
 
     <div class="nhsuk-checkboxes__item">
-      <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
-      <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
-        Ongoing support to get better
-      </label>
+      <input class="nhsuk-checkboxes__input" id="support-other"
+              name="support_types" type="checkbox"
+              value="counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing"]
+              {{ checked("support_types",
+              "counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing")
+              }}>
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="support-other">
+                Ongoing help to get better
+              </label>
     </div>
 
     <div class="nhsuk-checkboxes__item">
-        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+        <input class="nhsuk-checkboxes__input" id="example-3" name="support-types-notsure" type="checkbox" value="specialist" {{ checked("support_types-notsure",  "specialist")}}>
         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
           Specialist medical support 
         </label>
@@ -62,7 +69,7 @@ Find support for a young person - page 2
       </div>
 
       <div class="nhsuk-checkboxes__item">
-        <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+        <input class="nhsuk-checkboxes__input" id="example-3" name="support-types-notsure" type="checkbox" value="true" {{ checked("support_types-notsure",  "true")}}>
         <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
           Don't know / not sure
         </label>
@@ -85,56 +92,56 @@ Find support for a young person - page 2
           <div class="nhsuk-checkboxes">
 
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+              <input class="nhsuk-checkboxes__input" id="example-1" name="location" type="checkbox" value="cheltenham" {{ checked("cheltenham") }}>
               <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
                 Cheltenham
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-2" name="example" type="checkbox" value="phone">
+              <input class="nhsuk-checkboxes__input" id="example-2" name="location" type="checkbox" value="gloucester-city" {{ checked("gloucester-city") }}>
               <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
                 Gloucester city
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-              <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+              <input class="nhsuk-checkboxes__input" id="example-3" name="location" type="checkbox" value="south-cotswolds" {{ checked("south-cotswolds") }}>
               <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                 South Cotswolds
               </label>
             </div>
       
             <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="location" type="checkbox" value="north-cotswolds" {{ checked("north-cotswolds") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   North Cotswolds
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="location" type="checkbox" value="forest-of-dean" {{ checked("forest-of-dean") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Forest of Dean
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="location" type="checkbox" value="tewkesbury-newent-staunton" {{ checked("tewkesbury-newent-staunton") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Tewkesbury, Newent and Staunton
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="location" type="checkbox" value="stroud-berkley-vale" {{ checked("stroud-berkley-vale") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Stroud and Berkley Vale
                 </label>
               </div>
 
               <div class="nhsuk-checkboxes__item">
-                <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message">
+                <input class="nhsuk-checkboxes__input" id="example-3" name="location-notsure" type="checkbox" value="true" {{ checked("location-notsure" ,"true") }}>
                 <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
                   Don't know / not sure
                 </label>
@@ -164,14 +171,16 @@ Find support for a young person - page 2
       <div class="nhsuk-radios">
   
         <div class="nhsuk-radios__item">
-          <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="yes">
+          <input class="nhsuk-radios__input" id="free-1" name="free"
+                type="radio" value="false" {{ checked("free", "false") }} />
           <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
             Yes, show paid options as well as free services
           </label>
         </div>
   
         <div class="nhsuk-radios__item">
-          <input class="nhsuk-radios__input" id="example-hints-2" name="example-hints" type="radio" value="no">
+          <input class="nhsuk-radios__input" id="free-2" name="free"
+                type="radio" value="true" {{ checked("free", "true") }}/>
           <label class="nhsuk-label nhsuk-radios__label" for="example-hints-2">
             No, only show free services
           </label>
