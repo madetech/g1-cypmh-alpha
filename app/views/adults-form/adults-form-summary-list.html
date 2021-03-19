@@ -75,6 +75,24 @@ Results
             <li>Thinking about suicide</li>
         {% endswitch %}
       {% endfor %}
+      {% for item in data['tags'] %}
+        {% switch item %}
+          {% case 'mood' %}
+            <li>Mood and motivation</li>
+          {% case 'eating-disorders' %}
+            <li>Eating habits or body image</li>
+          {% case 'gender' %}
+            <li>Gender identity or sexuality</li>
+          {% case 'psychosis' %}
+            <li>Seeing or hearing things</li>
+          {% case 'self-harm' %}
+            <li>Self-harm</li>
+          {% case 'anxiety' %}
+            <li>Feeling worried and anxious</li>
+          {% case 'crisis' %}
+            <li>Thinking about suicide</li>
+        {% endswitch %}
+      {% endfor %}
       </dd>
   
       <dd class="nhsuk-summary-list__actions">
@@ -110,6 +128,24 @@ Results
             <li>Sexual abuse or assault</li>
         {% endswitch %}
       {% endfor %}
+      {% if data['tags'] %}
+        {% switch item %}
+          {% case 'bereavement' %}
+            <li>Bereavement</li>
+          {% case 'bullying' %}
+            <li>Bullying</li>
+          {% case 'covid' %}
+            <li>The COVID-19 pandemic</li>
+          {% case 'family-illness' %}
+            <li>Family illness</li>
+          {% case 'miscarriage' %}
+            <li>Miscarriage or pregnancy-related issues</li>
+          {% case 'asylum-seeker' %}
+            <li>Seeking asylum</li>
+          {% case 'sexual-violence' %}
+            <li>Sexual abuse or assault</li>
+        {% endswitch %}
+      {% endif %}
       </dd>
   
       <dd class="nhsuk-summary-list__actions">
@@ -128,8 +164,7 @@ Results
       </dt>
       <dd class="nhsuk-summary-list__value">
       
-      {% set arrayData = [data['support_types']] %}
-      {{arrayData}}
+     
       {% for item in data['support_types'] %}
         {% switch item %}
           {% case 'app,self-help' %}
@@ -140,7 +175,17 @@ Results
             <li>Ongoing help to get better</li>
         {% endswitch %}
       {% endfor %}
-      <p>{{data['support-types-notsure'] }}</p>
+      {% if data['support_types'] %}
+      {% switch data['support_types'] %}
+          {% case 'app,self-help' %}
+            <li>Information and self-help</li>
+          {% case 'helpline' %}
+            <li>Somebody to speak to now (e.g. a helpline)</li>
+          {% case 'counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing' %}
+            <li>Ongoing help to get better</li>
+        {% endswitch %}
+        {% endif %}
+      
         {% if data['support-types-notsure'] == "specialist" %}
           <li>Specialist medical support</li>
         {% endif %}
