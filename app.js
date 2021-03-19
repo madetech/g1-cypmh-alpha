@@ -408,7 +408,6 @@ app.get("/return-service-filter", async (req, res) => {
     finalArray = []
     tempArray.forEach(element => finalArray = finalArray.concat(element)) 
     userData.support_types = finalArray
-  
   }
   let results = await filteredResults(userData)
   req.session.data = {}
