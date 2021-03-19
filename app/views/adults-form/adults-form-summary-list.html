@@ -75,8 +75,8 @@ Results
             <li>Thinking about suicide</li>
         {% endswitch %}
       {% endfor %}
-      {% for item in data['tags'] %}
-        {% switch item %}
+      {% if data['tags'] %}
+        {% switch data['tags']  %}
           {% case 'mood' %}
             <li>Mood and motivation</li>
           {% case 'eating-disorders' %}
@@ -92,12 +92,12 @@ Results
           {% case 'crisis' %}
             <li>Thinking about suicide</li>
         {% endswitch %}
-      {% endfor %}
+      {% endif %}
       </dd>
   
       <dd class="nhsuk-summary-list__actions">
   
-        <a href="#">
+        <a href="/adults-form/adults-form-page-1">
           Change<span class="nhsuk-u-visually-hidden"> issue</span>
         </a>
   
@@ -129,7 +129,7 @@ Results
         {% endswitch %}
       {% endfor %}
       {% if data['tags'] %}
-        {% switch item %}
+        {% switch data['tags'] %}
           {% case 'bereavement' %}
             <li>Bereavement</li>
           {% case 'bullying' %}
@@ -150,7 +150,7 @@ Results
   
       <dd class="nhsuk-summary-list__actions">
   
-        <a href="#">
+        <a href="/adults-form/adults-form-page-1">
           Change<span class="nhsuk-u-visually-hidden"> trauma type</span>
         </a>
   
@@ -176,14 +176,14 @@ Results
         {% endswitch %}
       {% endfor %}
       {% if data['support_types'] %}
-      {% switch data['support_types'] %}
-          {% case 'app,self-help' %}
-            <li>Information and self-help</li>
-          {% case 'helpline' %}
-            <li>Somebody to speak to now (e.g. a helpline)</li>
-          {% case 'counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing' %}
-            <li>Ongoing help to get better</li>
-        {% endswitch %}
+        {% switch data['support_types'] %}
+            {% case 'app,self-help' %}
+              <li>Information and self-help</li>
+            {% case 'helpline' %}
+              <li>Somebody to speak to now (e.g. a helpline)</li>
+            {% case 'counselling,group-support,1-1-support,group-work,residential-stay,social-prescribing' %}
+              <li>Ongoing help to get better</li>
+          {% endswitch %}
         {% endif %}
       
         {% if data['support-types-notsure'] == "specialist" %}
@@ -193,7 +193,7 @@ Results
   
       <dd class="nhsuk-summary-list__actions">
   
-        <a href="#">
+        <a href="/adults-form/adults-form-page-2">
           Change<span class="nhsuk-u-visually-hidden"> support types</span>
         </a>
   
@@ -205,12 +205,48 @@ Results
           Location
         </dt>
         <dd class="nhsuk-summary-list__value">
-          <!--insert location-->
+          {% for item in data['location'] %}
+            {% switch item %}
+              {% case 'cheltenham' %}
+                <li>Cheltenham</li>
+              {% case 'gloucester-city' %}
+                <li>Gloucester city</li>
+              {% case 'south-cotswolds' %}
+                <li>South Cotswolds</li>
+              {% case 'north-cotswolds' %}
+                <li>North Cotswolds</li>
+              {% case 'forest-of-dean' %}
+                <li>Forest of Dean</li>
+              {% case 'tewkesbury-newent-staunton' %}
+                <li>Tewkesbury, Newent and Staunton</li>
+              {% case 'stroud-berkley-vale' %}
+                <li>Stroud and Berkley Vale</li>
+            {% endswitch %}
+          {% endfor %}
+          {% if data['location'] %}
+            {% switch data['location'] %}
+                {% case 'cheltenham' %}
+                  <li>Cheltenham</li>
+                {% case 'gloucester-city' %}
+                  <li>Gloucester city</li>
+                {% case 'south-cotswolds' %}
+                  <li>South Cotswolds</li>
+                {% case 'north-cotswolds' %}
+                  <li>North Cotswolds</li>
+                {% case 'forest-of-dean' %}
+                  <li>Forest of Dean</li>
+                {% case 'tewkesbury-newent-staunton' %}
+                  <li>Tewkesbury, Newent and Staunton</li>
+                {% case 'stroud-berkley-vale' %}
+                  <li>Stroud and Berkley Vale</li>
+              {% endswitch %}
+          {% endif %}
+          
         </dd>
     
         <dd class="nhsuk-summary-list__actions">
     
-          <a href="#">
+          <a href="/adults-form/adults-form-page-2">
             Change<span class="nhsuk-u-visually-hidden"> location</span>
           </a>
     
@@ -222,12 +258,19 @@ Results
               Show paid options?
             </dt>
             <dd class="nhsuk-summary-list__value">
-              <!--insert yes/no-->
+              {% if data['free'] %}
+                {% switch data['free'] %} 
+                  {% case 'false' %}
+                    <p>Yes</p>
+                  {% case 'true' %}
+                    <p>No</p>
+                {% endswitch %}
+              {% endif %}
             </dd>
         
             <dd class="nhsuk-summary-list__actions">
         
-              <a href="#">
+              <a href="/adults-form/adults-form-page-2">
                 Change<span class="nhsuk-u-visually-hidden"> show paid options</span>
               </a>
         
