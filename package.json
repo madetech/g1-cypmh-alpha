@@ -11,7 +11,9 @@
     "test:watch": "jest --watchAll -c jest.unit.config.js ",
     "e2e:test": "jest -c jest.e2e.config.js",
     "prewatch": "gulp build",
-    "watch": "gulp"
+    "watch": "gulp",
+    "predev": "gulp build",
+    "dev": "gulp"
   },
   "author": "https://github.com/nhsuk/",
   "license": "MIT",
